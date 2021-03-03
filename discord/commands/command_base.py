@@ -1,11 +1,13 @@
-role = "Administrator"
 
-valid_access = ["Administrator", "Example"]
+# Validate if the user have permission to use the command
+user = "Administrator"
 
-def validate_access(role):
-    if role in valid_access:
-        print("The role got access")
+valid_permissions = ["Administrator", "Example"]
+
+def valid_permission(user, command):
+    if str(user) in valid_permissions:
+        print("The user got permission to run this command")
+        return True
     else:
-        print("Access denied") # Throw error?
-
-validate_access(role)
+        print("The user have not permission to run this command") # Throw error?
+        return False
