@@ -14,7 +14,6 @@ CANVAS_DOMAIN = os.getenv('CANVAS_DOMAIN')
 def send_request(type):
 
     getRequest = CANVAS_DOMAIN + f'/api/v1/courses/1?access_token=' + CANVAS_TOKEN
-    #getRequest = 'http://canvas.winkit.se:8080/api/v1/courses/1?access_token=4JoDTcLc8DgxlGm3K5o7Hub8ffshDCSugscQrARnqHLAcapbe8a8FeykBa7SE6cQ'
     
     # Send Get request
     try:
