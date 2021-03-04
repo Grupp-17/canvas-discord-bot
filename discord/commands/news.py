@@ -1,4 +1,4 @@
-# Courses command to display all courses from Canvas
+# Lists the 5 latest announcements
 
 import discord
 from discord.ext import commands
@@ -6,7 +6,7 @@ import os
 
 from environs import load_dotenv
 
-courses_list = ["Course1", "Course2"]
+news_list = ["Ann1", "Ann2", "Ann3", "Ann4", "Ann5", "Ann6", "Ann7"]
 
 load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
@@ -19,7 +19,10 @@ async def on_ready():
 
 
 @client.command()
-async def courses(ctx):
-	await ctx.channel.send(courses_list)
+async def news(ctx):
+    news = ""
+    for i in news_list[0:5]:
+        news = news + "\n" + i
+    await ctx.channel.send(news)
 
 client.run(TOKEN)
