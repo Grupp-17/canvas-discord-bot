@@ -18,11 +18,11 @@ def create_connection(db_file):
     try:
         conn = sqlite3.connect(db_file)
         print('Connection successful. SQLite3', sqlite3.version)
-    except sqlite3.Error as e:
+    except Error as e:
         print(e)
     return conn
 
-
+# Split into commit based queries and non commit based queries
 def sql_query(conn, query, commit):
     try:
         c = conn.cursor()
@@ -36,9 +36,11 @@ def sql_query(conn, query, commit):
     except Error as e:
         print(e)
 
+
 if __name__ == '__main__':
     conn = create_connection(db_path)
 
+    # init of database successful?
     init_success = False
 
     if conn is not None:
