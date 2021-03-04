@@ -5,6 +5,8 @@ from command_base import valid_permission, user
 
 from environs import load_dotenv
 
+permissions = ["Administrator", "Example"]
+
 command = "ping"
 
 load_dotenv()
@@ -21,8 +23,9 @@ async def on_message(message):
     if message.author == client.user:
         return
     
-    if valid_permission(user, command):
-        if message.content.startswith('ping'):
+    if valid_permission(user, command, permissions):
+        if message.content == 'ping':
             await message.channel.send('pong')
+    await message.channel.send("You have no permission to run this command!")
 
 client.run(TOKEN)
