@@ -8,6 +8,7 @@ from environs import load_dotenv
 
 courses_list = ["Course1", "Course2"]
 
+# TODO put in commandbase?
 load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
 
