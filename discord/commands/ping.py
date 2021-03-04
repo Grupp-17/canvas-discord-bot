@@ -4,7 +4,8 @@ import os
 
 from environs import load_dotenv
 
-permissions = ["Administrator", "Example"]
+# TODO
+# permissions = ["Administrator", "Example"]
 
 command = "ping"
 

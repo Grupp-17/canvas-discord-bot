@@ -6,11 +6,14 @@ import os
 
 from environs import load_dotenv
 
+# TODO import data from database
 news_list = ["Ann1", "Ann2", "Ann3", "Ann4", "Ann5", "Ann6", "Ann7"]
 
+# TODO put in command_base?
 load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
 
+# TODO fallback ".", expose prefix variable in .env
 client = commands.Bot(command_prefix='.')
 
 @client.event
