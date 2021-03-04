@@ -21,3 +21,6 @@ def sql_insert_into(course_name, course_id, posted_at):
             "{posted_at}");
     """
     return query
+
+sql_select_courses =""" SELECT course_name FROM courses"""
+        

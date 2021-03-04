@@ -4,6 +4,7 @@ import discord
 from discord.ext import commands
 import os
 
+
 from environs import load_dotenv
 
 courses_list = ["Course1", "Course2"]

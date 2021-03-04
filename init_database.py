@@ -32,6 +32,7 @@ def sql_query(conn, query, commit):
 
         if commit:
             conn.commit()
+        return c
 
     except Error as e:
         print(e)
@@ -56,3 +57,4 @@ if __name__ == '__main__':
 
         # Insert answer into database
         sql_query(conn, sql_insert_into(data['name'], data['course_code'], data['created_at']), True)
+        courses = sql_query(conn, sql_select_courses, False).fetchone()
