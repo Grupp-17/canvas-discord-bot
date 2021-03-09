@@ -6,6 +6,7 @@ import os
 # Local modules
 from database.init import init_database
 from canvas.monitor import init_monitor
+
 from discord_api.commands.krona_klave import krona_klave
 
 # Third party modules
@@ -44,5 +45,6 @@ async def on_ready():
 async def on_message(message):
 
     await message.channel.send(krona_klave(message, client))
+
 
 client.run(TOKEN)
