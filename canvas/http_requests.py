@@ -24,6 +24,8 @@ def fetch_courses():
     else:
         return None
 
+# TODO
+#def fetch_announcement():
 
 def send_request(request, type):
 

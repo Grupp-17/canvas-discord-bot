@@ -15,6 +15,7 @@ def init_database():
 
     if conn is not None:
         init_success = sql_query(sql_drop_table)
+        # Fix
         init_success = sql_query(sql_create_table)
 
         return True

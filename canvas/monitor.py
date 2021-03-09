@@ -14,13 +14,13 @@ def init_monitor():
     scheduler = BackgroundScheduler()
 
     # Set scheduler action and interval
-    scheduler.add_job(update_courselist, 'interval', seconds=5)
+    scheduler.add_job(insert_courselist, 'interval', seconds=5)
 
     # Run scheduler
     scheduler.start()
 
     
-def update_courselist():
+def insert_courselist():
 
     # Fetch coursedata
     data = fetch_courses()
