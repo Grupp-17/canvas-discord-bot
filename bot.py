@@ -7,10 +7,9 @@ import os
 from database.init import init_database
 from canvas.monitor import init_monitor
 
-from discord_api.commands.krona_klave import krona_klave
-
 # Third party modules
 import discord
+from discord.ext import commands
 from environs import load_dotenv
 
 load_dotenv()
@@ -19,7 +18,15 @@ TOKEN = os.getenv('DISCORD_TOKEN')
 intents = discord.Intents.default()
 client = discord.Client(intents=intents)
 
-client = discord.Client()
+client = commands.Bot(command_prefix='.')
+
+initial_extensions = ['discord_api.commands.command_base']
+
+if __name__ == '__main__':
+    for extension in initial_extensions:
+        client.load_extension(extension)
+
+# TODO Lägga alla decorations någon annanstans? Montior för discord?
 
 @client.event
 async def on_ready():
@@ -41,10 +48,10 @@ async def on_ready():
 
 
 # This is just a test for pinging the bot
-@client.event
-async def on_message(message):
+# @client.event
+# async def on_message(message):
 
-    await message.channel.send(krona_klave(message, client))
+#     await message.channel.send(krona_klave(message, client))
 
 
 client.run(TOKEN)
