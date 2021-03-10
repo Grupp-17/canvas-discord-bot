@@ -1,5 +1,7 @@
 # Refactor duplicated codeblocks from commands
 
+import discord
+from discord.ext.commands.core import command
 from database.interactions import sql_query
 from database.queries import sql_select_courses
 from os import name
@@ -20,11 +22,31 @@ class CommandBase(commands.Cog):
             results = "Klave"
         await ctx.send(results)
 
+    ## Command for displaying the active courses
+
     @commands.command(name="courses")
+    @commands.guild_only()
     async def courses(self, ctx):
-        results = sql_query(sql_select_courses)
-        print(results)
-        await ctx.send(results)
+        
+        # Import courses from db by sql-query
+        q = sql_query(sql_select_courses)
+
+        # Defining unwanted characters and replacing them with empty string
+        unwanted_chars = ['[', ']', '"']
+        for i in unwanted_chars:
+            q = q.replace(i, "")
+
+        # Split strings to separate each course
+        results = q.split(sep=",")
+
+        # Embed for displaying courses in discord
+        embed = discord.Embed(title='Aktuella kurser', description="Här visas de aktuella kurserna", colour=0x98FB98)
+        embed.set_author(name="CanvasDiscordBot", icon_url="https://play-lh.googleusercontent.com/2_M-EEPXb2xTMQSTZpSUefHR3TjgOCsawM3pjVG47jI-BrHoXGhKBpdEHeLElT95060B=s180")
+        
+        # Add fields in the embed
+        for i in results:
+            embed.add_field(name="Kursnamn", value=str(i), inline=False)
+        await ctx.send(embed=embed)
     
     # @commands.command(name="news")
     # async def news(self, ctx):
