@@ -25,6 +25,13 @@ class CommandBase(commands.Cog):
         results = sql_query(sql_select_courses)
         print(results)
         await ctx.send(results)
+    
+    # @commands.command(name="news")
+    # async def news(self, ctx):
+    #     # Get announcements query
+    #     results = sql_query(sql_select_announcements)
+    #     print(results)
+    #     await ctx.send(results)
 
 def setup(client):
     client.add_cog(CommandBase(client))

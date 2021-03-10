@@ -26,8 +26,6 @@ if __name__ == '__main__':
     for extension in initial_extensions:
         client.load_extension(extension)
 
-# TODO Lägga alla decorations någon annanstans? Montior för discord?
-
 @client.event
 async def on_ready():
 
