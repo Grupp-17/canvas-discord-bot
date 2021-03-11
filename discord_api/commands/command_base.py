@@ -40,8 +40,11 @@ class CommandBase(commands.Cog):
         results = q.split(sep=",")
 
         # Embed for displaying courses in discord
-        embed = discord.Embed(title='Aktuella kurser', description="Här visas de aktuella kurserna", colour=0x98FB98)
-        embed.set_author(name="CanvasDiscordBot", icon_url="https://play-lh.googleusercontent.com/2_M-EEPXb2xTMQSTZpSUefHR3TjgOCsawM3pjVG47jI-BrHoXGhKBpdEHeLElT95060B=s180")
+        embed = discord.Embed(title='Aktuella kurser', 
+                              description="Här visas de aktuella kurserna", 
+                              colour=0x98FB98)
+        embed.set_author(name="CanvasDiscordBot", 
+                         icon_url="https://play-lh.googleusercontent.com/2_M-EEPXb2xTMQSTZpSUefHR3TjgOCsawM3pjVG47jI-BrHoXGhKBpdEHeLElT95060B=s180")
         
         # Add fields in the embed
         for i in results:
