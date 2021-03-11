@@ -4,6 +4,7 @@
 import sqlite3
 from sqlite3 import Error
 from pathlib import Path
+import json
 
 # Path is used to create OS independent pathing
 db_path = Path('database/main.db')
@@ -26,8 +27,10 @@ def sql_query(query):
         c.execute(query)
         print(query)
         print('Query successful!')
-
+        
+        data = c.fetchall()
         conn.close()
+        return json.dumps(data)
 
     except Error as e:
         print(e)
