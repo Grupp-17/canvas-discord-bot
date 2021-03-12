@@ -27,7 +27,6 @@ class CommandBase(commands.Cog):
     ## Command for displaying the active courses
 
     @commands.command(name="courses")
-    @commands.guild_only()
     async def courses(self, ctx):
         
         # Import courses from db by sql-query
