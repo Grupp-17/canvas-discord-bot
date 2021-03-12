@@ -1,9 +1,13 @@
-import discord
+# Internal modules
+import random
+
+# Local modules
 from discord.ext.commands.core import command
 from database.interactions import sql_query
 from database.queries import sql_select_courses
-from os import name
-import random
+
+# Third party modules
+import discord
 from discord.ext import commands
 
 
@@ -37,6 +41,11 @@ class CommandBase(commands.Cog):
         # Split strings to separate each course
         results = q.split(sep=",")
 
+        # Separate course names and course codes into different lists
+        for i in results:
+            course_names = results[::2]
+            course_codes = results[1::2]
+            
         # Embed for displaying courses in discord
         embed = discord.Embed(title='Aktuella kurser', 
                               description="Här visas de aktuella kurserna", 
@@ -45,17 +54,17 @@ class CommandBase(commands.Cog):
         embed.set_author(name="CanvasDiscordBot", 
                          icon_url="https://play-lh.googleusercontent.com/2_M-EEPXb2xTMQSTZpSUefHR3TjgOCsawM3pjVG47jI-BrHoXGhKBpdEHeLElT95060B=s180")
         
-        # Add fields in the embed
-        for i in results:
-            embed.add_field(name="Kursnamn", value=str(i), inline=False)
+        # Add fields in the embed by iterating through the lists
+        for i, j in zip(course_names, course_codes):
+                embed.add_field(name=str(i), value=str(j), inline=False)
         await ctx.send(embed=embed)
     
-    # @commands.command(name="news")
-    # async def news(self, ctx):
+    @commands.command(name="news")
+    async def news(self, ctx):
     #     # Get announcements query
     #     results = sql_query(sql_select_announcements)
     #     print(results)
-    #     await ctx.send(results)
+        await ctx.send()
 
 def setup(client):
     client.add_cog(CommandBase(client))
