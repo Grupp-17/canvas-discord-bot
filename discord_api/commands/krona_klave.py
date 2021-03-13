@@ -1,12 +1,6 @@
 import random
 
-def krona_klave(message, client):
-    if message.author == client.user:
-        return
-
-    message_content = message.content.lower()
-
-    if "singla" in message_content:
+def krona_klave_command():
         rand_int = random.randint(0, 1)
         if rand_int == 0:
             results = "Krona"

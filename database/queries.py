@@ -97,7 +97,11 @@ def sql_select_table_attributes_condition(attribute, table, condition):
     return query
 
 def sql_select_subscription(arg):
-    query = f""" SELECT id, name, subscribe_to FROM courses WHERE id == {arg} OR course_code == {arg} OR name == {arg}"""
+    if isinstance(arg, int):
+        query = f"""SELECT id, name, subscribed_to FROM courses WHERE id == {arg} OR course_code == {arg} OR name == {arg}"""
+    else:
+        query = f"""SELECT id, name, subscribed_to FROM courses WHERE id == '{arg}' OR course_code == '{arg}' OR name == '{arg}'"""
+    return query
 
 
 def sql_update_table_courses(
