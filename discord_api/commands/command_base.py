@@ -58,12 +58,19 @@ class CommandBase(commands.Cog):
             embed.add_field(name=str(name), value=str(code), inline=False)
         await ctx.send(embed=embed)
     
-    @commands.command(name="news")
-    async def news(self, ctx):
-    #     # Get announcements query
-    #     results = sql_query(sql_select_announcements)
-    #     print(results)
-        await ctx.send()
+    def send_announcement():
+        @commands.command(name="news")
+        async def news(self, ctx):
+        #     Get announcements query
+        #     results = sql_query(sql_select_announcements)
+        #     print(results)
+            await ctx.send()
+
+    ## @commands.command(name="subscribe",kurs)
+    ## async def subscribe(self, ctx):
+    #   kolla igenom alla kurser, vilka kurser är redan subscribed?
+    #   sätt värdet subscribed på kurs x i databasen till 1
+    #   await ctx.send("Subscribe har lyckats till kurs x")
 
 def setup(client):
     client.add_cog(CommandBase(client))
