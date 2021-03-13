@@ -107,6 +107,6 @@ def update_db():
             # Send those announcements to Discord with sent_discord = 0
             if not (sql_query_fetchone_result(sql_select_table_attributes_condition('sent_discord', 'announcements', f"id = {data_announcements[f]['id']}" ))):
                 print(f"Sending: {data_announcements[f]['id']}")
+                # TODO Query database for data to send
 
-                
 
