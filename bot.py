@@ -38,5 +38,8 @@ async def on_ready():
     if init_success_database:
         init_monitor()
 
+@client.event
+async def send_to_discord(a):
+    await a.send("Hej")
 
 client.run(TOKEN)

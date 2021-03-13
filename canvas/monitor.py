@@ -110,3 +110,4 @@ def update_db():
                 # TODO Query database for data to send
 
 
+
