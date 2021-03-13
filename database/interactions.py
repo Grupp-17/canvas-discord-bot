@@ -29,11 +29,13 @@ def sql_query(query):
         print(query)
         print('Query successful!')
         conn.close()
+        return True
 
     except Error as e:
         print(e)
+        return False
 
-def sql_fetch_query(query):
+def sql_query_fetch(query):
     try:
         conn = create_connection(db_path)
 
@@ -41,10 +43,9 @@ def sql_fetch_query(query):
         c.execute(query)
         print(query)
         print('Query successful!')
-        
-        data = c.fetchall()
+        result = c.fetchall()
         conn.close()
-        return json.dumps(data)
+        return result
        
     except Error as e:
         print(e)

@@ -31,7 +31,7 @@ def update_db():
         for i in range(len(data_courses)):
 
             # Check if course exists, if it doesn't insert it
-            if not (sql_query(sql_check_if_exists('id', data_courses[i]['id'], 'courses'))):
+            if (sql_query(sql_check_if_exists('id', data_courses[i]['id'], 'courses'))):
                 sql_query_commit(
                     sql_insert_table_courses(
                         data_courses[i]['id'], 

@@ -87,8 +87,8 @@ def sql_insert_table_announcements(
     """
     return query
 
-def sql_fetch_course_info(value, table):
-    query = """SELECT {value} FROM {table};"""
+def sql_select_table_attributes(attribute, table):
+    query = f"""SELECT {attribute} FROM {table};"""
     return query
     
 
