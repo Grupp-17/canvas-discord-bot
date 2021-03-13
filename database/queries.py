@@ -1,26 +1,97 @@
-sql_drop_table = """DROP TABLE courses;"""
+sql_drop_table_courses = """DROP TABLE courses;"""
 
-sql_create_table = """CREATE TABLE IF NOT EXISTS courses (
-                        course_name TEXT, 
-                        course_id INTEGER, 
-                        posted_at REAL, 
+sql_drop_table_announcements = """DROP TABLE announcements;"""
+
+sql_create_table_courses = """CREATE TABLE IF NOT EXISTS courses (
                         id INTEGER, 
-                        PRIMARY KEY(id AUTOINCREMENT)
+                        name TEXT, 
+                        course_code TEXT, 
+                        start_at REAL,
+                        end_at REAL, 
+                        timestamp NUMERIC,
+                        subscribed_to NUMERIC,
+                        PRIMARY KEY(id)
+                    );"""
+
+sql_create_table_announcements = """CREATE TABLE IF NOT EXISTS announcements (
+                        id INTEGER, 
+                        title TEXT, 
+                        text TEXT, 
+                        author TEXT,
+                        context_code TEXT, 
+                        posted_at REAL,
+                        timestamp NUMERIC,
+                        sent_discord NUMERIC,
+                        PRIMARY KEY(id)
                     );"""
 
 
-def sql_insert_into(course_name, course_id, posted_at):
+def sql_insert_table_courses(
+    id,
+    name,
+    course_code,
+    start_at,
+    end_at,
+    timestamp,
+    subscribed_to):
     query = f"""
         INSERT INTO courses (
-            course_name, 
-            course_id, 
-            posted_at) 
+            id,
+            name,
+            course_code,
+            start_at,
+            end_at,
+            timestamp,
+            subscribed_to) 
         VALUES (
-            "{course_name}",
-            "{course_id}",
-            "{posted_at}");
+            "{id}",
+            "{name}",
+            "{course_code}",
+            "{start_at}",
+            "{end_at}",
+            "{timestamp}",
+            "{subscribed_to}"
+            );
+    """
+    return query
+
+def sql_insert_table_announcements(
+    id,
+    title,
+    text,
+    author,
+    context_code,
+    posted_at,
+    timestamp,
+    sent_discord):
+    query = f"""
+        UPDATE courses (
+            id,
+            title,
+            text,
+            author,
+            context_code,
+            posted_at,
+            timestamp,
+            sent_discord) 
+        VALUES (
+            "{id}",
+            "{title}",
+            "{text}",
+            "{author}",
+            "{context_code}",
+            "{posted_at}",
+            "{timestamp}",
+            "{sent_discord}"
+            );
     """
     return query
 
 sql_select_courses ="""SELECT course_name, course_id FROM courses;"""
 
+# Returns 1 if exists and 0 if not (as SQLITE doesn't support boolean)
+def sql_check_if_exists(attribute, value, table): 
+    query = f"""
+    SELECT COUNT({attribute}) FROM {table} WHERE {attribute} = {value}
+    """
+    return query

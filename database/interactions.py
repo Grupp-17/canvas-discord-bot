@@ -5,11 +5,12 @@ import sqlite3
 from sqlite3 import Error
 from pathlib import Path
 import json
+from datetime import datetime
 
 # Path is used to create OS independent pathing
 db_path = Path('database/main.db')
 
-def create_connection(db_file):
+def create_connection(db_file): 
     conn = None
 
     try:
@@ -52,3 +53,7 @@ def sql_query_commit(query):
            
     except Error as e:
         print(e)
+
+# Function to set timestamp in database
+def timestamp():
+    return datetime.now().strftime('%Y:%m:%dT%I:%M:%S')

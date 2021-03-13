@@ -10,16 +10,15 @@ from .interactions import *
 def init_database():
     conn = create_connection(db_path)
 
-    # init of database successful?
-    init_success = False
-
     if conn is not None:
-        init_success = sql_query(sql_drop_table)
-        # Fix
-        init_success = sql_query(sql_create_table)
+        sql_query(sql_drop_table_courses)
+        sql_query(sql_drop_table_announcements)
 
-        return True
-        
+        if((sql_query(sql_create_table_courses)) and (sql_query(sql_create_table_announcements))):
+            return True
+        else:
+            print('Init of tables failed')
+            SystemExit()
     else:
         print(conn)
 
