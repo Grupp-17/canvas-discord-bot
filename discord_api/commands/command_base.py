@@ -54,8 +54,8 @@ class CommandBase(commands.Cog):
                          icon_url="https://play-lh.googleusercontent.com/2_M-EEPXb2xTMQSTZpSUefHR3TjgOCsawM3pjVG47jI-BrHoXGhKBpdEHeLElT95060B=s180")
         
         # Add fields in the embed by iterating through the lists
-        for i, j in zip(course_names, course_codes):
-                embed.add_field(name=str(i), value=str(j), inline=False)
+        for name, code in zip(course_names, course_codes):
+                embed.add_field(name=str(name), value=str(code), inline=False)
         await ctx.send(embed=embed)
     
     @commands.command(name="news")
