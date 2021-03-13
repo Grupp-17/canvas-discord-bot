@@ -38,18 +38,5 @@ async def on_ready():
     if init_success_database:
         init_monitor()
 
-        # TODO 
-        # Listen to commands
-        # Start monitor
-
-        # Get data from request
-
-
-# This is just a test for pinging the bot
-# @client.event
-# async def on_message(message):
-
-#     await message.channel.send(krona_klave(message, client))
-
 
 client.run(TOKEN)

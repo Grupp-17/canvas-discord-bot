@@ -1,5 +1,6 @@
 from database.interactions import *
 from database.queries import *
+import discord
 
 def is_subscribed(course_id):
     subscribe_query = sql_query_fetch(sql_select_subscription(course_id))
@@ -13,12 +14,16 @@ def is_subscribed(course_id):
 
 def subscribe_command(arg):
 #   kolla igenom alla kurser, vilka kurser är redan subscribed?
+    embed = discord.Embed(title='Prenumerationer', colour=0x98FB98)
+    
+    embed.set_author(name="CanvasDiscordBot", 
+                     icon_url="https://play-lh.googleusercontent.com/2_M-EEPXb2xTMQSTZpSUefHR3TjgOCsawM3pjVG47jI-BrHoXGhKBpdEHeLElT95060B=s180")
     if is_subscribed(arg):
-        message = f"Prenumererar redan på kurs {arg}"
+        embed.add_field(name=f"Prenumererar redan på kurs {arg}", value="Ingen ny prenumeration tillagd")
     else:
-        message = f"Prenumererar på kurs {arg}"
+        embed.add_field(name=f"Prenumererar nu på kurs {arg}", value="Kursen lades till")
         sql_query(sql_update_subscription(arg, subscribe=True))
-    return message
+    return embed
 
 
 # def subscribe_command(arg):
