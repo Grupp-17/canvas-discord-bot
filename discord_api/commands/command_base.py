@@ -36,7 +36,7 @@ class CommandBase(commands.Cog):
 
     @commands.command(name="subscribe")
     async def subscribe(self, ctx, *, arg):
-        await ctx.send(subscribe_command(arg))
+        await ctx.send(embed=subscribe_command(arg))
    
 
 def setup(client):
