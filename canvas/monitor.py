@@ -68,7 +68,7 @@ def update_db():
     ################################
 
     # A list of every course ID in database  
-    course_id_list = sql_query_fetchall_result(sql_select_table_courses_id)
+    course_id_list = sql_query_fetchall_result(sql_select_table_attributes('id', 'courses'))
 
     # Fetch announcements for every course in Canvas table
     for i in range(len(course_id_list)):
@@ -103,3 +103,10 @@ def update_db():
                         timestamp()
                     )
                 )
+
+            # Send those announcements to Discord with sent_discord = 0
+            if not (sql_query_fetchone_result(sql_select_table_attributes_condition('sent_discord', 'announcements', f"id = {data_announcements[f]['id']}" ))):
+                print(f"Sending: {data_announcements[f]['id']}")
+
+                
+

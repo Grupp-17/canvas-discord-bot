@@ -1,3 +1,7 @@
+################
+# DROP QUERIES #
+################
+
 sql_drop_table_courses = """DROP TABLE courses;"""
 
 sql_drop_table_announcements = """DROP TABLE announcements;"""
@@ -25,6 +29,10 @@ sql_create_table_announcements = """CREATE TABLE IF NOT EXISTS announcements (
                         PRIMARY KEY(id)
                     );"""
 
+
+##################
+# INSERT QUERIES #
+##################
 
 def sql_insert_table_courses(
     id,
@@ -89,6 +97,10 @@ def sql_insert_table_announcements(
     return query
 
 
+##################
+# UPDATE QUERIES #
+##################
+
 def sql_update_table_courses(
     id,
     name,
@@ -131,13 +143,19 @@ def sql_update_table_announcements(
     return query
 
 
+##################
+# SELECT QUERIES #
+##################
+
 def sql_select_table_attributes(attribute, table):
     query = f"""SELECT {attribute} FROM {table};"""
     return query
 
+
 def sql_select_table_attributes_condition(attribute, table, condition):
     query = f"""SELECT {attribute} FROM {table} WHERE {condition};"""
     return query
+
 
 def sql_select_subscription(arg):
     if isinstance(arg, int):
@@ -146,13 +164,6 @@ def sql_select_subscription(arg):
         query = f"""SELECT id, name, subscribed_to FROM courses WHERE id == '{arg}' OR course_code == '{arg}' OR name == '{arg}'"""
     return query
 
-
-
-
-
-sql_select_table_courses_id = """SELECT id FROM courses;"""
-
-sql_select_courses ="""SELECT course_name, course_id FROM courses;"""
 
 # Returns 1 if exists and 0 if not (as SQLITE doesn't support boolean)
 def sql_check_if_exists(attribute, value, table): 
