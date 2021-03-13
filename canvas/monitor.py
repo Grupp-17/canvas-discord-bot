@@ -75,19 +75,19 @@ def update_db():
     for i in range(len(course_id_list)):
         
         data_announcements = fetch_announcements(course_id_list[i])
-        print(data_announcements)
-        for i in range(len(data_announcements)):
+
+        for f in range(len(data_announcements)):
 
             # Check if announcement exists, if it doesn't insert it
-            if not (sql_query_fetchone_result(sql_check_if_exists('id', data_announcements[i]['id'], 'annnouncement'))):
+            if not (sql_query_fetchone_result(sql_check_if_exists('id', data_announcements[f]['id'], 'announcements'))):
                 sql_query_commit(
                     sql_insert_table_announcements(
-                        data_announcements[i]['id'], 
-                        data_announcements[i]['title'], 
-                        data_announcements[i]['text'],
-                        data_announcements[i]['author'], 
-                        data_announcements[i]['context_code'],
-                        data_announcements[i]['posted_at'],
+                        data_announcements[f]['id'], 
+                        data_announcements[f]['title'], 
+                        data_announcements[f]['message'],
+                        data_announcements[f]['author']['display_name'], 
+                        data_announcements[f]['context_code'],
+                        data_announcements[f]['posted_at'],
                         timestamp(),
                         0 # Sent to Discord initial value 0
                     )
@@ -95,12 +95,12 @@ def update_db():
             else:
                 sql_query_commit(
                     sql_update_table_announcements(
-                        data_announcements[i]['id'], 
-                        data_announcements[i]['title'], 
-                        data_announcements[i]['text'],
-                        data_announcements[i]['author'], 
-                        data_announcements[i]['context_code'],
-                        data_announcements[i]['posted_at'],
+                        data_announcements[f]['id'], 
+                        data_announcements[f]['title'], 
+                        data_announcements[f]['message'],
+                        data_announcements[f]['author']['display_name'], 
+                        data_announcements[f]['context_code'],
+                        data_announcements[f]['posted_at'],
                         timestamp(),
                         0 # TODO Needs to be set correctly
                     )
