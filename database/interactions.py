@@ -4,7 +4,6 @@
 import sqlite3
 from sqlite3 import Error
 from pathlib import Path
-import json
 from datetime import datetime
 
 # Path is used to create OS independent pathing
@@ -19,6 +18,17 @@ def create_connection(db_file):
     except Error as e:
         print(e)
     return conn
+
+
+# Create a clean list of SQLite output
+def create_sql_query_list(data):
+    result = []
+
+    for i in range(len(data)):
+        for f in range(len(data[i])):
+            result.append(data[i][f])
+
+    return result
 
 def sql_query(query):
     try:
@@ -49,7 +59,45 @@ def sql_query_fetch(query):
        
     except Error as e:
         print(e)
+        return False
 
+def sql_query_fetchone_result(query):
+    try:
+        conn = create_connection(db_path)
+
+        c = conn.cursor()
+        c.execute(query)
+        print(query)
+        print('Query successful!')
+        
+        result = c.fetchone()
+
+        conn.close()
+
+        # Return first result only (ignoring ,)
+        return result[0]
+
+    except Error as e:
+        print(e)
+
+def sql_query_fetchall_result(query):
+    try:
+        conn = create_connection(db_path)
+
+        c = conn.cursor()
+        c.execute(query)
+        print(query)
+        print('Query successful!')
+        
+        result = c.fetchall()
+
+        conn.close()
+
+        # Return list of query result
+        return create_sql_query_list(result)
+
+    except Error as e:
+        print(e)
 
 def sql_query_commit(query):
     try:
