@@ -55,8 +55,7 @@ def update_db():
                         data_courses[i]['course_code'],
                         data_courses[i]['start_at'], 
                         data_courses[i]['end_at'],
-                        timestamp(),
-                        0 # TODO Subscribed to needs to check from other query
+                        timestamp()
                     )
                 )
 
@@ -101,7 +100,6 @@ def update_db():
                         data_announcements[f]['author']['display_name'], 
                         data_announcements[f]['context_code'],
                         data_announcements[f]['posted_at'],
-                        timestamp(),
-                        0 # TODO Needs to be set correctly
+                        timestamp()
                     )
                 )
