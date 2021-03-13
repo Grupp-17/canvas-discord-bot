@@ -158,12 +158,12 @@ def sql_select_table_attributes_condition(attribute, table, condition):
 
 
 def sql_select_subscription(arg):
-    if isinstance(arg, int):
-        query = f"""SELECT id, name, subscribed_to FROM courses WHERE id == {arg} OR course_code == {arg} OR name == {arg}"""
-    else:
-        query = f"""SELECT id, name, subscribed_to FROM courses WHERE id == '{arg}' OR course_code == '{arg}' OR name == '{arg}'"""
+    query = f"""SELECT id, name, subscribed_to FROM courses WHERE id == '{arg}' OR course_code == '{arg}' OR name == '{arg}'"""
     return query
 
+def sql_update_subscription(arg, value):
+    query = f"""UPDATE courses SET subscribed_to = {value} WHERE id == {arg}"""
+    return query
 
 # Returns 1 if exists and 0 if not (as SQLITE doesn't support boolean)
 def sql_check_if_exists(attribute, value, table): 
