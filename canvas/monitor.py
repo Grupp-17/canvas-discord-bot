@@ -9,17 +9,18 @@ from database.queries import *
 # Third party modules
 from apscheduler.schedulers.background import BackgroundScheduler
 
+
 def init_monitor():
     # Create scheduler object
     scheduler = BackgroundScheduler()
 
     # Set scheduler action and interval
     scheduler.add_job(update_db, 'interval', seconds=5)
-
+    
     # Run scheduler
     scheduler.start()
 
-    
+
 def update_db():
 
     ##########################
@@ -104,14 +105,26 @@ def update_db():
                     )
                 )
 
-            # Send those announcements to Discord with sent_discord = 0
-            if not (sql_query_fetchone_result(sql_select_table_attributes_condition('sent_discord', 'announcements', f"id = {data_announcements[f]['id']}" ))):
-                print(f"Sending: {data_announcements[f]['id']}")
+            
+            
                 # TODO Query database for data to send
 
-    def test():
-        from bot import send_to_discord
-        send_to_discord('stest')
 
-    test()
+def announcements_fetch():
 
+    # Get list of announcement id's
+    announcements_id = sql_query_fetchall_result(sql_select_table_attributes('id', 'announcements'))
+
+    for i in announcements_id:
+
+        # If announcement is not sent, add it to list
+        if not (sql_query_fetchone_result(sql_select_table_attributes_condition('sent_discord', 'announcements', f"id = {i}" ))):
+            # TODO Compose message...
+            yield str(i)
+        else:
+            print('Everything is sent!')
+            
+
+def announcement_sent_mark(id):
+    sql_query_commit(sql_update_announcement_sent(id))
+    print(f'Announcement with {id} marked as sent.')

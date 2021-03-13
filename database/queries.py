@@ -143,6 +143,15 @@ def sql_update_table_announcements(
     return query
 
 
+def sql_update_subscription(arg, value):
+    query = f"""UPDATE courses SET subscribed_to = {value} WHERE id = {arg}"""
+    return query
+
+def sql_update_announcement_sent(id):
+    query = f"""UPDATE announcements SET sent_discord = 1 WHERE id = {id}"""
+    return query
+
+
 ##################
 # SELECT QUERIES #
 ##################
@@ -158,12 +167,9 @@ def sql_select_table_attributes_condition(attribute, table, condition):
 
 
 def sql_select_subscription(arg):
-    query = f"""SELECT id, name, subscribed_to FROM courses WHERE id == '{arg}' OR course_code == '{arg}' OR name == '{arg}'"""
+    query = f"""SELECT id, name, subscribed_to FROM courses WHERE id = '{arg}' OR course_code = '{arg}' OR name = '{arg}'"""
     return query
 
-def sql_update_subscription(arg, value):
-    query = f"""UPDATE courses SET subscribed_to = {value} WHERE id == {arg}"""
-    return query
 
 # Returns 1 if exists and 0 if not (as SQLITE doesn't support boolean)
 def sql_check_if_exists(attribute, value, table): 
