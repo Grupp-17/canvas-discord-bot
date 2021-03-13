@@ -8,6 +8,7 @@ from database.queries import *
 from discord_api.commands.courses import courses_command
 from discord_api.commands.krona_klave import krona_klave_command
 from discord_api.commands.subscribe import subscribe_command
+from discord_api.commands.news import news
 
 # Third party modules
 import discord
@@ -28,13 +29,10 @@ class CommandBase(commands.Cog):
     async def courses(self, ctx):
         await ctx.send(embed=courses_command(ctx))
     
-    def send_announcement():
-        @commands.command(name="news")
-        async def news(self, ctx):
-        #     Get announcements query
-        #     results = sql_query(sql_select_announcements)
-        #     print(results)
-            await ctx.send()
+    
+    @commands.command(name="news")
+    async def news(self, ctx):
+        await ctx.send(news())
 
     @commands.command(name="subscribe")
     async def subscribe(self, ctx, *, arg):

@@ -103,6 +103,13 @@ def sql_select_subscription(arg):
         query = f"""SELECT id, name, subscribed_to FROM courses WHERE id == '{arg}' OR course_code == '{arg}' OR name == '{arg}'"""
     return query
 
+def sql_update_subscription(arg, subscribe=True):
+    if subscribe:
+        query = f"""UPDATE courses SET subscribed_to == 1 WHERE id == {arg}"""
+    else:
+        query = f"""UPDATE courses SET subscribed_to == 0 WHERE id == {arg}"""
+    return query
+
 
 def sql_update_table_courses(
     id,
