@@ -55,7 +55,7 @@ class CommandBase(commands.Cog):
         
         # Add fields in the embed by iterating through the lists
         for name, code in zip(course_names, course_codes):
-                embed.add_field(name=str(name), value=str(code), inline=False)
+            embed.add_field(name=str(name), value=str(code), inline=False)
         await ctx.send(embed=embed)
     
     @commands.command(name="news")
