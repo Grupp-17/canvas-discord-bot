@@ -146,3 +146,4 @@ dmypy.json
 *.mdb
 *.pdb
 *.sqlite3
+database/main.db-journal
