@@ -73,10 +73,7 @@ class CommandBase(commands.Cog):
     @commands.command(name="subscribe")
     async def subscribe(self, ctx, *, arg):
     #   kolla igenom alla kurser, vilka kurser är redan subscribed?
-        subscribe_query = sql_query_fetch(sql_select_table_attributes_condition(
-                                            "id, name, subscribed_to",
-                                            "courses",
-                                            f"id == {arg} OR course_code == {arg} OR name == {arg}"))
+        subscribe_query = sql_query_fetch(sql_select_subscription(arg))
 
         subscribed = [item for i in subscribe_query for item in i]
 
@@ -84,11 +81,12 @@ class CommandBase(commands.Cog):
             message = f"Prenumererar redan på kurs {subscribed[0]}: {subscribed[1]}"
         else:
             message = f"Prenumererar på kurs {subscribed[0]}: {subscribed[1]}"
+            # TODO uppdatera subscribed till 1
 
         await ctx.send(message)
     
     #   sätt värdet subscribed på kurs x i databasen till 1
-    #   await ctx.send("Subscribe har lyckats till kurs x")
+   
 
 def setup(client):
     client.add_cog(CommandBase(client))
