@@ -55,6 +55,7 @@ def sql_insert_table_courses(
     """
     return query
 
+
 def sql_insert_table_announcements(
     id,
     title,
@@ -87,17 +88,54 @@ def sql_insert_table_announcements(
     """
     return query
 
-#def sql_update_table_courses(
-#    id,
-#    title,
-#    text,
-#    author,
-#    context_code,
-#    posted_at,
-#    timestamp,
-#    sent_discord
-#):
 
+def sql_update_table_courses(
+    id,
+    name,
+    course_code,
+    start_at,
+    end_at,
+    timestamp,
+    subscribed_to):
+    query = f"""
+    UPDATE courses
+        SET
+        name = "{name}",
+        course_code = "{course_code}",
+        start_at = "{start_at}",
+        end_at = "{end_at}",
+        timestamp = "{timestamp}",
+        subscribed_to = "{subscribed_to}"
+    WHERE id = "{id}"
+    """
+    return query
+
+
+def sql_update_table_announcements(
+    id,
+    title,
+    text,
+    author,
+    context_code,
+    posted_at,
+    timestamp,
+    sent_discord):
+    query = f"""
+    UPDATE announcements
+        SET
+        title = "{title}",
+        text = "{text}",
+        author = "{author}",
+        context_code = "{context_code}",
+        posted_at = "{posted_at}",
+        timestamp = "{timestamp}",
+        sent_discord = "{sent_discord}"
+    WHERE id = "{id}"
+    """
+    return query
+
+
+sql_select_table_courses_id = """SELECT id FROM courses"""
 
 sql_select_courses ="""SELECT course_name, course_id FROM courses;"""
 
