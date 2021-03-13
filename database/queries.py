@@ -87,7 +87,10 @@ def sql_insert_table_announcements(
     """
     return query
 
-sql_select_courses ="""SELECT course_name, course_id FROM courses;"""
+def sql_fetch_course_info(value, table):
+    query = """SELECT {value} FROM {table};"""
+    return query
+    
 
 # Returns 1 if exists and 0 if not (as SQLITE doesn't support boolean)
 def sql_check_if_exists(attribute, value, table): 

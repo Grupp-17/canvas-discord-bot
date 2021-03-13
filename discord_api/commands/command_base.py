@@ -4,7 +4,7 @@ import random
 # Local modules
 from discord.ext.commands.core import command
 from database.interactions import sql_query
-from database.queries import sql_select_courses
+from database.queries import *
 
 # Third party modules
 import discord
@@ -28,22 +28,21 @@ class CommandBase(commands.Cog):
 
     @commands.command(name="courses")
     async def courses(self, ctx):
-        
-        # Import courses from db by sql-query
-        q = sql_query(sql_select_courses)
 
         # Defining unwanted characters and replacing them with empty string
+        def clean_string(string, list_of_char):
+            for i in unwanted_chars:
+                word = word.replace(i, "")
+            return word
+
         unwanted_chars = ['[', ']', '"']
-        for i in unwanted_chars:
-            q = q.replace(i, "")
+        # Import courses from db by sql-query
+        course_names = clean_string(sql_query(sql_fetch_course_info("name", "courses"), unwanted_chars)).split(sep=",")
+        course_codes = clean_string(sql_query(sql_fetch_course_info("course_codes", "courses"), unwanted_chars)).split(sep=",")
+        course_id = clean_string(sql_query(sql_fetch_course_info("course_id", "courses"), unwanted_chars)).split(sep=",")
+        id = clean_string(sql_query(sql_fetch_course_info("id", "courses"), unwanted_chars)).split(sep=",")
 
-        # Split strings to separate each course
-        results = q.split(sep=",")
-
-        # Separate course names and course codes into different lists
-        for i in results:
-            course_names = results[::2]
-            course_codes = results[1::2]
+        # TODO Lägg till en bock om kursen är subscribed to
             
         # Embed for displaying courses in discord
         embed = discord.Embed(title='Aktuella kurser', 
@@ -54,8 +53,8 @@ class CommandBase(commands.Cog):
                          icon_url="https://play-lh.googleusercontent.com/2_M-EEPXb2xTMQSTZpSUefHR3TjgOCsawM3pjVG47jI-BrHoXGhKBpdEHeLElT95060B=s180")
         
         # Add fields in the embed by iterating through the lists
-        for name, code in zip(course_names, course_codes):
-            embed.add_field(name=str(name), value=str(code), inline=False)
+        for name, code, course_id, id in zip(course_names, course_codes, course_id, id):
+            embed.add_field(name=str(name), value=code + " " + course_id + " " + id, inline=False)
         await ctx.send(embed=embed)
     
     def send_announcement():

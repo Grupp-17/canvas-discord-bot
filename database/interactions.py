@@ -28,11 +28,24 @@ def sql_query(query):
         c.execute(query)
         print(query)
         print('Query successful!')
+        conn.close()
+
+    except Error as e:
+        print(e)
+
+def sql_fetch_query(query):
+    try:
+        conn = create_connection(db_path)
+
+        c = conn.cursor()
+        c.execute(query)
+        print(query)
+        print('Query successful!')
         
         data = c.fetchall()
         conn.close()
         return json.dumps(data)
-
+       
     except Error as e:
         print(e)
 
