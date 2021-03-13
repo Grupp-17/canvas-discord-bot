@@ -75,7 +75,7 @@ def update_db():
     for i in range(len(course_id_list)):
         
         data_announcements = fetch_announcements(course_id_list[i])
-        print(data_announcements)
+  
         for i in range(len(data_announcements)):
 
             # Check if announcement exists, if it doesn't insert it
