@@ -90,7 +90,11 @@ def sql_insert_table_announcements(
 def sql_select_table_attributes(attribute, table):
     query = f"""SELECT {attribute} FROM {table};"""
     return query
-    
+
+def sql_select_table_attributes_condition(attribute, table, condition):
+    query = f"""SELECT {attribute} FROM {table} WHERE {condition};"""
+    return query
+
 
 # Returns 1 if exists and 0 if not (as SQLITE doesn't support boolean)
 def sql_check_if_exists(attribute, value, table): 

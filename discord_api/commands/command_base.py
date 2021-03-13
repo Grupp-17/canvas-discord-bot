@@ -55,9 +55,11 @@ class CommandBase(commands.Cog):
         
         # Add fields in the embed by iterating through the lists
         for name, code, sub, id in zip(course_names, course_codes, course_subscribed, id_list):
-            embed.add_field(name=str(name), value=code, inline=False)
             if sub == 1:
-                embed.add_field(name="Prenumererad", value="✓")
+                sub = "✓"
+            else:
+                sub = " "
+            embed.add_field(name=str(name) + " " + sub, value=code, inline=False)
         await ctx.send(embed=embed)
     
     def send_announcement():
@@ -68,9 +70,23 @@ class CommandBase(commands.Cog):
         #     print(results)
             await ctx.send()
 
-    ## @commands.command(name="subscribe",kurs)
-    ## async def subscribe(self, ctx):
+    @commands.command(name="subscribe")
+    async def subscribe(self, ctx, *, arg):
     #   kolla igenom alla kurser, vilka kurser är redan subscribed?
+        subscribe_query = sql_query_fetch(sql_select_table_attributes_condition(
+                                            "id, name, subscribed_to",
+                                            "courses",
+                                            f"id == {arg} OR course_code == {arg} OR name == {arg}"))
+
+        subscribed = [item for i in subscribe_query for item in i]
+
+        if subscribed[2] == 1:
+            message = f"Prenumererar redan på kurs {subscribed[0]}: {subscribed[1]}"
+        else:
+            message = f"Prenumererar på kurs {subscribed[0]}: {subscribed[1]}"
+
+        await ctx.send(message)
+    
     #   sätt värdet subscribed på kurs x i databasen till 1
     #   await ctx.send("Subscribe har lyckats till kurs x")
 
