@@ -109,5 +109,9 @@ def update_db():
                 print(f"Sending: {data_announcements[f]['id']}")
                 # TODO Query database for data to send
 
+    def test():
+        from bot import send_to_discord
+        send_to_discord('stest')
 
+    test()
 
