@@ -87,6 +87,18 @@ def sql_insert_table_announcements(
     """
     return query
 
+#def sql_update_table_courses(
+#    id,
+#    title,
+#    text,
+#    author,
+#    context_code,
+#    posted_at,
+#    timestamp,
+#    sent_discord
+#):
+
+
 sql_select_courses ="""SELECT course_name, course_id FROM courses;"""
 
 # Returns 1 if exists and 0 if not (as SQLITE doesn't support boolean)

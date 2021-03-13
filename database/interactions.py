@@ -4,7 +4,6 @@
 import sqlite3
 from sqlite3 import Error
 from pathlib import Path
-import json
 from datetime import datetime
 
 # Path is used to create OS independent pathing
@@ -29,13 +28,30 @@ def sql_query(query):
         print(query)
         print('Query successful!')
         
-        data = c.fetchall()
         conn.close()
-        return json.dumps(data)
+        return True
 
     except Error as e:
         print(e)
+        return False
 
+def sql_query_fetchone_result(query):
+    try:
+        conn = create_connection(db_path)
+
+        c = conn.cursor()
+        c.execute(query)
+        print(query)
+        print('Query successful!')
+        
+        result = c.fetchone()
+
+        conn.close()
+
+        return result[0]
+
+    except Error as e:
+        print(e)
 
 def sql_query_commit(query):
     try:

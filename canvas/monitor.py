@@ -3,7 +3,7 @@ from datetime import datetime
 
 # Local modules
 from canvas.http_requests import fetch_courses
-from database.interactions import sql_query, sql_query_commit, timestamp
+from database.interactions import sql_query_commit, sql_query_fetchone_result, timestamp
 from database.queries import sql_insert_table_courses, sql_check_if_exists
 
 # Third party modules
@@ -31,7 +31,7 @@ def update_db():
         for i in range(len(data_courses)):
 
             # Check if course exists, if it doesn't insert it
-            if not (sql_query(sql_check_if_exists('id', data_courses[i]['id'], 'courses'))):
+            if not (sql_query_fetchone_result(sql_check_if_exists('id', data_courses[i]['id'], 'courses'))):
                 sql_query_commit(
                     sql_insert_table_courses(
                         data_courses[i]['id'], 
@@ -40,7 +40,7 @@ def update_db():
                         data_courses[i]['start_at'], 
                         data_courses[i]['end_at'],
                         timestamp(),
-                        1 # Subscribed to needs to check from other query
+                        0 # Subscribed to needs to check from other query
                     )
                 )
             else:
