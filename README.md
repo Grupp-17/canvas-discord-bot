@@ -65,7 +65,7 @@ Down below you will find the steps to get started with the bot.
 ### Prerequisites
 
 * Download the latest version of [Python](https://www.python.org/)
-* Create a [discord bot](https://discordpy.readthedocs.io/en/latest/discord.html) and invite it to your discord channel
+* Create a [discord bot](https://discordpy.readthedocs.io/en/latest/discord.html) and invite it to your [discord channel](https://support.discord.com/hc/en-us/articles/204849977-How-do-I-create-a-server-)
 
 ### Installation
 1. Clone the repository
