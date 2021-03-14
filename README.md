@@ -67,7 +67,7 @@ Down below you will find the steps to get started with the bot.
 * Download the latest version of [Python](https://www.python.org/)
 
 ## Modules
-# Download the following modules
+#### Download the following modules
 
 ```sh
   pip install requests
