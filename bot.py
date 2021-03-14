@@ -61,17 +61,13 @@ async def announcement_handler():
 
     message_sent = False
 
-    for message in announcements_fetch():
-        message_sent = await channel.send(message)
+    for id in announcements_fetch():
+        message_sent = await channel.send(announcement(id))
 
         # If message was sent successfully mark it as sent
         if message_sent: 
             announcement_sent_mark(message)
         else:
             print(f'Message with id: {message} was not sent successfully!')
-
-
-    # TODO Mark sent messages
-
 
 client.run(DISCORD_TOKEN)
