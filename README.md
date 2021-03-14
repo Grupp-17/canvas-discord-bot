@@ -89,18 +89,18 @@ Down below you will find the steps to get started with the bot.
 
 To use the bot you need to fill in some parameters in the .env file.
 
-> 1. Rename the .env.example file to .env
-> 2. In the .env file replace all the text between < > by your parameter values </br>
->    *Make sure that the Canvas Token has access to all the availible courses!*
+1. Renamte the .env.example file to .env
+2. In the .env file replace all the text between < > by your parameter values </br>
+   
+  *Make sure that the Canvas Token has access to all the availible courses!*
 
->  ```sh
+  ```sh
   DISCORD_TOKEN=<'https://discord.com/developers/applications'>
   CANVAS_TOKEN=<'YOUR CANVAS TOKEN'>
   CANVAS_DOMAIN=<'YOUR CANVAS DOMAIN'>
   CHANNEL_ID=<'YOUR DISCORD CHANNEL_ID'>
   ```
-  
-> 3. Run the bot
+3. Run the bot
     ```
     python bot.py
 <!-- COMMANDS -->
