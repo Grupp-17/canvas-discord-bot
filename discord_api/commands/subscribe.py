@@ -3,11 +3,9 @@ from database.queries import *
 import discord
 
 def is_subscribed(course_id):
-    subscribe_query = sql_query_fetch(sql_select_subscription(course_id))
+    subscribed = create_sql_query_list(sql_query_fetch(sql_select_subscription(course_id)))
 
-    subscribed = [item for i in subscribe_query for item in i]
-
-    if subscribed[2] == 1:
+    if subscribed[2] == "1":
         return True
     else:
         return False
@@ -24,7 +22,7 @@ def subscribe_command(arg):
         embed.add_field(name=f"Prenumererar redan på kurs {arg}", value="Ingen ny prenumeration tillagd")
     else:
         embed.add_field(name=f"Prenumererar nu på kurs {arg}", value="Kursen lades till")
-        sql_query(sql_update_subscription(arg, 1))
+        sql_query(sql_update_subscription(arg, "1"))
     return embed
 
 

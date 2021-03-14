@@ -9,6 +9,7 @@ from apscheduler.schedulers.asyncio import AsyncIOScheduler
 # Local modules
 from database.init import init_database
 from canvas.monitor import announcement_sent_mark, announcements_fetch, init_monitor
+from discord_api.commands.announcement import announcement
 
 # Third party modules
 import discord
@@ -62,12 +63,13 @@ async def announcement_handler():
     message_sent = False
 
     for id in announcements_fetch():
-        message_sent = await channel.send(announcement(id))
+        if (announcement(id) != 0):
+            message_sent = await channel.send(embed=announcement(id))
 
         # If message was sent successfully mark it as sent
         if message_sent: 
-            announcement_sent_mark(message)
+            announcement_sent_mark(id)
         else:
-            print(f'Message with id: {message} was not sent successfully!')
+            print(f'Message with id: {id} was not sent successfully!')
 
 client.run(DISCORD_TOKEN)
