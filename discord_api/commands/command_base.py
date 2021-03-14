@@ -27,11 +27,6 @@ class CommandBase(commands.Cog):
     @commands.command(name="courses")
     async def courses(self, ctx):
         await ctx.send(embed=courses_command(ctx))
-    
-    
-    @commands.command(name="news")
-    async def news(self, ctx):
-        await ctx.send(news())
 
     @commands.command(name="subscribe")
     async def subscribe(self, ctx, *, arg):
