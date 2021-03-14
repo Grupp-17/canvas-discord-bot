@@ -11,5 +11,3 @@ def news():
             return result
         else:
             return "No subscribes"
-
-
