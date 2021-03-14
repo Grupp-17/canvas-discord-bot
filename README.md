@@ -20,6 +20,31 @@
 <!-- PROJECT LOGO -->
 
 <!-- TABLE OF CONTENTS -->
+<details open="open">
+  <summary><h2 style="display: inline-block">Table of Contents</h2></summary>
+  <ol>
+    <li>
+      <a href="#about-the-project">About The Project</a>
+      <ul>
+        <li><a href="#built-with">Built With</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#getting-started">Getting Started</a>
+      <ul>
+        <li><a href="#prerequisites">Prerequisites</a></li>
+        <li><a href="#installation">Installation</a></li>
+        <li><a href="#usage">Usage</a></li>
+      </ul>
+    </li>
+    <li><a href="#commands">Commands</a></li>
+    <li><a href="#make-your-own-command">Make Your Own Command?</a></li>
+    <li><a href="#contributing">Contributing</a></li>
+    <li><a href="#license">License</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="#acknowledgements">Acknowledgements</a></li>
+  </ol>
+</details>
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
@@ -35,10 +60,8 @@
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-
 <!-- COMMANDS -->
 ## Commands
-
 
 <!-- CONTRIBUTING -->
 ## Contributing
@@ -49,8 +72,11 @@
 <!-- CONTACT -->
 ## Contact
 
-Andreas Winkler - guskalinan@student.gu.se [Winkit](https://winkit.se).
+Andreas Winkler - guskalinan@student.gu.se | Website: [Winkit](https://winkit.se)
 
 Tove Andersson - 
 
 Josef Gunnarsson -
+
+<!-- ACKNOWLEDGEMENTS -->
+## Acknowledgements
