@@ -8,7 +8,6 @@ from database.queries import *
 from discord_api.commands.courses import courses_command
 from discord_api.commands.krona_klave import krona_klave_command
 from discord_api.commands.subscribe import subscribe_command
-from discord_api.commands.news import news
 
 # Third party modules
 import discord

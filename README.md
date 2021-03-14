@@ -66,9 +66,16 @@ Down below you will find the steps to get started with the bot.
 
 * Download the latest version of [Python](https://www.python.org/)
 
-## Modules
-#### Download the following modules
-
+### Installation
+1. Clone the repository
+   ```sh
+   git clone https://github.com/Dedas/canvas-discord-bot
+   ```
+2. Navigate into your cloned folder
+   ```sh
+   cd "Drive:/folder/folder/canvas-discord-bot"
+   ```
+3. Install the following modules:
 ```sh
   pip install requests
   pip install environs
@@ -77,12 +84,23 @@ Down below you will find the steps to get started with the bot.
   pip install pathlib
   pip install discord
   ```
-
-### Installation
-
 <!-- USAGE EXAMPLES -->
 ## Usage
 
+To use the bot you need to fill in some parameters in the .env file.
+
+1. Renamte the .env.example file to .env
+2. In the .env file replace all the text between < > by your parameter values </br>
+> Make sure that the Canvas Token has access to all the availible courses!
+    ```sh
+    DISCORD_TOKEN=<'https://discord.com/developers/applications'>
+    CANVAS_TOKEN=<'YOUR CANVAS TOKEN'>
+    CANVAS_DOMAIN=<'YOUR CANVAS DOMAIN'>
+    CHANNEL_ID=<'YOUR DISCORD CHANNEL_ID'>
+    ```
+3. Run the bot
+    ```
+    python bot.py
 <!-- COMMANDS -->
 ## Commands
 
