@@ -100,7 +100,7 @@ To use the bot you need to fill in some parameters in the .env file.
     *Make sure that the Canvas Token has access to all the availible courses!*
 
     ```sh
-    DISCORD_TOKEN=['https://discord.com/developers/]applications'](https://discord.com/developers/]applications)
+    DISCORD_TOKEN='https://discord.com/developers/applications'
     CANVAS_TOKEN='YOUR CANVAS TOKEN'
     CANVAS_DOMAIN='YOUR CANVAS DOMAIN'
     CHANNEL_ID='YOUR DISCORD CHANNEL_ID'
