@@ -77,14 +77,14 @@ Down below you will find the steps to get started with the bot.
    cd "Drive:/folder/folder/canvas-discord-bot"
    ```
 3. Install the following modules:
-```sh
-  pip install requests
-  pip install environs
-  pip install apscheduler
-  pip install sqlite3
-  pip install pathlib
-  pip install discord
-  ```
+  ```sh
+    pip install requests
+    pip install environs
+    pip install apscheduler
+    pip install sqlite3
+    pip install pathlib
+    pip install discord
+    ```
 <!-- USAGE EXAMPLES -->
 ## Usage
 
