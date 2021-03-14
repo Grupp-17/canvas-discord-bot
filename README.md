@@ -69,22 +69,25 @@ Down below you will find the steps to get started with the bot.
 
 ### Installation
 1. Clone the repository
+
    ```sh
    git clone https://github.com/Dedas/canvas-discord-bot
    ```
 2. Navigate into your cloned folder
+
    ```sh
    cd "Drive:/folder/folder/canvas-discord-bot"
    ```
 3. Install the following modules:
-  ```sh
-    pip install requests
-    pip install environs
-    pip install apscheduler
-    pip install sqlite3
-    pip install pathlib
-    pip install discord
-  ```
+
+   ```sh
+   pip install requests
+   pip install environs
+   pip install apscheduler
+   pip install sqlite3
+   pip install pathlib
+   pip install discord
+   ```
 
 <!-- USAGE EXAMPLES -->
 ## Usage
