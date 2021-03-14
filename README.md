@@ -49,6 +49,13 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
+### Built With
+
+* [discord.py](https://discordpy.readthedocs.io/en/latest/index.html)
+* [Discord Developer](https://discord.com/developers/applications)
+* [Canvas API](https://canvas.instructure.com/doc/api/)
+* [SQLite](https://www.sqlite.org/index.html)
+* [Python](https://www.python.org/)
 
 <!-- GETTING STARTED -->
 ## Getting Started
