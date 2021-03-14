@@ -60,7 +60,23 @@
 <!-- GETTING STARTED -->
 ## Getting Started
 
+Down below you will find the steps to get started with the bot.
+
 ### Prerequisites
+
+* Download the latest version of [Python](https://www.python.org/)
+
+## Modules
+# Download the following modules
+
+```sh
+  pip install requests
+  pip install environs
+  pip install apscheduler
+  pip install sqlite3
+  pip install pathlib
+  pip install discord
+  ```
 
 ### Installation
 
