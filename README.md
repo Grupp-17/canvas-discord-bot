@@ -17,3 +17,40 @@
     <a href="https://github.com/Dedas/canvas-discord-bot/issues">Request Feature</a>
   </p>
 </p>
+<!-- PROJECT LOGO -->
+
+<!-- TABLE OF CONTENTS -->
+
+<!-- ABOUT THE PROJECT -->
+## About The Project
+
+
+<!-- GETTING STARTED -->
+## Getting Started
+
+### Prerequisites
+
+### Installation
+
+<!-- USAGE EXAMPLES -->
+## Usage
+
+
+<!-- COMMANDS -->
+## Commands
+
+
+<!-- CONTRIBUTING -->
+## Contributing
+
+<!-- LICENSE -->
+## License
+
+<!-- CONTACT -->
+## Contact
+
+Andreas Winkler - guskalinan@student.gu.se [Winkit](https://winkit.se).
+
+Tove Andersson - 
+
+Josef Gunnarsson -
