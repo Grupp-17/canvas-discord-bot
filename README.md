@@ -9,7 +9,7 @@
   <h3 align="center">Canvas Discord Bot</h3>
 
   <p align="center">
-    DESCRIPTION
+    This is a discord bot that gets information about courses and announcements from Canvas API and sends this information in a discord channel.
     <br />
     <br />
     <a href="https://github.com/Dedas/canvas-discord-bot/issues">Report Bug</a>
