@@ -94,7 +94,7 @@ Down below you will find the steps to get started with the bot.
 
 To use the bot you need to fill in some parameters in the .env file.
 
-1. Renamte the .env.example file to .env
+1. Rename the .env.example file to .env
 2. In the .env file replace all the text between < > by your parameter values </br>
    
     *Make sure that the Canvas Token has access to all the availible courses!*
