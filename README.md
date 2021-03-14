@@ -84,7 +84,8 @@ Down below you will find the steps to get started with the bot.
     pip install sqlite3
     pip install pathlib
     pip install discord
-    ```
+  ```
+
 <!-- USAGE EXAMPLES -->
 ## Usage
 
