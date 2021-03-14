@@ -144,7 +144,7 @@ def sql_update_table_announcements(
 
 
 def sql_update_subscription(arg, value):
-    query = f"""UPDATE courses SET subscribed_to = {value} WHERE id = {arg}"""
+    query = f"""UPDATE courses SET subscribed_to = {value} WHERE id == {arg}"""
     return query
 
 def sql_update_announcement_sent(id):

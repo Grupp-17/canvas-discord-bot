@@ -11,7 +11,7 @@ def announcement(id):
     if is_subscribed(course_id):
         return print_announcements_embed(announcements)
     else:
-        return 0
+        return None
 
 def findCourse(announcement_context_code):
     course_id = create_sql_query_list(sql_query_fetch(sql_select_table_attributes('id', 'courses')))
