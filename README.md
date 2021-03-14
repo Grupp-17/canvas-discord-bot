@@ -81,7 +81,7 @@
 
 Andreas Winkler - guskalinan@student.gu.se | Website: [Winkit](https://winkit.se)
 
-Tove Andersson - 
+Tove Andersson - gusandtocs@student.gu.se
 
 Josef Gunnarsson -
 
