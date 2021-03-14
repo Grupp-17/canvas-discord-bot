@@ -72,7 +72,7 @@
 <!-- CONTACT -->
 ## Contact
 
-Andreas Winkler - guskalinan@student.gu.se [Winkit](https://winkit.se).
+Andreas Winkler - guskalinan@student.gu.se | Website: [Winkit](https://winkit.se)
 
 Tove Andersson - 
 
