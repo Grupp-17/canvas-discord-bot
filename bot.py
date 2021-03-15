@@ -2,19 +2,18 @@
 
 # Internal modules
 import os
-import discord
-
-from apscheduler.schedulers.asyncio import AsyncIOScheduler
 
 # Local modules
 from database.init import init_database
 from canvas.monitor import announcement_sent_mark, announcements_fetch, init_monitor
-from discord_api.commands.announcement import announcement
+from utils import init_cmdline_argument_parser
 
 # Third party modules
 import discord
 from discord.ext import commands
+from discord_api.commands.announcement import announcement
 from environs import load_dotenv
+from apscheduler.schedulers.asyncio import AsyncIOScheduler
 
 # Load private tokens
 load_dotenv()
@@ -27,15 +26,32 @@ client = discord.Client(intents=intents)
 client = commands.Bot(command_prefix='.')
 initial_extensions = ['discord_api.commands.command_base']
 
+# Find out if debugging should be started
+init_cmdline_argument_parser()
+
+# Important!!! Must be imported after cmdline parser has been initiated
+# Else constants will not be set correctly
+from utils import debug
+
+if(debug):
+    print('DEBUG ON')
+else:
+    print('DEBUG OFF')
+
+# TODO is it necessary to load it here in main? Why not above?
 if __name__ == '__main__':
     for extension in initial_extensions:
         client.load_extension(extension)
 
-# Main event handler for Discord client
+
+###########################################
+### Main event handler for Discord client #
+###########################################
+
 @client.event
 async def on_ready():
-
-    print(f'{client.user} has connected to Discord!')
+    
+    if(debug):print(f'{client.user} has connected to Discord!')
 
     # Init database (run once)
     init_success_database = init_database()
@@ -53,6 +69,12 @@ async def on_ready():
     # Run scheduler
     announcement_scheduler.start()
 
+    print('Canvas Discord Bot has started!')
+
+
+###########################################
+# Discord bot announcements event handler #
+###########################################
 
 @client.event
 async def announcement_handler():
@@ -70,6 +92,6 @@ async def announcement_handler():
         if message_sent: 
             announcement_sent_mark(id)
         else:
-            print(f'Message with id: {id} was not sent successfully!')
+            if(debug):print(f'Message with id: {id} was not sent successfully!')
 
 client.run(DISCORD_TOKEN)

@@ -6,6 +6,7 @@
 from canvas.http_requests import *
 from .queries import *
 from .interactions import *
+from utils import debug
 
 def init_database():
     conn = create_connection(db_path)
@@ -17,9 +18,9 @@ def init_database():
         if((sql_query(sql_create_table_courses)) and (sql_query(sql_create_table_announcements))):
             return True
         else:
-            print('Init of tables failed')
+            if(debug):print('Init of tables failed')
             SystemExit()
     else:
-        print(conn)
+        if(debug):print(conn)
 
         return False

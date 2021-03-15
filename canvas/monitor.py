@@ -5,6 +5,7 @@ from datetime import datetime
 from canvas.http_requests import *
 from database.interactions import *
 from database.queries import *
+from utils import debug
 
 # Third party modules
 from apscheduler.schedulers.background import BackgroundScheduler
@@ -60,9 +61,9 @@ def update_db():
                     )
                 )
 
-        print('Courses inserted: ' + str(datetime.now()))
+        if(debug):print('Courses inserted: ' + str(datetime.now()))
     else:
-        print('Database error!')
+        if(debug):print('Database error!')
 
     ################################
     # HANDLE ANNOUNCEMENTS UPDATES #
@@ -122,9 +123,9 @@ def announcements_fetch():
             # TODO Compose message...
             yield str(i)
         else:
-            print('Everything is sent!')
+            if(debug):print('Everything is sent!')
             
 
 def announcement_sent_mark(id):
     sql_query_commit(sql_update_announcement_sent(id))
-    print(f'Announcement with {id} marked as sent.')
+    if(debug):print(f'Announcement with {id} marked as sent.')

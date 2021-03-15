@@ -3,6 +3,9 @@
 # Internal modules
 import os
 
+# Local modules
+from utils import debug
+
 # Third party modules
 import requests
 from requests.structures import CaseInsensitiveDict
@@ -26,16 +29,16 @@ def send_request(request, type):
         response = requests.get(request, headers = headers)
         if response.status_code == 200:
             # TODO Check if data is correct
-            print(f'Request {type} successful!')
+            if(debug):print(f'Request {type} successful!')
 
             return response
 
         else:
-            print(f'Error request {type}: {response.status_code}')
+            if(debug):print(f'Error request {type}: {response.status_code}')
             return None
 
     except requests.exceptions.RequestException as e:
-        print(e) # Maybe SystemExit(e)? Should the program be allowed to continue?
+        if(debug):print(e) # Maybe SystemExit(e)? Should the program be allowed to continue?
         return None
 
 
@@ -58,7 +61,7 @@ def fetch_announcements(context_code_id):
 
     # Construct request URL
     request = f'{CANVAS_DOMAIN}/api/v1/announcements?context_codes[]=course_{context_code_id}'
-    print(request)
+    if(debug):print(request)
     # Send request
     response = send_request(request, 'announcements')
 
