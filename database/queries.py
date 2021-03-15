@@ -144,7 +144,7 @@ def sql_update_table_announcements(
 
 
 def sql_update_subscription(arg, value):
-    query = f"""UPDATE courses SET subscribed_to = {value} WHERE id == {arg}"""
+    query = f"""UPDATE courses SET subscribed_to = {value} WHERE id == {arg};"""
     return query
 
 def sql_update_announcement_sent(id):
@@ -167,7 +167,7 @@ def sql_select_table_attributes_condition(attribute, table, condition):
 
 
 def sql_select_subscription(arg):
-    query = f"""SELECT id, name, subscribed_to FROM courses WHERE id = '{arg}' OR course_code = '{arg}' OR name = '{arg}'"""
+    query = f"""SELECT id, name, subscribed_to FROM courses WHERE id = '{arg}' OR course_code = '{arg}' OR name = '{arg}';"""
     return query
 
 

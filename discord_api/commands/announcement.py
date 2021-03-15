@@ -15,7 +15,7 @@ def announcement(id):
 
 def print_announcements_embed(context_code):
 
-    announcement = create_sql_query_list(sql_query_fetch(sql_select_table_attributes_condition("*", "announcements", f"context_code = course_{context_code}")))
+    announcement = create_sql_query_list(sql_query_fetch(sql_select_table_attributes_condition("*", "announcements", f"context_code = '{context_code}'")))
 
     id = announcement[0]
     title = announcement[1]
