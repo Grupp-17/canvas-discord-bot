@@ -22,8 +22,7 @@ def courses_command(ctx):
         id_list.append(id[0])
 
     # Embed for displaying courses in discord
-    embed = discord.Embed(title='Aktuella kurser', 
-                        description="Här visas de aktuella kurserna", 
+    embed = discord.Embed(title='Avaliable courses', 
                         colour=0x98FB98)
     
     embed.set_author(name="CanvasDiscordBot", 
@@ -35,5 +34,5 @@ def courses_command(ctx):
             sub = "✓"
         else:
             sub = " "
-        embed.add_field(name=str(name) + " " + sub, value=code, inline=False)
+        embed.add_field(name=str(name) + " " + sub, value=code + " - Course code: " + str(id), inline=False)
     return embed
