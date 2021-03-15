@@ -9,11 +9,11 @@ def announcement(id):
     course_id = context_code.strip("course_")
     
     if is_subscribed(course_id):
-        return print_announcements_embed(context_code)
+        return create_announcements_embed(context_code)
     else:
         return None
 
-def print_announcements_embed(context_code):
+def create_announcements_embed(context_code):
 
     announcement = create_sql_query_list(sql_query_fetch(sql_select_table_attributes_condition("*", "announcements", f"context_code = '{context_code}'")))
 
