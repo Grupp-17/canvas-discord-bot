@@ -35,5 +35,6 @@ def get_debug():
 # TODO Comment
 def html_to_raw(html_content):
     raw_content = BeautifulSoup(html_content, 'lxml')
+    text = raw_content.get_text()
 
-    return raw_content
+    return text
