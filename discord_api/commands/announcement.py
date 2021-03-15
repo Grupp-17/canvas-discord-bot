@@ -5,7 +5,7 @@ import discord
 
 def announcement(id):
     # Check which context_code id has
-    context_code = sql_query_fetchone_result(sql_select_table_attributes_condition("context_code", "announcements", f"id == {id}"))
+    context_code = sql_query_fetchone_result(sql_select_table_attributes_condition("context_code", "announcements", f"id = {id}"))
     course_id = context_code.strip("course_")
     
     if is_subscribed(course_id):
