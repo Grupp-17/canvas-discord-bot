@@ -19,7 +19,7 @@ def subscribe_command(arg):
         embed.add_field(name=f"Prenumererar redan på kurs {arg}", value="Ingen ny prenumeration tillagd")
     else:
         embed.add_field(name=f"Prenumererar nu på kurs {arg}", value="Kursen lades till")
-        sql_query(sql_update_subscription(arg, "1"))
+        sql_query_commit(sql_update_subscription(arg, "1"))
         check = sql_query_fetchone_result(sql_select_table_attributes_condition("subscribed_to", "courses", f"id = {arg}"))
         print(check)
 
