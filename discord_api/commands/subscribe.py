@@ -5,7 +5,7 @@ import discord
 def is_subscribed(course_id):
     subscribed = sql_query_fetchone_result(sql_select_table_attributes_condition("subscribed_to", "courses", f"id = {course_id}"))
 
-    if subscribed == "1":
+    if subscribed == 1:
         return True
     else:
         return False

@@ -13,13 +13,16 @@ def announcement(id):
     else:
         return None
 
-def print_announcements_embed(announcements):
-    id = announcements[0]
-    title = announcements[1]
-    message = announcements[2]
-    author = announcements[3]
-    context_code = announcements[4]
-    posted_at = announcements[5]
+def print_announcements_embed(context_code):
+
+    announcement = create_sql_query_list(sql_query_fetch(sql_select_table_attributes_condition("*", "announcements", f"context_code = course_{context_code}")))
+
+    id = announcement[0]
+    title = announcement[1]
+    message = announcement[2]
+    author = announcement[3]
+    context_code = announcement[4]
+    posted_at = announcement[5]
     
     embed = discord.Embed(title="Anslag", 
                           description=posted_at, 
