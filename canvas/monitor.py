@@ -109,7 +109,7 @@ def update_db():
                 )
 
             
-# TODO Comment
+# TODO Comment and move to a more proper place (where?)
 def announcements_fetch():
 
     # Get list of announcement id's

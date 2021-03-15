@@ -3,6 +3,9 @@
 # Internal modules
 import argparse
 
+# Third party modules
+from bs4 import BeautifulSoup
+
 ##############################
 ### Cmdline argument handler #
 ##############################
@@ -28,3 +31,7 @@ def init_cmdline_argument_parser():
 def get_debug():
     return debug
 
+def html_to_raw(html_content):
+    raw_content = BeautifulSoup(html_content, 'lxml')
+
+    return raw_content
