@@ -2,6 +2,8 @@ from database.interactions import *
 from database.queries import *
 import discord
 
+# TODO Comments
+
 def courses_command(ctx):
     course_names_query = sql_query_fetch(sql_select_table_attributes("name", "courses"))
     course_codes_query = sql_query_fetch(sql_select_table_attributes("course_code", "courses"))

@@ -1,3 +1,5 @@
+# Monitor for Canvas to Database interactions
+
 # Internal modules
 from datetime import datetime
 
@@ -107,10 +109,7 @@ def update_db():
                 )
 
             
-            
-                # TODO Query database for data to send
-
-
+# TODO Comment
 def announcements_fetch():
 
     # Get list of announcement id's
@@ -125,7 +124,7 @@ def announcements_fetch():
         else:
             if(get_debug()):print('Everything is sent!')
             
-
+# TODO Comment
 def announcement_sent_mark(id):
     sql_query_commit(sql_update_announcement_sent(id))
     if(get_debug()):print(f'Announcement with {id} marked as sent.')

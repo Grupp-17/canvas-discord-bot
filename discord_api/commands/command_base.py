@@ -1,3 +1,5 @@
+# Registrering commands to Discord bot
+
 # Internal modules
 import random
 
@@ -17,16 +19,12 @@ class CommandBase(commands.Cog):
     def __init__(self, client):
         self.client = client
 
-    @commands.command(name="singla")
-    async def singla(self, ctx):
-        await ctx.send(krona_klave_command())
-
     # Command for displaying the active courses
-
     @commands.command(name="courses")
     async def courses(self, ctx):
         await ctx.send(embed=courses_command(ctx))
 
+    # Command for subscribing to cources
     @commands.command(name="subscribe")
     async def subscribe(self, ctx, *, arg):
         await ctx.send(embed=subscribe_command(arg))

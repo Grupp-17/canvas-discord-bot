@@ -1,4 +1,4 @@
-# Managing the database
+# Commands for interacting with the database
 
 #internal modules
 import sqlite3

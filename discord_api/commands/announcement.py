@@ -3,6 +3,8 @@ from database.queries import *
 from discord_api.commands.subscribe import is_subscribed
 import discord
 
+# TODO Comments
+
 def announcement(announcement_id):
     # Check which context_code id has
     context_code = sql_query_fetchone_result(sql_select_table_attributes_condition("context_code", "announcements", f"id = {announcement_id}"))

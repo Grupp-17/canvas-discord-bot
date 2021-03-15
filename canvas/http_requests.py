@@ -1,4 +1,4 @@
-# Monotoring the information flow from canvas and the database
+# HTTP requests for Canvas API
 
 # Internal modules
 import os
