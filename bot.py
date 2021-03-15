@@ -85,7 +85,7 @@ async def announcement_handler():
     message_sent = False
 
     for id in announcements_fetch():
-        if (announcement(id) != 0):
+        if (announcement(id) != None):
             message_sent = await channel.send(embed=announcement(id))
 
         # If message was sent successfully mark it as sent

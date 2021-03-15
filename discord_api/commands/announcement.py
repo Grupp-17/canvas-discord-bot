@@ -4,31 +4,25 @@ from discord_api.commands.subscribe import is_subscribed
 import discord
 
 def announcement(id):
-    announcements = create_sql_query_list(sql_query_fetch(sql_select_announcements(id)))
+    # Check which context_code id has
+    context_code = sql_query_fetchone_result(sql_select_table_attributes_condition("context_code", "announcements", f"id == {id}"))
+    course_id = context_code.strip("course_")
     
-    course_id = findCourse(announcements[4])
-
     if is_subscribed(course_id):
-        return print_announcements_embed(announcements)
+        return print_announcements_embed(context_code)
     else:
         return None
 
-def findCourse(announcement_context_code):
-    course_id = create_sql_query_list(sql_query_fetch(sql_select_table_attributes('id', 'courses')))
-    
-    for id in course_id:
-        if (str(course_id[id]) in announcement_context_code):
-            return id
-        else:
-            return 1
+def print_announcements_embed(context_code):
 
-def print_announcements_embed(announcements):
-    id = announcements[0]
-    title = announcements[1]
-    message = announcements[2]
-    author = announcements[3]
-    context_code = announcements[4]
-    posted_at = announcements[5]
+    announcement = create_sql_query_list(sql_query_fetch(sql_select_table_attributes_condition("*", "announcements", f"context_code = '{context_code}'")))
+
+    id = announcement[0]
+    title = announcement[1]
+    message = announcement[2]
+    author = announcement[3]
+    context_code = announcement[4]
+    posted_at = announcement[5]
     
     embed = discord.Embed(title="Anslag", 
                           description=posted_at, 
