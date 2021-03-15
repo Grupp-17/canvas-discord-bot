@@ -28,9 +28,11 @@ def init_cmdline_argument_parser():
     debug = vars(args)['debug']
 
 
+# TODO Comment
 def get_debug():
     return debug
 
+# TODO Comment
 def html_to_raw(html_content):
     raw_content = BeautifulSoup(html_content, 'lxml')
 
