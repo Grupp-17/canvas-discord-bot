@@ -40,7 +40,7 @@ def create_announcements_embed(announcement_id, course_id):
     course_code = course[2]
     c_id = course[0]
     
-    embed = discord.Embed(title="New Announcement!", 
+    embed = discord.Embed(title="New Announcement", 
                           description=f"{course_name} | {course_code} \n", 
                           colour=0x98FB98)
 
@@ -48,5 +48,5 @@ def create_announcements_embed(announcement_id, course_id):
                     icon_url="https://play-lh.googleusercontent.com/2_M-EEPXb2xTMQSTZpSUefHR3TjgOCsawM3pjVG47jI-BrHoXGhKBpdEHeLElT95060B=s180")
 
     embed.add_field(name=title, value=message_raw + f"\n\n\nCourse {c_id}", inline=False)
-    embed.set_footer(text="Posted " + posted_at_formatted)
+    embed.set_footer(text="Posted " + posted_at_formatted + f"\nby {author}")
     return embed
