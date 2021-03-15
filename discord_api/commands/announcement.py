@@ -13,15 +13,6 @@ def announcement(id):
     else:
         return None
 
-# def findCourse(announcement_context_code):
-#     courses_id = create_sql_query_list(sql_query_fetch(sql_select_table_attributes('id', 'courses')))
-
-#     id = announcement_context_code.strip("course_")
-
-#     for i in courses_id:
-#         if (i == id):
-#             return i
-
 def print_announcements_embed(announcements):
     id = announcements[0]
     title = announcements[1]
