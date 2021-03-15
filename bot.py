@@ -26,7 +26,7 @@ client = discord.Client(intents=intents)
 client = commands.Bot(command_prefix='.')
 initial_extensions = ['discord_api.commands.command_base']
 
-# Find out if debugging should be started
+# Find out if debugging should be started (Only runs once)
 init_cmdline_argument_parser()
 
 # Important!!! Must be imported after cmdline parser has been initiated
