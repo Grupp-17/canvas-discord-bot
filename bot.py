@@ -6,7 +6,7 @@ import os
 # Local modules
 from database.init import init_database
 from canvas.monitor import announcement_sent_mark, announcements_fetch, init_monitor
-from utils import init_cmdline_argument_parser
+from utils import init_cmdline_argument_parser, get_debug
 
 # Third party modules
 import discord
@@ -33,7 +33,7 @@ init_cmdline_argument_parser()
 # Else constants will not be set correctly
 from utils import debug
 
-if(debug):
+if(get_debug()):
     print('DEBUG ON')
 else:
     print('DEBUG OFF')
@@ -51,7 +51,7 @@ if __name__ == '__main__':
 @client.event
 async def on_ready():
     
-    if(debug):print(f'{client.user} has connected to Discord!')
+    if(get_debug()):print(f'{client.user} has connected to Discord!')
 
     # Init database (run once)
     init_success_database = init_database()
@@ -92,6 +92,6 @@ async def announcement_handler():
         if message_sent: 
             announcement_sent_mark(id)
         else:
-            if(debug):print(f'Message with id: {id} was not sent successfully!')
+            if(get_debug()):print(f'Message with id: {id} was not sent')
 
 client.run(DISCORD_TOKEN)

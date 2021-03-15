@@ -7,7 +7,7 @@ from pathlib import Path
 from datetime import datetime
 
 # Local constants
-from utils import debug
+from utils import get_debug
 
 # Path is used to create OS independent pathing
 db_path = Path('database/main.db')
@@ -17,9 +17,9 @@ def create_connection(db_file):
 
     try:
         conn = sqlite3.connect(db_file)
-        if(debug):print('Connection successful. SQLite3', sqlite3.version)
+        if(get_debug()):print('Connection successful. SQLite3', sqlite3.version)
     except Error as e:
-        if(debug):print(e)
+        if(get_debug()):print(e)
     return conn
 
 
@@ -39,14 +39,14 @@ def sql_query(query):
 
         c = conn.cursor()
         c.execute(query)
-        if(debug):
+        if(get_debug()):
             print(query)
             print('Query successful!')
         conn.close()
         return True
 
     except Error as e:
-        if(debug):print(e)
+        if(get_debug()):print(e)
         return False
 
 def sql_query_fetch(query):
@@ -55,16 +55,15 @@ def sql_query_fetch(query):
 
         c = conn.cursor()
         c.execute(query)
-        if(debug):
-            if(debug):
-                print(query)
-                print('Query successful!')
+        if(get_debug()):
+            print(query)
+            print('Query successful!')
         result = c.fetchall()
         conn.close()
         return result
        
     except Error as e:
-        if(debug):print(e)
+        if(get_debug()):print(e)
         return False
 
 def sql_query_fetchone_result(query):
@@ -73,7 +72,7 @@ def sql_query_fetchone_result(query):
 
         c = conn.cursor()
         c.execute(query)
-        if(debug):
+        if(get_debug()):
             print(query)
             print('Query successful!')
         
@@ -85,7 +84,7 @@ def sql_query_fetchone_result(query):
         return result[0]
 
     except Error as e:
-        if(debug):print(e)
+        if(get_debug()):print(e)
 
 def sql_query_fetchall_result(query):
     try:
@@ -93,7 +92,7 @@ def sql_query_fetchall_result(query):
 
         c = conn.cursor()
         c.execute(query)
-        if(debug):
+        if(get_debug()):
             print(query)
             print('Query successful!')
         
@@ -105,7 +104,7 @@ def sql_query_fetchall_result(query):
         return create_sql_query_list(result)
 
     except Error as e:
-        if(debug):print(e)
+        if(get_debug()):print(e)
 
 def sql_query_commit(query):
     try:
@@ -116,14 +115,14 @@ def sql_query_commit(query):
         
         conn.commit()
 
-        if(debug):
+        if(get_debug()):
             print(query)
             print('Query commit successful!')
 
         conn.close()
            
     except Error as e:
-        if(debug):print(e)
+        if(get_debug()):print(e)
 
 # Function to set timestamp in database
 def timestamp():

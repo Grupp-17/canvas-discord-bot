@@ -5,8 +5,6 @@ import argparse
 ### Cmdline argument handler #
 ##############################
 
-debug = False
-
 # Run only once
 def init_cmdline_argument_parser():
     global debug
@@ -23,4 +21,8 @@ def init_cmdline_argument_parser():
 
     # Return dictionary of argument keys and values
     debug = vars(args)['debug']
+
+
+def get_debug():
+    return debug
 

@@ -10,7 +10,6 @@ from discord_api.commands.krona_klave import krona_klave_command
 from discord_api.commands.subscribe import subscribe_command
 
 # Third party modules
-import discord
 from discord.ext import commands
 
 
