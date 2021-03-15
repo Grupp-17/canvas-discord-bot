@@ -33,5 +33,5 @@ def courses_command(ctx):
             sub = "✓"
         else:
             sub = " "
-        embed.add_field(name=str(name) + " " + sub, value=code, inline=False)
+        embed.add_field(name=str(name) + " " + sub, value=code + " - Kurskod: " + str(id), inline=False)
     return embed
