@@ -3,19 +3,21 @@ from database.queries import *
 from discord_api.commands.subscribe import is_subscribed
 import discord
 
-def announcement(id):
+# TODO Comments
+
+def announcement(announcement_id):
     # Check which context_code id has
-    context_code = sql_query_fetchone_result(sql_select_table_attributes_condition("context_code", "announcements", f"id = {id}"))
+    context_code = sql_query_fetchone_result(sql_select_table_attributes_condition("context_code", "announcements", f"id = {announcement_id}"))
     course_id = context_code.strip("course_")
     
     if is_subscribed(course_id):
-        return print_announcements_embed(context_code)
+        return create_announcements_embed(announcement_id)
     else:
         return None
 
-def print_announcements_embed(context_code):
+def create_announcements_embed(announcement_id):
 
-    announcement = create_sql_query_list(sql_query_fetch(sql_select_table_attributes_condition("*", "announcements", f"context_code = '{context_code}'")))
+    announcement = create_sql_query_list(sql_query_fetch(sql_select_table_attributes_condition("*", "announcements", f"id = '{announcement_id}'")))
 
     id = announcement[0]
     title = announcement[1]

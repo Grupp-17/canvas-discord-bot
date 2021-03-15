@@ -1,3 +1,5 @@
+# SQL based queries to the internal database
+
 ################
 # DROP QUERIES #
 ################

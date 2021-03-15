@@ -2,6 +2,8 @@ from database.interactions import *
 from database.queries import *
 import discord
 
+# TODO Comments
+
 def is_subscribed(course_id):
     subscribed = sql_query_fetchone_result(sql_select_table_attributes_condition("subscribed_to", "courses", f"id = {course_id}"))
 
@@ -20,7 +22,9 @@ def subscribe_command(arg):
     else:
         embed.add_field(name=f"Prenumererar nu på kurs {arg}", value="Kursen lades till")
         sql_query_commit(sql_update_subscription(arg, "1"))
-        check = sql_query_fetchone_result(sql_select_table_attributes_condition("subscribed_to", "courses", f"id = {arg}"))
-        print(check)
+        
+        # TODO Remove checks or create suitable debugging message
+        #check = sql_query_fetchone_result(sql_select_table_attributes_condition("subscribed_to", "courses", f"id = {arg}"))
+        #print(check)
 
     return embed

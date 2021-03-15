@@ -1,6 +1,4 @@
-# Init the database
-
-# Internal modules
+# Initiation code for the database
 
 # Local modules
 from canvas.http_requests import *
@@ -12,6 +10,8 @@ def init_database():
     conn = create_connection(db_path)
 
     if conn is not None:
+
+        # TODO Create cmd line argument for dropping tables
         sql_query(sql_drop_table_courses)
         sql_query(sql_drop_table_announcements)
 
