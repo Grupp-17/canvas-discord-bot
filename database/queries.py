@@ -170,10 +170,6 @@ def sql_select_subscription(arg):
     query = f"""SELECT id, name, subscribed_to FROM courses WHERE id = '{arg}' OR course_code = '{arg}' OR name = '{arg}'"""
     return query
 
-def sql_select_announcements(id):
-    query = f"""SELECT * FROM announcements WHERE id == {id};"""
-    return query
-
 
 # Returns 1 if exists and 0 if not (as SQLITE doesn't support boolean)
 def sql_check_if_exists(attribute, value, table): 

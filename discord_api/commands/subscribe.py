@@ -3,9 +3,9 @@ from database.queries import *
 import discord
 
 def is_subscribed(course_id):
-    subscribed = create_sql_query_list(sql_query_fetch(sql_select_subscription(course_id)))
+    subscribed = sql_query_fetchone_result(sql_select_table_attributes_condition("subscribed_to", "courses", f"id = {course_id}"))
 
-    if subscribed[2] == "1":
+    if subscribed == "1":
         return True
     else:
         return False

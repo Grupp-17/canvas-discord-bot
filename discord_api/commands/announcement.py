@@ -4,23 +4,23 @@ from discord_api.commands.subscribe import is_subscribed
 import discord
 
 def announcement(id):
-    announcements = create_sql_query_list(sql_query_fetch(sql_select_announcements(id)))
+    # Check which context_code id has
+    context_code = sql_query_fetchone_result(sql_select_table_attributes_condition("context_code", "announcements", f"id == {id}"))
+    course_id = context_code.strip("course_")
     
-    course_id = findCourse(announcements[4])
-
     if is_subscribed(course_id):
-        return print_announcements_embed(announcements)
+        return print_announcements_embed(context_code)
     else:
         return None
 
-def findCourse(announcement_context_code):
-    course_id = create_sql_query_list(sql_query_fetch(sql_select_table_attributes('id', 'courses')))
-    
-    for id in course_id:
-        if (str(course_id[id]) in announcement_context_code):
-            return id
-        else:
-            return 1
+# def findCourse(announcement_context_code):
+#     courses_id = create_sql_query_list(sql_query_fetch(sql_select_table_attributes('id', 'courses')))
+
+#     id = announcement_context_code.strip("course_")
+
+#     for i in courses_id:
+#         if (i == id):
+#             return i
 
 def print_announcements_embed(announcements):
     id = announcements[0]
