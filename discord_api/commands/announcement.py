@@ -35,6 +35,7 @@ def create_announcements_embed(announcement_id, course_id):
     posted_at_formatted = posted_at.replace("Z", "")
 
     title_raw = html_to_raw(title)
+    message_raw = html_to_raw(message)
     course_name = course[1]
     
     embed = discord.Embed(title="Announcement", 
@@ -44,5 +45,5 @@ def create_announcements_embed(announcement_id, course_id):
     embed.set_author(name="CanvasDiscordBot", 
                     icon_url="https://play-lh.googleusercontent.com/2_M-EEPXb2xTMQSTZpSUefHR3TjgOCsawM3pjVG47jI-BrHoXGhKBpdEHeLElT95060B=s180")
 
-    embed.add_field(name=title_raw, value=message, inline=False)
+    embed.add_field(name=title, value=message_raw, inline=False)
     return embed
