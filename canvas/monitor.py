@@ -117,12 +117,12 @@ def announcements_fetch():
 
     for i in announcements_id:
 
-        # If announcement is not sent, add it to list
-        if not (sql_query_fetchone_result(sql_select_table_attributes_condition('sent_discord', 'announcements', f"id = {i}" ))):
+        # If announcement is not sent yield it
+        if (sql_query_fetchone_result(sql_select_table_attributes_condition('sent_discord', 'announcements', f"id = {i}" )) == 0):
             # TODO Compose message...
             yield str(i)
         else:
-            if(get_debug()):print('Everything is sent!')
+            if(get_debug()):print('') # TODO
             
 # TODO Comment
 def announcement_sent_mark(id):

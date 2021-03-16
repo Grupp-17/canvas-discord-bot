@@ -7,12 +7,12 @@ import os
 from database.init import init_database
 from canvas.monitor import announcement_sent_mark, announcements_fetch, init_monitor
 from utils import init_cmdline_argument_parser, get_debug
+from discord_cmds.announcement import announcement
 
 # Third party modules
 import discord
 from discord.ext import commands
 from discord.ext.commands import CommandNotFound
-from discord_cmds import announcement
 from environs import load_dotenv
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
 
@@ -25,7 +25,7 @@ CHANNEL_ID = int(os.getenv('CHANNEL_ID'))
 intents = discord.Intents.default()
 client = discord.Client(intents=intents)
 client = commands.Bot(command_prefix='.')
-initial_extensions = ['discord_api.commands.command_base']
+initial_extensions = ['discord_cmds.command_base']
 
 # Find out if debugging should be started (Only runs once)
 init_cmdline_argument_parser()
@@ -99,6 +99,7 @@ async def announcement_handler():
         # If message was sent successfully mark it as sent
         if message_sent: 
             announcement_sent_mark(id)
+            message_sent = False
         else:
             if(get_debug()):print(f'Message with id: {id} was not sent')
 
