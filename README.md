@@ -132,11 +132,12 @@ To use the bot you need to fill in some parameters in the .env file.
 
 Andreas Winkler - guskalinan@student.gu.se | Website: [Winkit](https://winkit.se) | [LinkedIn](https://www.linkedin.com/in/andreas-winkler-970335107/)
 
-Tove Andersson - gusandtocs@student.gu.se
+Tove Andersson - gusandtocs@student.gu.se | LinkedIn: [Tove Andersson](https://www.linkedin.com/in/tove-andersson-75ab83165/)
 
 Josef Gunnarsson - gusgunjoae@student.gu.se
 
 <!-- ACKNOWLEDGEMENTS -->
 ## Acknowledgements
 
-Inspiration for our work - https://github.com/NxT-Media-Technology/Canvas-Student-Announcement-Discord-Bot
+We have been inspired by:
+* [NxT-Media-Technology](https://github.com/NxT-Media-Technology/Canvas-Student-Announcement-Discord-Bot)
