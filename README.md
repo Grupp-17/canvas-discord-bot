@@ -48,8 +48,7 @@
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
-We are a group of students that decided that we wanted to build a bridge between Canvas LMS and Discord to make
-our educationary journey more easier.
+We are a group of students studying at Gothenburg University who decided that we wanted to build a bridge between Canvas LMS and Discord. The result is a bot that can recieve and post announcements made by, for example, teachers in a Discord channel.
 
 ### Built With
 
