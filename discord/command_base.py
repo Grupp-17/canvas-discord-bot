@@ -4,8 +4,8 @@
 from discord.ext.commands.core import command
 from database.interactions import *
 from database.queries import *
-from discord_api.commands.courses import courses_command
-from discord_api.commands.subscribe import subscribe_command
+from .courses import courses_command
+from .subscribe import subscribe_command
 
 # Third party modules
 from discord.ext import commands

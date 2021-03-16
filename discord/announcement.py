@@ -6,7 +6,7 @@ from utils import html_to_raw
 # Third party modules
 from database.interactions import *
 from database.queries import *
-from discord_api.commands.subscribe import is_subscribed
+from .subscribe import is_subscribed
 import discord
 
 # TODO Comments
