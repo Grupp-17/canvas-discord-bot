@@ -124,16 +124,13 @@ To use the bot you need to fill in some parameters in the .env file.
 - `.courses` - List all the courses that the bot has access to.
 - `.subscribe <course_id>` - Subscribing to a course and recieve announcements from that course.
 
-<!-- CONTRIBUTING -->
-## Contributing
-
 <!-- LICENSE -->
 ## License
 
 <!-- CONTACT -->
 ## Contact
 
-Andreas Winkler - guskalinan@student.gu.se | Website: [Winkit](https://winkit.se)
+Andreas Winkler - guskalinan@student.gu.se | Website: [Winkit](https://winkit.se) | [LinkedIn](https://www.linkedin.com/in/andreas-winkler-970335107/)
 
 Tove Andersson - gusandtocs@student.gu.se
 
