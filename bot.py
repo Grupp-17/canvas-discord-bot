@@ -11,6 +11,7 @@ from utils import init_cmdline_argument_parser, get_debug
 # Third party modules
 import discord
 from discord.ext import commands
+from discord.ext.commands import CommandNotFound
 from discord_api.commands.announcement import announcement
 from environs import load_dotenv
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
@@ -70,6 +71,13 @@ async def on_ready():
     announcement_scheduler.start()
 
     print('Canvas Discord Bot has started!')
+
+    # Managing command error, ignoring invalid commands
+    @client.event
+    async def on_command_error(ctx, error):
+        if isinstance(error, CommandNotFound):
+            return
+        raise error
 
 
 ###########################################

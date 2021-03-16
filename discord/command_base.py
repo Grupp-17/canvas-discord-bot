@@ -10,6 +10,7 @@ from .subscribe import subscribe_command
 # Third party modules
 from discord.ext import commands
 
+# Grouping the commands
 class CommandBase(commands.Cog):
     def __init__(self, client):
         self.client = client
@@ -24,6 +25,6 @@ class CommandBase(commands.Cog):
     async def subscribe(self, ctx, *, arg):
         await ctx.send(embed=subscribe_command(arg))
    
-
+# Add the group with commands to client
 def setup(client):
     client.add_cog(CommandBase(client))
