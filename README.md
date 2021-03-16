@@ -121,6 +121,9 @@ To use the bot you need to fill in some parameters in the .env file.
 <!-- COMMANDS -->
 ## Commands
 
+- `.courses` - List all the courses that the bot has access to.
+- `.subscribe <course_id>` - Subscribing to a course and recieve announcements from that course.
+
 <!-- CONTRIBUTING -->
 ## Contributing
 
