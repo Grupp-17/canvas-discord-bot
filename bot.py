@@ -86,12 +86,12 @@ async def on_ready():
 
     print('Canvas Discord Bot has started!')
 
-    # Managing command error, ignoring invalid commands
-    @client.event
-    async def on_command_error(ctx, error):
-        if isinstance(error, CommandNotFound):
-            return
-        raise error
+# TODO Proper error handling
+# Managing command error, ignoring invalid commands
+@client.event
+async def on_command_error(ctx, error):
+    if isinstance(error, CommandNotFound):
+        await ctx.send('That command does not exist!')
 
 
 ###########################################
