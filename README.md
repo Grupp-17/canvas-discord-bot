@@ -137,11 +137,15 @@ Andreas Winkler - guskalinan@student.gu.se | Website: [Winkit](https://winkit.se
 
 Tove Andersson - gusandtocs@student.gu.se
 
-Josef Gunnarsson -
+Josef Gunnarsson - gusgunjoae@student.gu.se
 
 <!-- ACKNOWLEDGEMENTS -->
 ## Acknowledgements
 
+<<<<<<< HEAD
 We have been inspired by:
 * [NxT-Media-Technology](https://github.com/NxT-Media-Technology/Canvas-Student-Announcement-Discord-Bot)
 
+=======
+Inspiration for our work - https://github.com/NxT-Media-Technology/Canvas-Student-Announcement-Discord-Bot
+>>>>>>> f714533be669adc26cb9cbb857ee09fc99c4c478
