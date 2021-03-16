@@ -36,7 +36,7 @@ def subscribe_command(arg):
         course_code = course_info[2]
 
         # Embed layout
-        embed = discord.Embed(colour=0x98FB98, description="🔔✔")
+        embed = discord.Embed(colour=0x98FB98, description="🔔")
         embed.set_author(name="CanvasDiscordBot",
                         icon_url="https://play-lh.googleusercontent.com/2_M-EEPXb2xTMQSTZpSUefHR3TjgOCsawM3pjVG47jI-BrHoXGhKBpdEHeLElT95060B=s180")
         
