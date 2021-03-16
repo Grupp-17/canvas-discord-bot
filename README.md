@@ -48,6 +48,8 @@
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
+We are a group of students that decided that we wanted to build a bridge between Canvas LMS and Discord to make
+our educationary journey more easier.
 
 ### Built With
 
@@ -60,12 +62,13 @@
 <!-- GETTING STARTED -->
 ## Getting Started
 
-Down below you will find the steps to get started with the bot.
+Below you will find the steps to get started with the bot.
 
 ### Prerequisites
 
 * Download the latest version of [Python](https://www.python.org/)
 * Create a [discord bot](https://discordpy.readthedocs.io/en/latest/discord.html) and invite it to your [discord channel](https://support.discord.com/hc/en-us/articles/204849977-How-do-I-create-a-server-)
+* Create a [Canvas API access token](https://community.canvaslms.com/t5/Admin-Guide/How-do-I-manage-API-access-tokens-as-an-admin/ta-p/89) as an admin or regular user (if you domain permits it).
 
 ### Installation
 1. Clone the repository
@@ -84,9 +87,8 @@ Down below you will find the steps to get started with the bot.
    pip install requests
    pip install environs
    pip install apscheduler
-   pip install sqlite3
-   pip install pathlib
    pip install discord
+   pip install BeautifulSoup
    ```
 
 <!-- USAGE EXAMPLES -->
@@ -109,6 +111,12 @@ To use the bot you need to fill in some parameters in the .env file.
 
     ```sh
     python bot.py
+    ```
+
+    With debug messages on:
+
+    ```sh
+    python bot.py -d
     ```
 <!-- COMMANDS -->
 ## Commands
