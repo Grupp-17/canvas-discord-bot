@@ -12,7 +12,7 @@ from utils import init_cmdline_argument_parser, get_debug
 import discord
 from discord.ext import commands
 from discord.ext.commands import CommandNotFound
-from discord_api.commands.announcement import announcement
+from discord_cmds import announcement
 from environs import load_dotenv
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
 
