@@ -14,16 +14,22 @@ def is_subscribed(course_id):
 
 def subscribe_command(arg):
 
-    course_id = create_sql_query_list(sql_query_fetch(sql_select_table_attributes_condition("id", "courses", f"id == '{arg}' OR name == '{arg}' OR course_code == '{arg}'")))
+    course_info = create_sql_query_list(sql_query_fetch(sql_select_table_attributes_condition("id, name, course_code", "courses", f"id == '{arg}'")))
+    id_query = create_sql_query_list(sql_query_fetch(sql_select_table_attributes("id", "courses")))
 
-    if (course_id != []):
-        embed = discord.Embed(colour=0x98FB98)
-        embed.set_author(name="CanvasDiscordBot", 
+    if (course_info != []):
+        course_id = course_info[0]
+        course_name = course_info[1]
+        course_code = course_info[2]
+        embed = discord.Embed(colour=0x98FB98, description="🔔✔")
+        embed.set_author(name="CanvasDiscordBot",
                         icon_url="https://play-lh.googleusercontent.com/2_M-EEPXb2xTMQSTZpSUefHR3TjgOCsawM3pjVG47jI-BrHoXGhKBpdEHeLElT95060B=s180")
         if is_subscribed(arg):
-            embed.add_field(name=f"Subscription on course {arg} already satisfied", value="No subscription added!")
+            embed.add_field(name=f"\n\nAlready subscribed to course {course_id}", value=f"{course_name} | {course_code}\n")
+            embed.set_footer(text="No subscription added!")
         else:
-            embed.add_field(name=f"Subscribing on course {arg}", value="Subscription added!")
+            embed.add_field(name=f"\n\nSubscribed to course {arg}", value=f"{course_name} | {course_code}\n")
+            embed.set_footer(text="Subscription added ✔️")
             sql_query_commit(sql_update_subscription(arg, "1"))
             
             # TODO Remove checks or create suitable debugging message
@@ -31,8 +37,10 @@ def subscribe_command(arg):
             #print(check)
         return embed
     else:
-        embed = discord.Embed(colour=0x98FB98)
-        embed.set_author(name="CanvasDiscordBot", 
+        all_courses_id = "\n".join(str(i) for i in id_query)
+        embed = discord.Embed(colour=0x98FB98, description="🤷")
+        embed.set_author(name="CanvasDiscordBot",
                         icon_url="https://play-lh.googleusercontent.com/2_M-EEPXb2xTMQSTZpSUefHR3TjgOCsawM3pjVG47jI-BrHoXGhKBpdEHeLElT95060B=s180")
-        embed.add_field(name=f"Course '{arg}' does not exist", value="No subscription added!")
+        embed.add_field(name=f"\n\nCourse '{arg}' does not exist", value=f"Avalible Courses:\n{all_courses_id}")
+        embed.set_footer(text="No subscription added!")
         return embed

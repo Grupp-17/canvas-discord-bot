@@ -31,7 +31,7 @@ def courses_command(ctx):
     # Add fields in the embed by iterating through the lists
     for name, code, sub, id in zip(course_names, course_codes, course_subscribed, id_list):
         if sub == 1:
-            sub = "✓"
+            sub = "🔔"
         else:
             sub = " "
         embed.add_field(name=str(name) + " " + sub, value=code + " | " + str(id), inline=False)
