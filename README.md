@@ -141,3 +141,7 @@ Josef Gunnarsson -
 
 <!-- ACKNOWLEDGEMENTS -->
 ## Acknowledgements
+
+We have been inspired by:
+* [NxT-Media-Technology](https://github.com/NxT-Media-Technology/Canvas-Student-Announcement-Discord-Bot)
+
