@@ -12,7 +12,6 @@ import discord
 
 # Function for receving the announcement and returns an discord embed of it
 # if it is subscribed to
-
 def announcement(announcement_id):
     # Get the context_code of the announcement which contains the course id
     context_code = sql_query_fetchone_result(sql_select_table_attributes_condition("context_code", "announcements", f"id = {announcement_id}"))

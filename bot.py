@@ -41,12 +41,8 @@ client = discord.Client(intents=intents)
 client = commands.Bot(command_prefix='.')
 initial_extensions = ['discord_cmds.command_base']
 
-# Find out if debugging should be started (Only runs once)
+# Find out if debugging should be started (only runs once)
 init_cmdline_argument_parser()
-
-# Important!!! Must be imported after cmdline parser has been initiated
-# Else constants will not be set correctly
-from utils import debug
 
 if(get_debug()):
     print('DEBUG ON')
@@ -54,9 +50,8 @@ else:
     print('DEBUG OFF')
 
 
-if __name__ == '__main__':
-    for extension in initial_extensions:
-        client.load_extension(extension)
+for extension in initial_extensions:
+    client.load_extension(extension)
 
 
 ###########################################
@@ -73,9 +68,12 @@ async def on_ready():
 
     # Continue only if init is successful
     if init_success_database:
+        # Start update loop for db to fetch data from Canvas domain
         init_monitor()
 
     # Scheduler for sending announcements. Needs to be AysyncIO due to Discord client using the same
+    # This scheduler will check regularly if a course in the database is subscribed to. If that is
+    # the case: send unsent announcements.
     announcement_scheduler = AsyncIOScheduler()
 
     # Add job to scheduler
@@ -101,7 +99,8 @@ async def on_command_error(ctx, error):
 @client.event
 async def announcement_handler():
     
-    # Set channel to .env token
+    # Set channel in .env token
+    # Pick a channel that everybody have access to
     channel = client.get_channel(CHANNEL_ID)
 
     message_sent = False
@@ -110,7 +109,7 @@ async def announcement_handler():
         if (announcement(id) != None):
             message_sent = await channel.send(embed=announcement(id))
 
-        # If message was sent successfully mark it as sent
+        # TODO Move to announcement. Should be handled in annoucement not in bot. If message was sent successfully mark it as sent
         if message_sent: 
             announcement_sent_mark(id)
             message_sent = False

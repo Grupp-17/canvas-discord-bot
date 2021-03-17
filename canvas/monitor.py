@@ -23,12 +23,12 @@ def init_monitor():
     # Run scheduler
     scheduler.start()
 
-
+# This function will loop every X seconds
 def update_db():
 
-    ##########################
-    # HANDLE COURSES UPDATES #
-    ##########################
+    ######################################
+    # HANDLE COURSES INSERTS AND UPDATES #
+    ######################################
 
     # Fetch data from courses request to Canvas
     data_courses = fetch_courses()
@@ -39,6 +39,7 @@ def update_db():
         for i in range(len(data_courses)):
 
             # Check if course exists, if it doesn't insert it
+            # This happens if a Canvas user creates a new course
             if not (sql_query_fetchone_result(sql_check_if_exists('id', data_courses[i]['id'], 'courses'))):
                 sql_query_commit(
                     sql_insert_table_courses(
@@ -60,6 +61,7 @@ def update_db():
                         data_courses[i]['start_at'], 
                         data_courses[i]['end_at'],
                         timestamp()
+                        # Do not set "subscribed_to" or it will overwrite subscribed courses
                     )
                 )
 
@@ -67,9 +69,9 @@ def update_db():
     else:
         if(get_debug()):print('Database error!')
 
-    ################################
-    # HANDLE ANNOUNCEMENTS UPDATES #
-    ################################
+    ############################################
+    # HANDLE ANNOUNCEMENTS INSERTS AND UPDATES #
+    ############################################
 
     # A list of every course ID in database  
     course_id_list = sql_query_fetchall_result(sql_select_table_attributes('id', 'courses'))
@@ -92,10 +94,11 @@ def update_db():
                         data_announcements[f]['context_code'],
                         data_announcements[f]['posted_at'],
                         timestamp(),
-                        0 # Sent to Discord initial value 0
+                        0 # "Sent to Discord" initial value 0
                     )
                 )
             else:
+                # If already existing course update (refresh) values instead
                 sql_query_commit(
                     sql_update_table_announcements(
                         data_announcements[f]['id'], 
@@ -105,6 +108,7 @@ def update_db():
                         data_announcements[f]['context_code'],
                         data_announcements[f]['posted_at'],
                         timestamp()
+                        # Do not set "sent to discord" or it will overwrite sent announcements
                     )
                 )
 

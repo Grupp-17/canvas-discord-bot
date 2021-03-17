@@ -16,7 +16,7 @@ load_dotenv()
 CANVAS_TOKEN = os.getenv('CANVAS_TOKEN')
 CANVAS_DOMAIN = os.getenv('CANVAS_DOMAIN')
 
-# Set request headers
+# Set request headers for authentication
 headers = CaseInsensitiveDict()
 headers["Accept"] = "application/json"
 headers["Authorization"] = f"Bearer {CANVAS_TOKEN}"
@@ -38,7 +38,7 @@ def send_request(request, type):
             return None
 
     except requests.exceptions.RequestException as e:
-        if(get_debug()):print(e) # Maybe SystemExit(e)? Should the program be allowed to continue?
+        if(get_debug()):print(e) # TODO Maybe SystemExit(e)? Should the program be allowed to continue?
         return None
 
 

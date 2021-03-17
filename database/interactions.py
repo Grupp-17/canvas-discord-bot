@@ -125,5 +125,6 @@ def sql_query_commit(query):
         if(get_debug()):print(e)
 
 # Function to set timestamp in database
+# TODO Maybe move to utils.py?
 def timestamp():
     return datetime.now().strftime('%Y:%m:%dT%I:%M:%S')

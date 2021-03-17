@@ -17,18 +17,18 @@ def init_cmdline_argument_parser():
     # Init argparser
     parser = argparse.ArgumentParser(prog='Canvas Discord Bot')
 
-    # Add argument for debugging and store argument as boolean in debug
+    # Add argument for debugging and store argument as boolean in debug variable later
     parser.add_argument('-d', help='starts in debug mode', action='store_true', dest='debug')
 
     # Store result in debug variable
     args = parser.parse_args()
-    #arguments['debug'] = vars(args)['debug']
 
     # Return dictionary of argument keys and values
     debug = vars(args)['debug']
 
 
-# TODO Comment
+# In a function due to initiation order due to user cmd arguments vs modules
+# The function is called after user input argument is parsed and debug variable is set
 def get_debug():
     return debug
 

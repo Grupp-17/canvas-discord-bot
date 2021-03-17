@@ -11,10 +11,12 @@ def init_database():
 
     if conn is not None:
 
-        # TODO Create cmd line argument for dropping tables
+        # Create cmd line argument for dropping tables
+        # TODO We should set an option to drop tables or not in  config.json
         sql_query(sql_drop_table_courses)
         sql_query(sql_drop_table_announcements)
 
+        # TODO Comment
         if((sql_query(sql_create_table_courses)) and (sql_query(sql_create_table_announcements))):
             return True
         else:
