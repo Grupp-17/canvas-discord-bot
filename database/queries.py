@@ -16,6 +16,7 @@ sql_create_table_courses = """CREATE TABLE IF NOT EXISTS courses (
                         end_at REAL, 
                         timestamp NUMERIC,
                         subscribed_to NUMERIC,
+                        channel_id NUMERIC,
                         PRIMARY KEY(id)
                     );"""
 
@@ -43,6 +44,7 @@ def sql_insert_table_courses(
     start_at,
     end_at,
     timestamp,
+    channel_id,
     subscribed_to):
     query = f"""
         INSERT INTO courses (
@@ -52,6 +54,7 @@ def sql_insert_table_courses(
             start_at,
             end_at,
             timestamp,
+            channel_id,
             subscribed_to) 
         VALUES (
             "{id}",
@@ -60,6 +63,7 @@ def sql_insert_table_courses(
             "{start_at}",
             "{end_at}",
             "{timestamp}",
+            "{channel_id}",
             "{subscribed_to}"
             );
     """
@@ -144,6 +148,9 @@ def sql_update_table_announcements(
     """
     return query
 
+def sql_update_channel_id(id, channelID):
+    query = f"""UPDATE COURSES SET channel_id = {channelID} WHERE id = {id};"""
+    return query
 
 def sql_update_subscription(arg, value):
     query = f"""UPDATE courses SET subscribed_to = {value} WHERE id = {arg};"""

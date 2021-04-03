@@ -2,9 +2,11 @@
 
 # Internal modules
 import argparse
+import os
 
 # Third party modules
 from bs4 import BeautifulSoup
+from environs import load_dotenv
 
 ##############################
 ### Cmdline argument handler #
@@ -38,3 +40,4 @@ def html_to_raw(html_content):
     text = raw_content.get_text()
 
     return text
+

@@ -3,28 +3,30 @@
 #internal modules
 import sqlite3
 from sqlite3 import Error
-from pathlib import Path
 from datetime import datetime
 
-# Local constants
+# Local modules
 from utils import get_debug
+
+# Third party modules
+from pathlib import Path
 
 # Path is used to create OS independent pathing
 db_path = Path('database/main.db')
 
-def create_connection(db_file): 
+def create_connection(): 
     conn = None
 
     try:
-        conn = sqlite3.connect(db_file)
+        conn = sqlite3.connect(db_path)
         if(get_debug()):print('Connection successful. SQLite3', sqlite3.version)
     except Error as e:
         if(get_debug()):print(e)
     return conn
 
-
 # Create a clean list of SQLite output
 def create_sql_query_list(data):
+    
     result = []
 
     for i in range(len(data)):
@@ -35,14 +37,12 @@ def create_sql_query_list(data):
 
 def sql_query(query):
     try:
-        conn = create_connection(db_path)
-
+        conn = create_connection()
         c = conn.cursor()
         c.execute(query)
         if(get_debug()):
             print(query)
             print('Query successful!')
-        conn.close()
         return True
 
     except Error as e:
@@ -51,15 +51,13 @@ def sql_query(query):
 
 def sql_query_fetch(query):
     try:
-        conn = create_connection(db_path)
-
+        conn = create_connection()
         c = conn.cursor()
         c.execute(query)
         if(get_debug()):
             print(query)
             print('Query successful!')
         result = c.fetchall()
-        conn.close()
         return result
        
     except Error as e:
@@ -68,8 +66,7 @@ def sql_query_fetch(query):
 
 def sql_query_fetchone_result(query):
     try:
-        conn = create_connection(db_path)
-
+        conn = create_connection()
         c = conn.cursor()
         c.execute(query)
         if(get_debug()):
@@ -77,8 +74,6 @@ def sql_query_fetchone_result(query):
             print('Query successful!')
         
         result = c.fetchone()
-
-        conn.close()
 
         # Return first result only (ignoring ,)
         return result[0]
@@ -88,8 +83,7 @@ def sql_query_fetchone_result(query):
 
 def sql_query_fetchall_result(query):
     try:
-        conn = create_connection(db_path)
-
+        conn = create_connection()
         c = conn.cursor()
         c.execute(query)
         if(get_debug()):
@@ -97,8 +91,6 @@ def sql_query_fetchall_result(query):
             print('Query successful!')
         
         result = c.fetchall()
-
-        conn.close()
 
         # Return list of query result
         return create_sql_query_list(result)
@@ -108,8 +100,7 @@ def sql_query_fetchall_result(query):
 
 def sql_query_commit(query):
     try:
-        conn = create_connection(db_path)
-
+        conn = create_connection()
         c = conn.cursor()
         c.execute(query)
         
@@ -118,8 +109,6 @@ def sql_query_commit(query):
         if(get_debug()):
             print(query)
             print('Query commit successful!')
-
-        conn.close()
            
     except Error as e:
         if(get_debug()):print(e)

@@ -33,7 +33,7 @@ from apscheduler.schedulers.asyncio import AsyncIOScheduler
 # Load private tokens
 load_dotenv()
 DISCORD_TOKEN = os.getenv('DISCORD_TOKEN')
-CHANNEL_ID = int(os.getenv('CHANNEL_ID'))
+DEFAULT_CHANNEL_ID = int(os.getenv('DEFAULT_CHANNEL_ID'))
 
 # Configure discord client
 intents = discord.Intents.default()
@@ -52,7 +52,6 @@ else:
 
 for extension in initial_extensions:
     client.load_extension(extension)
-
 
 ###########################################
 ### Main event handler for Discord client #
@@ -101,7 +100,7 @@ async def announcement_handler():
     
     # Set channel in .env token
     # Pick a channel that everybody have access to
-    channel = client.get_channel(CHANNEL_ID)
+    channel = client.get_channel(DEFAULT_CHANNEL_ID)
 
     message_sent = False
 

@@ -1,13 +1,18 @@
 # Initiation code for the database
 
+# Internal modules
+
 # Local modules
 from canvas.http_requests import *
 from .queries import *
-from .interactions import *
+from .interactions import sql_query, create_connection
 from utils import get_debug
 
+# Third party modules
+
 def init_database():
-    conn = create_connection(db_path)
+
+    conn = create_connection()
 
     if conn is not None:
 
@@ -26,3 +31,4 @@ def init_database():
         if(get_debug()):print(conn)
 
         return False
+

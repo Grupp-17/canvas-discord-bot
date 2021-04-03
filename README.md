@@ -104,7 +104,7 @@ To use the bot you need to fill in some parameters in the .env file.
     DISCORD_TOKEN='https://discord.com/developers/applications'
     CANVAS_TOKEN='YOUR CANVAS TOKEN'
     CANVAS_DOMAIN='YOUR CANVAS DOMAIN'
-    CHANNEL_ID='YOUR DISCORD CHANNEL_ID'
+    DEFAULT_CHANNEL_ID='YOUR DISCORD DEFAULT_CHANNEL_ID'
     ```
 3. Run the bot
 

@@ -12,7 +12,6 @@ from utils import get_debug
 # Third party modules
 from apscheduler.schedulers.background import BackgroundScheduler
 
-
 def init_monitor():
     # Create scheduler object
     scheduler = BackgroundScheduler()
@@ -49,6 +48,7 @@ def update_db():
                         data_courses[i]['start_at'], 
                         data_courses[i]['end_at'],
                         timestamp(),
+                        0, # Initial channelID is not set
                         0 # Initial value for subscribed to 0
                     )
                 )
@@ -123,10 +123,9 @@ def announcements_fetch():
 
         # If announcement is not sent yield it
         if (sql_query_fetchone_result(sql_select_table_attributes_condition('sent_discord', 'announcements', f"id = {i}" )) == 0):
-            # TODO Compose message...
             yield str(i)
         else:
-            if(get_debug()):print('') # TODO
+            if(get_debug()):print('')
             
 # TODO Comment
 def announcement_sent_mark(id):
