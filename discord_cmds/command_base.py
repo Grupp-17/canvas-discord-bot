@@ -30,6 +30,7 @@ class CommandBase(commands.Cog):
     @commands.command(name="subscribe")
     async def subscribe(self, ctx, *args):
 
+        # TODO Move to subscribe.py
         course_id_arg = args[0]
 
         # Check if channel is specified by user
@@ -42,7 +43,7 @@ class CommandBase(commands.Cog):
 
         # If too many arguments, return error message to user
         else:
-            await ctx.send("Invalid amount of arguments! Try again!")
+            await ctx.send("Invalid amount of arguments!\nValid input: <prefix>courses <course id> <channel>")
             
         # Get channel data from Discord
         #discord_data = get(ctx.guild.text_channels, name = to_channel_name)
