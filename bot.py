@@ -15,6 +15,9 @@
 # bot.py
 
 # Internal modules
+from sqlite3.dbapi2 import Error
+from database.queries import sql_select_table_attributes_condition
+from database.interactions import sql_query_fetchone_result
 import os
 
 # Local modules
@@ -97,16 +100,26 @@ async def on_command_error(ctx, error):
 
 @client.event
 async def announcement_handler():
-    
-    # Set channel in .env token
-    # Pick a channel that everybody have access to
-    channel = client.get_channel(DEFAULT_CHANNEL_ID)
 
     message_sent = False
 
     for id in announcements_fetch():
         if (announcement(id) != None):
-            message_sent = await channel.send(embed=announcement(id))
+
+            # TODO Find a nicer way to do this
+            context_code = sql_query_fetchone_result(sql_select_table_attributes_condition('context_code', 'announcements', f'id = {id}'))
+            course_id = context_code.strip("course_")
+            channel_id = sql_query_fetchone_result(sql_select_table_attributes_condition('channel_id', 'courses', f'id = {course_id}'))
+            channel = client.get_channel(channel_id)
+            
+            if channel != None:
+                message_sent = await channel.send(embed=announcement(id))
+            
+            # If text channel is deleted 
+            else:
+                # TODO Unsubscribe
+                channel = client.get_channel(DEFAULT_CHANNEL_ID)
+                await channel.send(f'Channel not found!\nID: {channel.id}\nName: {channel.name}\nSubscription removed')
 
         # TODO Move to announcement. Should be handled in annoucement not in bot. If message was sent successfully mark it as sent
         if message_sent: 

@@ -49,7 +49,7 @@ class CommandBase(commands.Cog):
         #discord_data = get(ctx.guild.text_channels, name = to_channel_name)
 
         for channel in ctx.guild.channels:
-            if(channel.id) == int(channel_name_arg):
+            if(channel.id) == channel_name_arg:
                 discord_channel_data = get(ctx.guild.text_channels, name = channel.name)
                 break
             elif(channel.name) == channel_name_arg:

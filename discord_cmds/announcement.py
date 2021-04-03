@@ -7,7 +7,6 @@ from database.queries import *
 from .subscribe import is_subscribed
 
 # Third party modules
-
 import discord
 
 # Function for receving the announcement and returns an discord embed of it
