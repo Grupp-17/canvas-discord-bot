@@ -15,13 +15,12 @@
 # bot.py
 
 # Internal modules
-from sqlite3.dbapi2 import Error
-from database.queries import sql_select_table_attributes_condition
-from database.interactions import sql_query_fetchone_result
 import os
 
 # Local modules
 from database.init import init_database
+from database.queries import sql_select_table_attributes_condition
+from database.interactions import sql_query_fetchone_result
 from canvas.monitor import announcement_sent_mark, announcements_fetch, init_monitor
 from utils import init_cmdline_argument_parser, get_debug
 from discord_cmds.announcement import announcement
@@ -32,6 +31,7 @@ from discord.ext import commands
 from discord.ext.commands import CommandNotFound
 from environs import load_dotenv
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
+from utils import get_config
 
 # Load private tokens
 load_dotenv()
@@ -56,6 +56,7 @@ else:
 for extension in initial_extensions:
     client.load_extension(extension)
 
+
 ###########################################
 ### Main event handler for Discord client #
 ###########################################
@@ -79,7 +80,7 @@ async def on_ready():
     announcement_scheduler = AsyncIOScheduler()
 
     # Add job to scheduler
-    announcement_scheduler.add_job(announcement_handler, 'interval', seconds = 3)
+    announcement_scheduler.add_job(announcement_handler, 'interval', seconds=get_config('announcement_scheduler_interval'))
 
     # Run scheduler
     announcement_scheduler.start()

@@ -7,7 +7,7 @@ from datetime import datetime
 from canvas.http_requests import *
 from database.interactions import *
 from database.queries import *
-from utils import get_debug
+from utils import get_debug, get_config
 
 # Third party modules
 from apscheduler.schedulers.background import BackgroundScheduler
@@ -17,7 +17,7 @@ def init_monitor():
     scheduler = BackgroundScheduler()
 
     # Set scheduler action and interval
-    scheduler.add_job(update_db, 'interval', seconds=5)
+    scheduler.add_job(update_db, 'interval', seconds=get_config('monitor_scheduler_interval'))
     
     # Run scheduler
     scheduler.start()

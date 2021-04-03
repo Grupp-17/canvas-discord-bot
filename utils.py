@@ -2,7 +2,7 @@
 
 # Internal modules
 import argparse
-import os
+import json
 
 # Third party modules
 from bs4 import BeautifulSoup
@@ -40,4 +40,11 @@ def html_to_raw(html_content):
     text = raw_content.get_text()
 
     return text
+
+def get_config(option):
+    # Load config
+    with open('config.json') as config_file:
+        config_data = json.load(config_file)
+
+    return config_data[f'{option}']
 
