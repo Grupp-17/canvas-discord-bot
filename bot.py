@@ -19,7 +19,7 @@ import os
 
 # Local modules
 from database.init import init_database
-from database.queries import sql_select_table_attributes_condition
+from database.queries import query_select_table_attributes_condition
 from database.interactions import sql_query_fetchone_result
 from canvas.monitor import announcement_sent_mark, announcements_fetch, init_monitor
 from utils import init_cmdline_argument_parser, get_debug
@@ -107,16 +107,17 @@ async def announcement_handler():
     for id in announcements_fetch():
         if (announcement(id) != None):
 
-            # TODO Find a nicer way to do this
-            context_code = sql_query_fetchone_result(sql_select_table_attributes_condition('context_code', 'announcements', f'id = {id}'))
+            # TODO Find a nicer way to do this, move into announcement.py
+            # Send message to the right channel
+            context_code = sql_query_fetchone_result(query_select_table_attributes_condition('context_code', 'announcements', f'id = {id}'))
             course_id = context_code.strip("course_")
-            channel_id = sql_query_fetchone_result(sql_select_table_attributes_condition('channel_id', 'courses', f'id = {course_id}'))
+            channel_id = sql_query_fetchone_result(query_select_table_attributes_condition('channel_id', 'courses', f'id = {course_id}'))
             channel = client.get_channel(channel_id)
             
             if channel != None:
                 message_sent = await channel.send(embed=announcement(id))
             
-            # If text channel is deleted 
+            # If the text channel is deleted this needs to be handled
             else:
                 # TODO Unsubscribe
                 channel = client.get_channel(DEFAULT_CHANNEL_ID)
@@ -128,5 +129,6 @@ async def announcement_handler():
             message_sent = False
         else:
             if(get_debug()):print(f'Message with id: {id} was not sent')
+
 
 client.run(DISCORD_TOKEN)

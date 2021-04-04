@@ -4,11 +4,11 @@
 # DROP QUERIES #
 ################
 
-sql_drop_table_courses = """DROP TABLE courses;"""
+query_drop_table_courses = """DROP TABLE courses;"""
 
-sql_drop_table_announcements = """DROP TABLE announcements;"""
+query_drop_table_announcements = """DROP TABLE announcements;"""
 
-sql_create_table_courses = """CREATE TABLE IF NOT EXISTS courses (
+query_create_table_courses = """CREATE TABLE IF NOT EXISTS courses (
                         id INTEGER, 
                         name TEXT, 
                         course_code TEXT, 
@@ -20,7 +20,7 @@ sql_create_table_courses = """CREATE TABLE IF NOT EXISTS courses (
                         PRIMARY KEY(id)
                     );"""
 
-sql_create_table_announcements = """CREATE TABLE IF NOT EXISTS announcements (
+query_create_table_announcements = """CREATE TABLE IF NOT EXISTS announcements (
                         id INTEGER, 
                         title TEXT, 
                         message TEXT, 
@@ -37,7 +37,7 @@ sql_create_table_announcements = """CREATE TABLE IF NOT EXISTS announcements (
 # INSERT QUERIES #
 ##################
 
-def sql_insert_table_courses(
+def query_insert_table_courses(
     id,
     name,
     course_code,
@@ -70,7 +70,7 @@ def sql_insert_table_courses(
     return query
 
 
-def sql_insert_table_announcements(
+def query_insert_table_announcements(
     id,
     title,
     message,
@@ -107,7 +107,7 @@ def sql_insert_table_announcements(
 # UPDATE QUERIES #
 ##################
 
-def sql_update_table_courses(
+def query_update_table_courses(
     id,
     name,
     course_code,
@@ -127,7 +127,7 @@ def sql_update_table_courses(
     return query
 
 
-def sql_update_table_announcements(
+def query_update_table_announcements(
     id,
     title,
     message,
@@ -148,15 +148,15 @@ def sql_update_table_announcements(
     """
     return query
 
-def sql_update_channel_id(id, channelID):
+def query_update_channel_id(id, channelID):
     query = f"""UPDATE COURSES SET channel_id = {channelID} WHERE id = {id};"""
     return query
 
-def sql_update_subscription(arg, value):
+def query_update_subscription(arg, value):
     query = f"""UPDATE courses SET subscribed_to = {value} WHERE id = {arg};"""
     return query
 
-def sql_update_announcement_sent(id):
+def query_update_announcement_sent(id):
     query = f"""UPDATE announcements SET sent_discord = 1 WHERE id = {id}"""
     return query
 
@@ -165,23 +165,23 @@ def sql_update_announcement_sent(id):
 # SELECT QUERIES #
 ##################
 
-def sql_select_table_attributes(attribute, table):
+def query_select_table_attributes(attribute, table):
     query = f"""SELECT {attribute} FROM {table};"""
     return query
 
 
-def sql_select_table_attributes_condition(attribute, table, condition):
+def query_select_table_attributes_condition(attribute, table, condition):
     query = f"""SELECT {attribute} FROM {table} WHERE {condition};"""
     return query
 
 
-def sql_select_subscription(arg):
+def query_select_subscription(arg):
     query = f"""SELECT id, name, subscribed_to FROM courses WHERE id = '{arg}' OR course_code = '{arg}' OR name = '{arg}';"""
     return query
 
 
 # Returns 1 if exists and 0 if not (as SQLITE doesn't support boolean)
-def sql_check_if_exists(attribute, value, table): 
+def query_check_if_exists(attribute, value, table): 
     query = f"""
     SELECT COUNT({attribute}) FROM {table} WHERE {attribute} = {value}
     """

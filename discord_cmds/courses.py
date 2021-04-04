@@ -10,10 +10,10 @@ import discord
 def courses_command(ctx):
 
     # Queries to get lists containing information about all courses
-    course_names = create_sql_query_list(sql_query_fetch(sql_select_table_attributes("name", "courses")))
-    course_codes = create_sql_query_list(sql_query_fetch(sql_select_table_attributes("course_code", "courses")))
-    course_subscribed_to = create_sql_query_list(sql_query_fetch(sql_select_table_attributes("subscribed_to", "courses")))
-    id_list = create_sql_query_list(sql_query_fetch(sql_select_table_attributes("id", "courses")))
+    course_names = create_sql_query_list(sql_query_fetch(query_select_table_attributes("name", "courses")))
+    course_codes = create_sql_query_list(sql_query_fetch(query_select_table_attributes("course_code", "courses")))
+    course_subscribed_to = create_sql_query_list(sql_query_fetch(query_select_table_attributes("subscribed_to", "courses")))
+    id_list = create_sql_query_list(sql_query_fetch(query_select_table_attributes("id", "courses")))
 
     # Embed for displaying all availible courses in discord
     embed = discord.Embed(title='Avaliable courses', 

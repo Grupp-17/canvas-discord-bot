@@ -13,7 +13,7 @@ import discord
 def is_subscribed(course_id):
 
     # Query to get subscribed_to value from courses
-    subscribed = sql_query_fetchone_result(sql_select_table_attributes_condition("subscribed_to", "courses", f"id = {course_id}"))
+    subscribed = sql_query_fetchone_result(query_select_table_attributes_condition("subscribed_to", "courses", f"id = {course_id}"))
 
     if subscribed == 1:
         return True
@@ -26,10 +26,10 @@ def subscribe_command(course_id_arg, channel_name_arg, discord_channel_data):
 
     # Data 
     # Query to get id, name, course_code from a specific course
-    course_data = create_sql_query_list(sql_query_fetch(sql_select_table_attributes_condition("id, name, course_code", "courses", f"id == '{course_id_arg}'")))
+    course_data = create_sql_query_list(sql_query_fetch(query_select_table_attributes_condition("id, name, course_code", "courses", f"id == '{course_id_arg}'")))
 
     # Query to get id for all courses
-    course_id_all = create_sql_query_list(sql_query_fetch(sql_select_table_attributes("id", "courses")))
+    course_id_all = create_sql_query_list(sql_query_fetch(query_select_table_attributes("id", "courses")))
 
     # Course ID not found - return error message to user
     if(course_data == []):
@@ -76,9 +76,9 @@ def subscribe_command(course_id_arg, channel_name_arg, discord_channel_data):
             embed.set_footer(text="Subscription added ✔️")
 
             # Update subscribed_to on the course that now is subscribed to
-            sql_query_commit(sql_update_subscription(course_id_arg, "1"))
+            sql_query_commit(query_update_subscription(course_id_arg, "1"))
             
             # Update channel id for course
-            sql_query_commit(sql_update_channel_id(course_id_arg, discord_channel_data.id))
+            sql_query_commit(query_update_channel_id(course_id_arg, discord_channel_data.id))
 
         return embed

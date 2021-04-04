@@ -17,11 +17,11 @@ def init_database():
     if conn is not None:
 
         if(get_config('permanent_database')) == False:
-            sql_query(sql_drop_table_courses)
-            sql_query(sql_drop_table_announcements)
+            sql_query(query_drop_table_courses)
+            sql_query(query_drop_table_announcements)
 
         # TODO Comment
-        if((sql_query(sql_create_table_courses)) and (sql_query(sql_create_table_announcements))):
+        if((sql_query(query_create_table_courses)) and (sql_query(query_create_table_announcements))):
             return True
         else:
             if(get_debug()):print('Init of tables failed')

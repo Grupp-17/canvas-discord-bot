@@ -39,9 +39,9 @@ def update_db():
 
             # Check if course exists, if it doesn't insert it
             # This happens if a Canvas user creates a new course
-            if not (sql_query_fetchone_result(sql_check_if_exists('id', data_courses[i]['id'], 'courses'))):
+            if not (sql_query_fetchone_result(query_check_if_exists('id', data_courses[i]['id'], 'courses'))):
                 sql_query_commit(
-                    sql_insert_table_courses(
+                    query_insert_table_courses(
                         data_courses[i]['id'], 
                         data_courses[i]['name'], 
                         data_courses[i]['course_code'],
@@ -54,7 +54,7 @@ def update_db():
                 )
             else:
                 sql_query_commit(
-                    sql_update_table_courses(
+                    query_update_table_courses(
                         data_courses[i]['id'], 
                         data_courses[i]['name'], 
                         data_courses[i]['course_code'],
@@ -74,7 +74,7 @@ def update_db():
     ############################################
 
     # A list of every course ID in database  
-    course_id_list = sql_query_fetchall_result(sql_select_table_attributes('id', 'courses'))
+    course_id_list = sql_query_fetchall_result(query_select_table_attributes('id', 'courses'))
 
     # Fetch announcements for every course in Canvas table
     for i in range(len(course_id_list)):
@@ -84,9 +84,9 @@ def update_db():
         for f in range(len(data_announcements)):
 
             # Check if announcement exists, if it doesn't insert it
-            if not (sql_query_fetchone_result(sql_check_if_exists('id', data_announcements[f]['id'], 'announcements'))):
+            if not (sql_query_fetchone_result(query_check_if_exists('id', data_announcements[f]['id'], 'announcements'))):
                 sql_query_commit(
-                    sql_insert_table_announcements(
+                    query_insert_table_announcements(
                         data_announcements[f]['id'], 
                         data_announcements[f]['title'], 
                         data_announcements[f]['message'],
@@ -100,7 +100,7 @@ def update_db():
             else:
                 # If already existing course update (refresh) values instead
                 sql_query_commit(
-                    sql_update_table_announcements(
+                    query_update_table_announcements(
                         data_announcements[f]['id'], 
                         data_announcements[f]['title'], 
                         data_announcements[f]['message'],
@@ -117,17 +117,17 @@ def update_db():
 def announcements_fetch():
 
     # Get list of announcement id's
-    announcements_id = sql_query_fetchall_result(sql_select_table_attributes('id', 'announcements'))
+    announcements_id = sql_query_fetchall_result(query_select_table_attributes('id', 'announcements'))
 
     for i in announcements_id:
 
         # If announcement is not sent yield it
-        if (sql_query_fetchone_result(sql_select_table_attributes_condition('sent_discord', 'announcements', f"id = {i}" )) == 0):
+        if (sql_query_fetchone_result(query_select_table_attributes_condition('sent_discord', 'announcements', f"id = {i}" )) == 0):
             yield str(i)
         else:
             if(get_debug()):print('')
             
 # TODO Comment
 def announcement_sent_mark(id):
-    sql_query_commit(sql_update_announcement_sent(id))
+    sql_query_commit(query_update_announcement_sent(id))
     if(get_debug()):print(f'Announcement with {id} marked as sent.')

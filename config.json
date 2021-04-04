@@ -1,5 +1,6 @@
 {
     "monitor_scheduler_interval" : 5,
     "announcement_scheduler_interval" : 3,
-    "permanent_database" : true
+    "permanent_database" : false,
+    "announcement_date_cut_off_time" : 1
 }
