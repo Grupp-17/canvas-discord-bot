@@ -13,7 +13,8 @@ import discord
 # if it is subscribed to
 def announcement(announcement_id):
     # Get the context_code of the announcement which contains the course id
-    context_code = sql_query_fetchone_result(query_select_table_attributes_condition("context_code", "announcements", f"id = {announcement_id}"))
+    announcement_data = get_announcement_data(f"id = '{announcement_id}'")
+    context_code = announcement_data.get("context_code")
     
     # Strip the context_code to get only the course id
     course_id = context_code.strip("course_")
@@ -28,27 +29,27 @@ def announcement(announcement_id):
 def create_announcement_embed(announcement_id, course_id):
 
     # Queries to get all information from the announcements table and the courses table
-    announcement_data = create_sql_query_list(sql_query_fetch(query_select_table_attributes_condition("*", "announcements", f"id = '{announcement_id}'")))
-    course_data = create_sql_query_list(sql_query_fetch(query_select_table_attributes_condition("*", "courses", f"id = '{course_id}'")))
+    announcement_data = get_announcement_data(f"id = '{announcement_id}'")
+    course_data = get_course_data(f"id = '{course_id}'")
 
     # Declare the information into variables
 
     # Announcement information
-    id = announcement_data[0]
-    title = announcement_data[1]
-    message = announcement_data[2]
-    author = announcement_data[3]
-    context_code = announcement_data[4]
-    posted_at = announcement_data[5].replace("T", " at ")
+    id = announcement_data.get("id")
+    title = announcement_data.get("title")
+    message = announcement_data.get("message")
+    author = announcement_data.get("author")
+    context_code = announcement_data.get("context_code")
+    posted_at = announcement_data.get("posted_at").replace("T", " at ")
     posted_at_formatted = posted_at.replace("Z", "")
 
     # Parse the text that is recieved in html
     message_raw = html_to_raw(message)
 
     # Courses information
-    course_name = course_data[1]
-    course_code = course_data[2]
-    c_id = course_data[0]
+    course_name = course_data.get("name")
+    course_code = course_data.get("course_code")
+    c_id = course_data.get("id")
     
     # Embed layout
     embed = discord.Embed(title="New Announcement 📢", 
