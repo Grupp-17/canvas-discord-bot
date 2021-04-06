@@ -82,3 +82,4 @@ def subscribe_command(course_id_arg, channel_name_arg, discord_channel_data):
             sql_query_commit(query_update_channel_id(course_id_arg, discord_channel_data.id))
 
         return embed
+
