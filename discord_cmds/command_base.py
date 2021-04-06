@@ -9,6 +9,7 @@ from database.interactions import *
 from database.queries import *
 from .courses import courses_command
 from .subscribe import subscribe_command
+from .unsubscribe import unsubscribe_command
 
 # Third party modules
 from discord.ext import commands
@@ -60,6 +61,10 @@ class CommandBase(commands.Cog):
 
         await ctx.send(embed=subscribe_command(course_id_arg, channel_name_arg, discord_channel_data))
    
+    @commands.command(name="unsubscribe")
+    async def unsubscribe(self, ctx, arg):
+        await ctx.send(embed=unsubscribe_command(arg))
+
 # Add the group with commands to client
 def setup(client):
     client.add_cog(CommandBase(client))
