@@ -24,9 +24,9 @@ def is_subscribed(course_id):
 # Subscribe command
 def subscribe_command(course_id_arg, channel_name_arg, discord_channel_data):
 
-    # Data 
-    # Query to get id, name, course_code from a specific course
-    course_data = create_sql_query_list(sql_query_fetch(query_select_table_attributes_condition("id, name, course_code", "courses", f"id == '{course_id_arg}'")))
+    # Data
+    # Query to get course data from a specific course
+    course_data = get_course_data(f"id == '{course_id_arg}'")
 
     # Query to get id for all courses
     course_id_all = create_sql_query_list(sql_query_fetch(query_select_table_attributes("id", "courses")))
@@ -55,9 +55,9 @@ def subscribe_command(course_id_arg, channel_name_arg, discord_channel_data):
     # Channel ID and Course ID found
     else:
         # Split and store the information into variables
-        course_id = course_data[0]
-        course_name = course_data[1]
-        course_code = course_data[2]
+        course_id = course_data.get("id")
+        course_name = course_data.get("name")
+        course_code = course_data.get("course_code")
 
         # Embed layout
         embed = discord.Embed(colour=0x98FB98, description="🔔")
