@@ -41,16 +41,19 @@ def get_course_data(arg):
 
     data = sql_query_fetchall_result(query_select_table_attributes_condition('*', 'courses', f"{arg}"))
 
-    course_data = {
-        'id': f'{data[0]}',
-        'name': f'{data[1]}',
-        'course_code': f'{data[2]}',
-        'start_at': f'{data[3]}',
-        'end_at': f'{data[4]}',
-        'timestamp': f'{data[5]}',
-        'subscribed_to': f'{data[6]}',
-        'channel_id': f'{data[7]}'
-    }
+    course_data = None
+
+    if(data):
+        course_data = {
+            'id': f'{data[0]}',
+            'name': f'{data[1]}',
+            'course_code': f'{data[2]}',
+            'start_at': f'{data[3]}',
+            'end_at': f'{data[4]}',
+            'timestamp': f'{data[5]}',
+            'subscribed_to': f'{data[6]}',
+            'channel_id': f'{data[7]}'
+        }
  
     return course_data
 
@@ -82,16 +85,19 @@ def get_announcement_data(arg):
 
     data = sql_query_fetchall_result(query_select_table_attributes_condition('*', 'announcements', f'{arg}'))
 
-    announcement_data = {
-        'id': f'{data[0]}',
-        'title': f'{data[1]}',
-        'message': f'{data[2]}',
-        'author': f'{data[3]}',
-        'context_code': f'{data[4]}',
-        'posted_at': f'{data[5]}',
-        'timestamp': f'{data[6]}',
-        'sent_discord': f'{data[7]}'
-    }
+    announcement_data = None
+
+    if(announcement_data):
+        announcement_data = {
+            'id': f'{data[0]}',
+            'title': f'{data[1]}',
+            'message': f'{data[2]}',
+            'author': f'{data[3]}',
+            'context_code': f'{data[4]}',
+            'posted_at': f'{data[5]}',
+            'timestamp': f'{data[6]}',
+            'sent_discord': f'{data[7]}'
+        }
  
     return announcement_data
 
