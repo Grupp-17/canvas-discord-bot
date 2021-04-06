@@ -98,7 +98,7 @@ def get_announcement_data(arg):
 
 def get_all_announcements_data():
 
-    all_data = sql_query_fetchall_result(query_select_table_attributes_condition('*', 'announcements', f'{arg}'))
+    all_data = sql_query_fetchall(query_select_table_attributes('*', 'announcements'))
 
     all_announcements_data = []
 
