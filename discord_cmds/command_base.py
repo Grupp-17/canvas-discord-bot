@@ -27,8 +27,10 @@ class CommandBase(commands.Cog):
     async def courses(self, ctx):
         await ctx.send(embed=courses_command(ctx))
 
-    # Command for subscribing to cources
+    # Command for subscribing to courses
+    # Set permission for the command
     @commands.command(name="subscribe")
+    @commands.has_permissions(administrator=True)
     async def subscribe(self, ctx, *args):
 
         # TODO Move to subscribe.py
@@ -61,7 +63,10 @@ class CommandBase(commands.Cog):
 
         await ctx.send(embed=subscribe_command(course_id_arg, channel_name_arg, discord_channel_data))
    
+    # Command to unsubscribe to a course
+    # Set permission for the command
     @commands.command(name="unsubscribe")
+    @commands.has_permissions(administrator=True)
     async def unsubscribe(self, ctx, arg):
         await ctx.send(embed=unsubscribe_command(arg))
 

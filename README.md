@@ -121,7 +121,9 @@ To use the bot you need to fill in some parameters in the .env file.
 ## Commands
 
 - `.courses` - List all the courses that the bot has access to.
-- `.subscribe <course_id>` - Subscribing to a course and recieve announcements from that course.
+- `.subscribe <course_id> <channel_id>` - Subscribing to a course and recieve announcements from that course in a specific channel.
+- `.unsubscribe <course_id>` - Unsubscribe to a course.
+
 
 <!-- LICENSE -->
 ## License
@@ -131,7 +133,7 @@ To use the bot you need to fill in some parameters in the .env file.
 
 Andreas Winkler - guskalinan@student.gu.se | [LinkedIn](https://www.linkedin.com/in/andreas-winkler-970335107/)
 
-Tove Andersson - gusandtocs@student.gu.se | [LinkedIn](https://www.linkedin.com/in/tove-andersson-75ab83165/)
+[Tove Andersson](https://github.com/Tove-A) - gusandtocs@student.gu.se | [LinkedIn](https://www.linkedin.com/in/tove-andersson-75ab83165/)
 
 Josef Gunnarsson - gusgunjoae@student.gu.se
 
