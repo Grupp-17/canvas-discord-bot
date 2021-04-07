@@ -41,7 +41,7 @@ DEFAULT_CHANNEL_ID = int(os.getenv('DEFAULT_CHANNEL_ID'))
 # Configure discord client
 intents = discord.Intents.default()
 client = discord.Client(intents=intents)
-client = commands.Bot(command_prefix='.')
+client = commands.Bot(command_prefix=get_config('discord_command_prefix'))
 initial_extensions = ['discord_cmds.command_base']
 
 # Find out if debugging should be started (only runs once)
