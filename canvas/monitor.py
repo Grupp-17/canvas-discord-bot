@@ -113,21 +113,3 @@ def update_db():
                 )
 
             
-# TODO Comment and move to a more proper place (where?)
-def announcements_fetch():
-
-    # Get list of announcement id's
-    announcements_id = sql_query_fetchall_result(query_select_table_attributes('id', 'announcements'))
-
-    for i in announcements_id:
-
-        # If announcement is not sent yield it
-        if (sql_query_fetchone_result(query_select_table_attributes_condition('sent_discord', 'announcements', f"id = {i}" )) == 0):
-            yield str(i)
-        else:
-            if(get_debug()):print('')
-            
-# TODO Comment
-def announcement_sent_mark(id):
-    sql_query_commit(query_update_announcement_sent(id))
-    if(get_debug()):print(f'Announcement with {id} marked as sent.')

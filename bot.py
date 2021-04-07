@@ -19,11 +19,9 @@ import os
 
 # Local modules
 from database.init import init_database
-from database.queries import query_select_table_attributes_condition
-from database.interactions import sql_query_fetchone_result
-from canvas.monitor import announcement_sent_mark, announcements_fetch, init_monitor
+from canvas.monitor import init_monitor
 from utils import init_cmdline_argument_parser, get_debug
-from discord_cmds.announcement import announcement
+from discord_cmds.announcement import *
 
 # Third party modules
 import discord
@@ -102,33 +100,38 @@ async def on_command_error(ctx, error):
 @client.event
 async def announcement_handler():
 
-    message_sent = False
+    # Courses data
+    subscribed_courses_data = get_subscribed_courses_data()
 
-    for id in announcements_fetch():
-        if (announcement(id) != None):
+    # Announcement data
+    unsent_announcements_data = get_unsent_announcements_data()
 
-            # TODO Find a nicer way to do this, move into announcement.py
-            # Send message to the right channel
-            context_code = sql_query_fetchone_result(query_select_table_attributes_condition('context_code', 'announcements', f'id = {id}'))
-            course_id = context_code.strip("course_")
-            channel_id = sql_query_fetchone_result(query_select_table_attributes_condition('channel_id', 'courses', f'id = {course_id}'))
-            channel = client.get_channel(channel_id)
-            
-            if channel != None:
-                message_sent = await channel.send(embed=announcement(id))
-            
-            # If the text channel is deleted this needs to be handled
+    # Check if there are unsent announcements
+    if(unsent_announcements_data):
+
+        # Add what is needed from subscribed courses to unsent_announcement_data
+        unsent_announcements_data = join_courses_with_announcement_data(subscribed_courses_data, unsent_announcements_data)
+
+        message_sent = False
+
+        # Loop through unsent announcements and send them
+        for announcement_data in unsent_announcements_data:
+
+            # Send to correct channel
+            channel = get_announcement_channel(client, announcement_data)
+
+            if(channel):
+                message_sent = await channel.send(embed=create_announcement_embed(announcement_data))
             else:
-                # TODO Unsubscribe
+                # Send error message to default channel and unsubscribe
                 channel = client.get_channel(DEFAULT_CHANNEL_ID)
-                await channel.send(f'Channel not found!\nID: {channel.id}\nName: {channel.name}\nSubscription removed')
+                await channel.send(f"Channel with ID: {announcement_data.get('channel_id')}")
 
-        # TODO Move to announcement. Should be handled in annoucement not in bot. If message was sent successfully mark it as sent
-        if message_sent: 
-            announcement_sent_mark(id)
-            message_sent = False
-        else:
-            if(get_debug()):print(f'Message with id: {id} was not sent')
+            if message_sent: 
+                mark_announcement_as_sent(announcement_data.get('id'))
+                message_sent = False
+            else:
+                if(get_debug()):print(f"Message with id: {announcement_data.get('id')} was not sent")
 
 
 client.run(DISCORD_TOKEN)

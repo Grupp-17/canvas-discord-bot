@@ -4,38 +4,77 @@
 from utils import html_to_raw
 from database.interactions import *
 from database.queries import *
-from .subscribe import is_subscribed
 
 # Third party modules
 import discord
 
-# Function for receving the announcement and returns an discord embed of it
-# if it is subscribed to
-def announcement(announcement_id):
-    # Get the context_code of the announcement which contains the course id
-    announcement_data = get_announcement_data(f"id = '{announcement_id}'")
+def get_subscribed_courses_data():
+    
+    courses_data = get_all_courses_data()
 
-    if(announcement_data):
+    subscribed_courses_data = []
+    
+    for course in courses_data:
 
-        context_code = announcement_data.get("context_code")
+        # Check if subscribed and channel is set
+        if(course.get('subscribed_to') == '1') and (course.get('channel_id') != '1'):
 
-        # Strip the context_code to get only the course id
-        course_id = context_code.strip("course_")
+            subscribed_courses_data.append(course)
+
+    return subscribed_courses_data
+
+def get_unsent_announcements_data():
+    
+    announcement_data = get_all_announcements_data()
+
+    unsent_announcements_data = []
+
+    for announcement in announcement_data:
         
-        # Check if the course of the announcement is subscribed to
-        if is_subscribed(course_id):
-            return create_announcement_embed(announcement_id, course_id)
-        else:
-            return None
+        # Check if not sent and if channel is set
+        if(announcement.get('sent_discord') == '0'):
+
+            unsent_announcements_data.append(announcement)
+
+    return unsent_announcements_data
+
+
+def join_courses_with_announcement_data(subscribed_courses_data, unsent_announcements_data):
+    
+    new_unsent_announcements_data = []
+
+    for course_data in subscribed_courses_data:
+        for announcement_data in unsent_announcements_data:
+            context_code = announcement_data.get("context_code")
+
+            # Checks that the join is done at the correct place
+            if(context_code.strip('course_')) == (course_data.get('id')):
+                
+                # Add all needed data to dictionary from courses
+                announcement_data['channel_id'] = course_data.get('channel_id')
+                announcement_data['course_id'] = course_data.get('id')
+                announcement_data['course_name'] = course_data.get("name")
+                announcement_data['course_id'] = course_data.get("course_code")
+
+                new_unsent_announcements_data.append(announcement_data)
+    
+    return new_unsent_announcements_data
+
+
+def get_announcement_channel(client, announcement_data):
+
+    channel = client.get_channel(int(announcement_data.get('channel_id')))
+
+    return channel
+
+
+def mark_announcement_as_sent(id):
+    sql_query_commit(query_update_announcement_sent(id))
+    if(get_debug()):print(f'Announcement with {id} marked as sent.')
+
 
 # Creates the embed for announcements in discord
-def create_announcement_embed(announcement_id, course_id):
-
-    # Queries to get all information from the announcements table and the courses table
-    announcement_data = get_announcement_data(f"id = '{announcement_id}'")
-    course_data = get_course_data(f"id = '{course_id}'")
-
-    # Declare the information into variables
+def create_announcement_embed(announcement_data):
 
     # Announcement information
     id = announcement_data.get("id")
@@ -50,9 +89,9 @@ def create_announcement_embed(announcement_id, course_id):
     message_raw = html_to_raw(message)
 
     # Courses information
-    course_name = course_data.get("name")
-    course_code = course_data.get("course_code")
-    c_id = course_data.get("id")
+    course_name = announcement_data.get("name")
+    course_code = announcement_data.get("course_code")
+    course_id = announcement_data.get("course_id")
     
     # Embed layout
     embed = discord.Embed(title="New Announcement 📢", 
@@ -65,3 +104,4 @@ def create_announcement_embed(announcement_id, course_id):
     embed.add_field(name=title, value=message_raw + "\n\n\n ", inline=False)
     embed.set_footer(text="Posted " + posted_at_formatted + f"\nby {author}")
     return embed
+
