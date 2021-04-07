@@ -22,6 +22,7 @@ from database.init import init_database
 from canvas.monitor import init_monitor
 from utils import init_cmdline_argument_parser, get_debug
 from discord_cmds.announcement import *
+from discord_cmds.unsubscribe import *
 
 # Third party modules
 import discord
@@ -125,7 +126,11 @@ async def announcement_handler():
             else:
                 # Send error message to default channel and unsubscribe
                 channel = client.get_channel(DEFAULT_CHANNEL_ID)
-                await channel.send(f"Channel with ID: {announcement_data.get('channel_id')}")
+
+                # TODO This should be sent as error message
+                await channel.send(f"Channel with ID: {announcement_data.get('channel_id')} not found! Unsubscribing to channel!")
+
+                await channel.send(embed=unsubscribe_command(announcement_data.get('course_id')))
 
             if message_sent: 
                 mark_announcement_as_sent(announcement_data.get('id'))
