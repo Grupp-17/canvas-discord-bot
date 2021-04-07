@@ -54,7 +54,7 @@ def join_courses_with_announcement_data(subscribed_courses_data, unsent_announce
                 announcement_data['channel_id'] = course_data.get('channel_id')
                 announcement_data['course_id'] = course_data.get('id')
                 announcement_data['course_name'] = course_data.get("name")
-                announcement_data['course_id'] = course_data.get("course_code")
+                announcement_data['course_code'] = course_data.get("course_code")
 
                 new_unsent_announcements_data.append(announcement_data)
     
@@ -88,7 +88,7 @@ def create_announcement_embed(announcement_data):
     # Parse the text that is recieved in html
     message_raw = html_to_raw(message)
 
-    # Courses information
+    # Course information
     course_name = announcement_data.get("name")
     course_code = announcement_data.get("course_code")
     course_id = announcement_data.get("course_id")
