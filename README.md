@@ -133,7 +133,7 @@ To use the bot you need to fill in some parameters in the .env file.
 
 Andreas Winkler - guskalinan@student.gu.se | [LinkedIn](https://www.linkedin.com/in/andreas-winkler-970335107/)
 
-Tove Andersson - gusandtocs@student.gu.se | [LinkedIn](https://www.linkedin.com/in/tove-andersson-75ab83165/)
+[Tove Andersson](https://github.com/Tove-A) - gusandtocs@student.gu.se | [LinkedIn](https://www.linkedin.com/in/tove-andersson-75ab83165/)
 
 Josef Gunnarsson - gusgunjoae@student.gu.se
 
