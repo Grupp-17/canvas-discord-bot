@@ -13,6 +13,7 @@ import discord
 # if it is subscribed to
 def announcement(announcement_id):
     # Get the context_code of the announcement which contains the course id
+    
     announcement_data = get_announcement_data(f"id = '{announcement_id}'")
     context_code = announcement_data.get("context_code")
     

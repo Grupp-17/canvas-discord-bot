@@ -85,9 +85,7 @@ def get_announcement_data(arg):
 
     data = sql_query_fetchall_result(query_select_table_attributes_condition('*', 'announcements', f'{arg}'))
 
-    announcement_data = None
-
-    if(announcement_data):
+    if(data != None):
         announcement_data = {
             'id': f'{data[0]}',
             'title': f'{data[1]}',

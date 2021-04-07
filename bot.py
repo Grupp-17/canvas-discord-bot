@@ -124,7 +124,7 @@ async def announcement_handler():
                 await channel.send(f'Channel not found!\nID: {channel.id}\nName: {channel.name}\nSubscription removed')
 
         # TODO Move to announcement. Should be handled in annoucement not in bot. If message was sent successfully mark it as sent
-        if message_sent: 
+        if message_sent:
             announcement_sent_mark(id)
             message_sent = False
         else:
