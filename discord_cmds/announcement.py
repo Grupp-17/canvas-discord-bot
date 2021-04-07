@@ -14,16 +14,19 @@ import discord
 def announcement(announcement_id):
     # Get the context_code of the announcement which contains the course id
     announcement_data = get_announcement_data(f"id = '{announcement_id}'")
-    context_code = announcement_data.get("context_code")
-    
-    # Strip the context_code to get only the course id
-    course_id = context_code.strip("course_")
-    
-    # Check if the course of the announcement is subscribed to
-    if is_subscribed(course_id):
-        return create_announcement_embed(announcement_id, course_id)
-    else:
-        return None
+
+    if(announcement_data):
+
+        context_code = announcement_data.get("context_code")
+
+        # Strip the context_code to get only the course id
+        course_id = context_code.strip("course_")
+        
+        # Check if the course of the announcement is subscribed to
+        if is_subscribed(course_id):
+            return create_announcement_embed(announcement_id, course_id)
+        else:
+            return None
 
 # Creates the embed for announcements in discord
 def create_announcement_embed(announcement_id, course_id):
