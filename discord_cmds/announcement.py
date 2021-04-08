@@ -23,6 +23,7 @@ def get_subscribed_courses_data():
 
     return subscribed_courses_data
 
+
 def get_unsent_announcements_data():
     
     announcement_data = get_all_announcements_data()

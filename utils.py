@@ -6,7 +6,6 @@ import json
 
 # Third party modules
 from bs4 import BeautifulSoup
-from environs import load_dotenv
 
 ##############################
 ### Cmdline argument handler #
