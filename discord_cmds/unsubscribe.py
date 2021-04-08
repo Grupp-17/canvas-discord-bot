@@ -45,6 +45,6 @@ def unsubscribe_command(course_id):
         embed.set_footer(text="Subscription removed ❌")
 
         sql_query_commit(query_update_subscription(course_data.get("id"), 0))
-        sql_query_commit(query_update_subscription(course_data.get("channel_id"), 0))
+        sql_query_commit(query_update_channel_id(course_data.get("channel_id"), 0))
         
         return embed
