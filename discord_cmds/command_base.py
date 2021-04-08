@@ -11,7 +11,7 @@ from database.queries import *
 from .courses import courses_command
 from .subscribe import parse_arguments, match_channel, subscribe_command
 from .unsubscribe import unsubscribe_command
-from .error_messages import error_message_embed
+from .information_messages import error_message_embed
 from utils import get_config
 
 # Third party modules

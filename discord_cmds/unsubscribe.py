@@ -1,7 +1,7 @@
 
 from database.interactions import *
 from database.queries import *
-from discord_cmds.error_messages import error_message_embed
+from discord_cmds.information_messages import error_message_embed
 
 # Third party modules
 import discord
@@ -38,18 +38,20 @@ def unsubscribe_command(course_id):
     # Create embed for unsubscribing to a course
     else:
 
-        if (unsubscribtion_is_successful):
+        if (commit_unsubscription(course_id) == True):
             embed = discord.Embed(colour=0x98FB98, description='🔕')
             embed.set_author(name='CanvasDiscordBot',
                             icon_url='https://play-lh.googleusercontent.com/2_M-EEPXb2xTMQSTZpSUefHR3TjgOCsawM3pjVG47jI-BrHoXGhKBpdEHeLElT95060B=s180')
             embed.add_field(name=f'\n\nUnsubscribed to course {course_id}', value=f'{course_name} | {course_code}\n')
             embed.set_footer(text='Subscription removed ❌')
         
-        return embed
+            return embed
 
-def unsubscribtion_is_successful():
-    # update_subscription_commit = sql_query_commit(query_update_subscription(course_id, '0'))
-    # update_channel_id_commit = sql_query_commit(query_update_channel_id(course_id, '0'))
+        else:
+            embed = error_message_embed("Database error", "Could not reach database!", "Bot is disabled", "Contact administrator!")
+            return embed
+
+def commit_unsubscription(course_id):
     
     if (sql_query_commit(query_update_subscription(course_id, '0')) and sql_query_commit(query_update_channel_id(course_id, '0'))):
         return True
