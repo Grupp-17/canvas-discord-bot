@@ -8,6 +8,7 @@ import os
 # Local modules
 from database.interactions import *
 from database.queries import *
+from discord_cmds.error_messages import error_message_embed
 
 # Third party modules
 import discord
@@ -29,6 +30,7 @@ def parse_arguments(args):
     # If too many arguments, return error message to user
     else:
         channel_id = False
+        
 
     return course_id, channel_id
         

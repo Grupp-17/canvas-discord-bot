@@ -11,6 +11,8 @@ from database.queries import *
 from .courses import courses_command
 from .subscribe import parse_arguments, match_channel, subscribe_command
 from .unsubscribe import unsubscribe_command
+from .error_messages import error_message_embed
+from utils import get_config
 
 # Third party modules
 from discord.ext import commands
@@ -46,7 +48,8 @@ class CommandBase(commands.Cog):
             await ctx.send(embed=subscribe_command(course_id, channel_id, discord_channel_data))
         else:
             # TODO Proper error message
-            await ctx.send('Too many arguments!')
+            prefix = get_config('discord_command_prefix')
+            await ctx.send(embed=error_message_embed('Subscription error', 'To many arguments', f'Try this format:', f'{prefix}subscribe <course_id> <channel_id>'))
    
     # Command to unsubscribe to a course
     # Set permission for the command

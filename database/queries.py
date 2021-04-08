@@ -152,8 +152,8 @@ def query_update_channel_id(id, channelID):
     query = f"""UPDATE COURSES SET channel_id = {channelID} WHERE id = {id};"""
     return query
 
-def query_update_subscription(arg, value):
-    query = f"""UPDATE courses SET subscribed_to = {value} WHERE id = {arg};"""
+def query_update_subscription(id, value):
+    query = f"""UPDATE courses SET subscribed_to = {value} WHERE id = {id};"""
     return query
 
 def query_update_announcement_sent(id):

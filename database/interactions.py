@@ -216,9 +216,11 @@ def sql_query_commit(query):
         if(get_debug()):
             print(query)
             print('Query commit successful!')
-           
+        return True
+
     except Error as e:
         if(get_debug()):print(e)
+        return False
 
 # Function to set timestamp in database
 # TODO Maybe move to utils.py?
