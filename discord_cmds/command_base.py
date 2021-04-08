@@ -23,13 +23,13 @@ class CommandBase(commands.Cog):
         self.client = client
 
     # Command for displaying the active courses
-    @commands.command(name="courses")
+    @commands.command(name='courses')
     async def courses(self, ctx):
         await ctx.send(embed=courses_command(ctx))
 
     # Command for subscribing to courses
     # Set permission for the command
-    @commands.command(name="subscribe")
+    @commands.command(name='subscribe')
     @commands.has_permissions(administrator=True)
     async def subscribe(self, ctx, *args):
 
@@ -50,7 +50,7 @@ class CommandBase(commands.Cog):
    
     # Command to unsubscribe to a course
     # Set permission for the command
-    @commands.command(name="unsubscribe")
+    @commands.command(name='unsubscribe')
     @commands.has_permissions(administrator=True)
     async def unsubscribe(self, ctx, arg):
         await ctx.send(embed=unsubscribe_command(arg))

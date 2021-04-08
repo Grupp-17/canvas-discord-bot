@@ -45,7 +45,7 @@ def join_courses_with_announcement_data(subscribed_courses_data, unsent_announce
 
     for course_data in subscribed_courses_data:
         for announcement_data in unsent_announcements_data:
-            context_code = announcement_data.get("context_code")
+            context_code = announcement_data.get('context_code')
 
             # Checks that the join is done at the correct place
             if(context_code.strip('course_')) == (course_data.get('id')):
@@ -53,8 +53,8 @@ def join_courses_with_announcement_data(subscribed_courses_data, unsent_announce
                 # Add all needed data to dictionary from courses
                 announcement_data['channel_id'] = course_data.get('channel_id')
                 announcement_data['course_id'] = course_data.get('id')
-                announcement_data['course_name'] = course_data.get("name")
-                announcement_data['course_code'] = course_data.get("course_code")
+                announcement_data['course_name'] = course_data.get('name')
+                announcement_data['course_code'] = course_data.get('course_code')
 
                 new_unsent_announcements_data.append(announcement_data)
     
@@ -79,31 +79,31 @@ def mark_announcement_as_sent(id):
 def create_announcement_embed(announcement_data):
 
     # Announcement information
-    id = announcement_data.get("id")
-    title = announcement_data.get("title")
-    message = announcement_data.get("message")
-    author = announcement_data.get("author")
-    context_code = announcement_data.get("context_code")
-    posted_at = announcement_data.get("posted_at").replace("T", " at ")
-    posted_at_formatted = posted_at.replace("Z", "")
+    id = announcement_data.get('id')
+    title = announcement_data.get('title')
+    message = announcement_data.get('message')
+    author = announcement_data.get('author')
+    context_code = announcement_data.get('context_code')
+    posted_at = announcement_data.get('posted_at').replace('T', ' at ')
+    posted_at_formatted = posted_at.replace('Z', '')
 
     # Parse the text that is recieved in html
     message_raw = html_to_raw(message)
 
     # Course information
-    course_name = announcement_data.get("name")
-    course_code = announcement_data.get("course_code")
-    course_id = announcement_data.get("course_id")
+    course_name = announcement_data.get('name')
+    course_code = announcement_data.get('course_code')
+    course_id = announcement_data.get('course_id')
     
     # Embed layout
-    embed = discord.Embed(title="New Announcement 📢", 
-                          description=f"Course: {course_id}\n{course_name} | {course_code} \n", 
+    embed = discord.Embed(title='New Announcement 📢', 
+                          description=f'Course: {course_id}\n{course_name} | {course_code} \n', 
                           colour=0x98FB98)
 
-    embed.set_author(name="CanvasDiscordBot", 
-                    icon_url="https://play-lh.googleusercontent.com/2_M-EEPXb2xTMQSTZpSUefHR3TjgOCsawM3pjVG47jI-BrHoXGhKBpdEHeLElT95060B=s180")
+    embed.set_author(name='CanvasDiscordBot', 
+                    icon_url='https://play-lh.googleusercontent.com/2_M-EEPXb2xTMQSTZpSUefHR3TjgOCsawM3pjVG47jI-BrHoXGhKBpdEHeLElT95060B=s180')
 
-    embed.add_field(name=title, value=message_raw + "\n\n\n ", inline=False)
-    embed.set_footer(text="Posted " + posted_at_formatted + f"\nby {author}")
+    embed.add_field(name=title, value=message_raw + '\n\n\n ', inline=False)
+    embed.set_footer(text='Posted ' + posted_at_formatted + f'\nby {author}')
     return embed
 
