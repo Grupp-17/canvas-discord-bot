@@ -39,7 +39,7 @@ def create_sql_query_list(data):
 
 def get_course_data(arg):
 
-    data = sql_query_fetchall_result(query_select_table_attributes_condition('*', 'courses', f"{arg}"))
+    data = sql_query_fetchall_result(query_select_table_attributes_condition('*', 'courses', f'{arg}'))
 
     course_data = None
 
