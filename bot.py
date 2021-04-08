@@ -110,9 +110,10 @@ async def announcement_handler():
     # Check if there are unsent announcements
     if(unsent_announcements_data):
 
-        # Add what is needed from subscribed courses to unsent_announcement_data
+        # Join relevant data from subscribed courses data to unsent announcement data
         unsent_announcements_data = join_courses_with_announcement_data(subscribed_courses_data, unsent_announcements_data)
 
+        # Set success state variable
         message_sent = False
 
         # Loop through unsent announcements and send them
@@ -123,6 +124,8 @@ async def announcement_handler():
 
             if(channel):
                 message_sent = await channel.send(embed=create_announcement_embed(announcement_data))
+            
+            # If no channel is found
             else:
                 # Send error message to default channel and unsubscribe
                 channel = client.get_channel(DEFAULT_CHANNEL_ID)
@@ -130,10 +133,13 @@ async def announcement_handler():
                 # TODO This should be sent as error message
                 await channel.send(f"Channel with ID: {announcement_data.get('channel_id')} not found! Unsubscribing to channel!")
 
+                # Unsubscribe to course
                 await channel.send(embed=unsubscribe_command(announcement_data.get('course_id')))
-
+            
             if message_sent: 
                 mark_announcement_as_sent(announcement_data.get('id'))
+
+                # Reset success state variable for next iteration
                 message_sent = False
             else:
                 if(get_debug()):print(f"Message with id: {announcement_data.get('id')} was not sent")

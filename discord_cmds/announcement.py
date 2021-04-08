@@ -69,7 +69,9 @@ def get_announcement_channel(client, announcement_data):
 
 
 def mark_announcement_as_sent(id):
+
     sql_query_commit(query_update_announcement_sent(id))
+    
     if(get_debug()):print(f'Announcement with {id} marked as sent.')
 
 

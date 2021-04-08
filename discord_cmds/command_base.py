@@ -2,18 +2,18 @@
 
 # Internal modules
 import os
+from discord import channel
 
 # Local modules
 from discord.ext.commands.core import command
 from database.interactions import *
 from database.queries import *
 from .courses import courses_command
-from .subscribe import subscribe_command
+from .subscribe import parse_arguments, match_channel, subscribe_command
 from .unsubscribe import unsubscribe_command
 
 # Third party modules
 from discord.ext import commands
-from discord.utils import get
 
 DEFAULT_CHANNEL_ID = int(os.getenv('DEFAULT_CHANNEL_ID'))
 
@@ -33,35 +33,20 @@ class CommandBase(commands.Cog):
     @commands.has_permissions(administrator=True)
     async def subscribe(self, ctx, *args):
 
-        # TODO Move to subscribe.py
-        course_id_arg = args[0]
-
-        # Check if channel is specified by user
-        if(len(args) == 2):
-            channel_name_arg = args[1]
+        # Parse input arguments from user
+        user_arguments  = parse_arguments(args)
+        course_id = user_arguments[0]
+        channel_id = user_arguments[1]
         
-        # If no course ID set fallback on default
-        elif(len(args) == 1):
-            channel_name_arg = DEFAULT_CHANNEL_ID
+        if(channel_id != False):
+            # Match and get correct channel data from Discord
+            discord_channel_data = match_channel(ctx, channel_id)
 
-        # If too many arguments, return error message to user
+            # Subscribe and send back confirmation message
+            await ctx.send(embed=subscribe_command(course_id, channel_id, discord_channel_data))
         else:
-            await ctx.send("Invalid amount of arguments!\nValid input: <prefix>courses <course id> <channel>")
-            
-        # Get channel data from Discord
-        #discord_data = get(ctx.guild.text_channels, name = to_channel_name)
-
-        for channel in ctx.guild.channels:
-            if(channel.id) == channel_name_arg:
-                discord_channel_data = get(ctx.guild.text_channels, name = channel.name)
-                break
-            elif(channel.name) == channel_name_arg:
-                discord_channel_data = get(ctx.guild.text_channels, name = channel_name_arg)
-                break
-            else:
-                discord_channel_data = None
-
-        await ctx.send(embed=subscribe_command(course_id_arg, channel_name_arg, discord_channel_data))
+            # TODO Proper error message
+            await ctx.send('Too many arguments!')
    
     # Command to unsubscribe to a course
     # Set permission for the command
