@@ -3,6 +3,8 @@
 # Internal modules
 import argparse
 import json
+from datetime import date
+from datetime import datetime
 
 # Third party modules
 from bs4 import BeautifulSoup
@@ -46,4 +48,14 @@ def get_config(option):
         config_data = json.load(config_file)
 
     return config_data[f'{option}']
+
+def get_time_delta_days(posted_at):
+
+    date_db = posted_at.split('T')[0]
+
+    date_db_obj = datetime.strptime(date_db, '%Y-%m-%d')
+
+    delta = date.today() - date_db_obj.date()
+
+    return delta.days
 

@@ -1,7 +1,7 @@
 # Managing the announcement command
 
 # Local modules
-from utils import html_to_raw
+from utils import get_config, get_time_delta_days, html_to_raw
 from database.interactions import *
 from database.queries import *
 
@@ -32,8 +32,12 @@ def get_unsent_announcements_data():
 
     for announcement in announcement_data:
         
+        time_elapsed = get_time_delta_days(announcement.get('posted_at'))
+
+        announcement_date_cut_off_time = int(get_config('announcement_date_cut_off_time'))
+
         # Check if not sent and if channel is set
-        if(announcement.get('sent_discord') == '0'):
+        if(announcement.get('sent_discord') == '0') and (time_elapsed <= announcement_date_cut_off_time):
 
             unsent_announcements_data.append(announcement)
 
