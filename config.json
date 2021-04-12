@@ -4,5 +4,5 @@
     "permanent_database" : false,
     "announcement_date_cut_off_time" : 3,
     "discord_command_prefix" : "!",
-    "debug_mode" : false
+    "logging_mode" : false
 }
