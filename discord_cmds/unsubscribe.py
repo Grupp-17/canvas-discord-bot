@@ -1,7 +1,12 @@
-
-from database.interactions import *
-from database.queries import *
-from discord_cmds.info_messages import error_message_embed
+# Local modules
+from database.interactions import \
+    get_course_data, \
+    sql_query_commit
+from database.queries import \
+    query_update_subscription, \
+    query_update_channel_id
+from discord_cmds.info_messages import \
+    error_message_embed
 
 # Third party modules
 import discord
