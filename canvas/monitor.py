@@ -1,7 +1,8 @@
 # Monitor for Canvas to Database interactions
 
 # Internal modules
-from datetime import datetime
+from datetime import \
+    datetime
 
 # Local modules
 from canvas.http_requests import \
