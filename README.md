@@ -137,13 +137,13 @@ To use the bot you need to fill in some parameters in the .env file.
 - `"announcement_scheduler_interval" : <seconds>` - Interval of loop that sends announcements to Canvas in X seconds.
 
 ### Database specific
-- `"permanent_database" : <true>|<false>` - If the system should keep the stored database or rebuild it after a restart.
+- `"permanent_database" : <true>|<false>` - If the system should keep the stored database or rebuild it after a restart. Default = false
 
 ### Announcement command
-- `"announcement_date_cut_off_time" : <days>` - No announcement will be sent to Discord older that X time in days.
+- `"announcement_date_cut_off_time" : <days>` - No announcement will be sent to Discord older that X time in days. Default = 3
 
 ### Debug
-- `"debug_mode" : <true>|<false>` - A log file will be created under preset directory.
+- `"debug_mode" : <true>|<false>` - A log file will be created under preset directory. Default = false
 
 ## License
 
