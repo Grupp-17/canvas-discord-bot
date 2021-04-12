@@ -2,10 +2,8 @@
 
 # Internal modules
 import os
-from discord import channel
 
 # Local modules
-from discord.ext.commands.core import command
 from database.interactions import *
 from database.queries import *
 from .courses import courses_command
