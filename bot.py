@@ -18,11 +18,21 @@
 import os
 
 # Local modules
-from database.init import init_database
-from canvas.monitor import init_monitor
-from utils import init_cmdline_argument_parser, get_debug
-from discord_cmds.announcement import *
-from discord_cmds.unsubscribe import *
+from database.init import \
+    init_database
+from canvas.monitor import \
+    init_monitor
+from utils import \
+    init_cmdline_argument_parser, \
+    get_debug
+from discord_cmds.announcement import \
+    get_subscribed_courses_data, get_unsent_announcements_data, \
+    join_courses_with_announcement_data, \
+    get_announcement_channel, \
+    create_announcement_embed, \
+    mark_announcement_as_sent
+from discord_cmds.unsubscribe import \
+    unsubscribe_command
 
 # Third party modules
 import discord
