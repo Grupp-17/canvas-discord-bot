@@ -2,7 +2,6 @@
 
 # Local modules
 from database.interactions import *
-from database.queries import *
 
 # Third party modules
 import discord
