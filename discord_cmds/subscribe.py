@@ -1,5 +1,3 @@
-# TODO Comment
-
 # subscribe.py
 
 # Internal modules
@@ -8,7 +6,6 @@ import os
 # Local modules
 from database.interactions import *
 from database.queries import *
-from discord_cmds.info_messages import error_message_embed
 
 # Third party modules
 import discord
