@@ -59,3 +59,6 @@ def get_time_delta_days(posted_at):
 
     return delta.days
 
+# Function to set timestamp in database
+def timestamp():
+    return datetime.now().strftime('%Y:%m:%dT%I:%M:%S')
