@@ -126,6 +126,11 @@ To use the bot you need to fill in some parameters in the .env file.
 
 
 <!-- LICENSE -->
+
+## Options in "config.json"
+
+- `"monitor_scheduler_interval" : X` - Interval of loop that fetches data from Canvas.
+
 ## License
 
 <!-- CONTACT -->
