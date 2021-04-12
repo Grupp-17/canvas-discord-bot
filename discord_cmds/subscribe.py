@@ -4,8 +4,15 @@
 import os
 
 # Local modules
-from database.interactions import *
-from database.queries import *
+from database.interactions import \
+    sql_query_fetchone_result, \
+    get_course_data, create_sql_query_list, \
+    sql_query_fetch, sql_query_commit
+from database.queries import \
+    query_select_table_attributes_condition, \
+    query_select_table_attributes, \
+    query_update_subscription, \
+    query_update_channel_id
 
 # Third party modules
 import discord
