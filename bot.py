@@ -33,14 +33,20 @@ from discord_cmds.announcement import \
     mark_announcement_as_sent
 from discord_cmds.unsubscribe import \
     unsubscribe_command
+from utils import \
+    get_config
 
 # Third party modules
 import discord
-from discord.ext import commands
-from discord.ext.commands import CommandNotFound
-from environs import load_dotenv
-from apscheduler.schedulers.asyncio import AsyncIOScheduler
-from utils import get_config
+from discord.ext import \
+    commands
+from discord.ext.commands import \
+    CommandNotFound
+from environs import \
+    load_dotenv
+from apscheduler.schedulers.asyncio import \
+    AsyncIOScheduler
+
 
 # Load private tokens
 load_dotenv()
