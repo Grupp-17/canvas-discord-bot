@@ -150,7 +150,7 @@ To use the bot you need to fill in some parameters in the .env file.
 <!-- CONTACT -->
 ## Contact
 
-Andreas Winkler - guskalinan@student.gu.se | [LinkedIn](https://www.linkedin.com/in/andreas-winkler-970335107/)
+[Andreas Winkler](https://github.com/Dedas) - guskalinan@student.gu.se | [LinkedIn](https://www.linkedin.com/in/andreas-winkler-970335107/)
 
 [Tove Andersson](https://github.com/Tove-A) - gusandtocs@student.gu.se | [LinkedIn](https://www.linkedin.com/in/tove-andersson-75ab83165/)
 
