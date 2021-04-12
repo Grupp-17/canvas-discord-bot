@@ -3,7 +3,6 @@
 # Internal modules
 
 # Local modules
-from canvas.http_requests import *
 from .queries import *
 from .interactions import sql_query, create_connection
 from utils import get_debug, get_config
