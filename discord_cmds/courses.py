@@ -1,7 +1,8 @@
 # Courses command
 
 # Local modules
-from database.interactions import *
+from database.interactions import \
+    get_all_courses_data
 
 # Third party modules
 import discord
