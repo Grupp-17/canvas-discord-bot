@@ -7,7 +7,7 @@ from datetime import datetime
 from canvas.http_requests import fetch_courses, fetch_announcements
 from database.interactions import sql_query_fetchone_result, sql_query_commit, sql_query_fetchall_result, 
 from database.queries import query_insert_table_courses, query_check_if_exists, query_insert_table_announcements, query_select_table_attributes, query_update_table_announcements, query_update_table_courses
-from utils import get_debug, get_config
+from utils import get_debug, get_config, timestamp
 
 # Third party modules
 from apscheduler.schedulers.background import BackgroundScheduler
