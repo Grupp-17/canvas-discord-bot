@@ -124,7 +124,6 @@ To use the bot you need to fill in some parameters in the .env file.
 - `.subscribe <course_id> <channel_id>` - Subscribing to a course and recieve announcements from that course in a specific channel.
 - `.unsubscribe <course_id>` - Unsubscribe to a course.
 
-
 <!-- LICENSE -->
 
 ## Options in "config.json"
