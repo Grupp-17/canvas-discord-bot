@@ -1,13 +1,17 @@
 # Initiation code for the database
 
-# Internal modules
-
 # Local modules
-from .queries import *
-from .interactions import sql_query, create_connection
-from utils import get_debug, get_config
-
-# Third party modules
+from .queries import \
+    query_drop_table_courses, \
+    query_drop_table_announcements, \
+    query_create_table_courses, \
+    query_create_table_announcements
+from .interactions import \
+    sql_query, \
+    create_connection
+from utils import \
+    get_debug, \
+    get_config
 
 def init_database():
 
