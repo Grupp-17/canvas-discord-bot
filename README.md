@@ -130,20 +130,20 @@ To use the bot you need to fill in some parameters in the .env file.
 ## Options in "config.json"
 
 ### Discord specific
-- `"discord_command_prefix" : "!",` - The prefix that will be used to communicate with the bot in Discord.
+- `"discord_command_prefix" : "<prefix>",` - The prefix that will be used to communicate with the bot in Discord. Default prefix "!"
 
 ### Internal scheduler loops
-- `"monitor_scheduler_interval" : X` - Interval of loop that fetches data from Canvas in X seconds.
-- `"announcement_scheduler_interval" : X` - Interval of loop that sends announcements to Canvas in X seconds.
+- `"monitor_scheduler_interval" : <seconds>` - Interval of loop that fetches data from Canvas in X seconds.
+- `"announcement_scheduler_interval" : <seconds>` - Interval of loop that sends announcements to Canvas in X seconds.
 
 ### Database specific
-- `"permanent_database" : true|false` - If the system should keep the stored database or rebuild it after a restart.
+- `"permanent_database" : <true>|<false>` - If the system should keep the stored database or rebuild it after a restart.
 
 ### Announcement command
-- `"announcement_date_cut_off_time" : X` - No announcement will be sent to Discord older that X time in days.
+- `"announcement_date_cut_off_time" : <days>` - No announcement will be sent to Discord older that X time in days.
 
 ### Debug
-- `"debug_mode" : false` - A log file will be created under preset directory.
+- `"debug_mode" : <true>|<false>` - A log file will be created under preset directory.
 
 ## License
 
