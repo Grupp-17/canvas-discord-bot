@@ -4,12 +4,15 @@
 import os
 
 # Local modules
-from utils import get_debug
+from utils import \
+    get_debug
 
 # Third party modules
 import requests
-from requests.structures import CaseInsensitiveDict
-from environs import load_dotenv
+from requests.structures import \
+    CaseInsensitiveDict
+from environs import \
+    load_dotenv
 
 # Get private TOKENS from .env
 load_dotenv()
