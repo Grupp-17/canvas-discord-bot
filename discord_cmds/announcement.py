@@ -1,9 +1,17 @@
 # Managing the announcement command
 
 # Local modules
-from utils import get_config, get_time_delta_days, html_to_raw
-from database.interactions import *
-from database.queries import *
+from utils import \
+    get_config, \
+    get_time_delta_days, \
+    html_to_raw, \
+    get_debug
+from database.interactions import \
+    get_all_courses_data, \
+    get_all_announcements_data, \
+    sql_query_commit
+from database.queries import \
+    query_update_announcement_sent 
 
 # Third party modules
 import discord
