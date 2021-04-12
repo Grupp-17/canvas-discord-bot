@@ -3,8 +3,10 @@
 # Internal modules
 import argparse
 import json
-from datetime import date
-from datetime import datetime
+from datetime import \
+    date
+from datetime import \
+    datetime
 
 # Third party modules
 from bs4 import BeautifulSoup
