@@ -4,7 +4,6 @@
 from database.queries import query_select_table_attributes, query_select_table_attributes_condition
 import sqlite3
 from sqlite3 import Error
-from datetime import datetime
 
 # Local modules
 from utils import get_debug
@@ -222,7 +221,3 @@ def sql_query_commit(query):
         if(get_debug()):print(e)
         return False
 
-# Function to set timestamp in database
-# TODO Maybe move to utils.py?
-def timestamp():
-    return datetime.now().strftime('%Y:%m:%dT%I:%M:%S')
