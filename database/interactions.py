@@ -1,11 +1,13 @@
 # Commands for interacting with the database
 
 #internal modules
-from database.queries import query_select_table_attributes, query_select_table_attributes_condition
 import sqlite3
 from sqlite3 import Error
 
 # Local modules
+from database.queries import \
+    query_select_table_attributes, \
+    query_select_table_attributes_condition
 from utils import get_debug
 
 # Third party modules
