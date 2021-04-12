@@ -139,6 +139,8 @@ To use the bot you need to fill in some parameters in the .env file.
 ### Database specific
 - `"permanent_database" : true|false` - If the system should keep the stored database or rebuild it after a restart.
 
+### Debug
+- `"debug_mode" : false` - A log file will be created under preset directory.
 
 ## License
 
