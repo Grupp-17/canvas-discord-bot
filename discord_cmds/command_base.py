@@ -4,8 +4,6 @@
 import os
 
 # Local modules
-from database.interactions import *
-from database.queries import *
 from .courses import \
     courses_command
 from .subscribe import \
