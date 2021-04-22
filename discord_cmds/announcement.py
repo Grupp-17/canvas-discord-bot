@@ -92,11 +92,9 @@ def mark_announcement_as_sent(id):
 def create_announcement_embed(announcement_data):
 
     # Announcement information
-    id = announcement_data.get('id')
     title = announcement_data.get('title')
     message = announcement_data.get('message')
     author = announcement_data.get('author')
-    context_code = announcement_data.get('context_code')
     posted_at = announcement_data.get('posted_at').replace('T', ' at ')
     posted_at_formatted = posted_at.replace('Z', '')
 
