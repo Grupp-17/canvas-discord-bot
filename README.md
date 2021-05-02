@@ -129,7 +129,7 @@ To use the bot you need to fill in some parameters in the .env file.
 ## Options in "config.json"
 
 ### Discord specific
-- `"discord_command_prefix" : "<prefix>",` - The prefix that will be used to communicate with the bot in Discord. Default prefix "!"
+- `"discord_command_prefix" : "<prefix>"` - The prefix that will be used to communicate with the bot in Discord. Default prefix "!"
 
 ### Internal scheduler loops
 - `"monitor_scheduler_interval" : <seconds>` - Interval of loop that fetches data from Canvas in X seconds.
@@ -154,6 +154,10 @@ To use the bot you need to fill in some parameters in the .env file.
 [Tove Andersson](https://github.com/Tove-A) - gusandtocs@student.gu.se | [LinkedIn](https://www.linkedin.com/in/tove-andersson-75ab83165/)
 
 Josef Gunnarsson - gusgunjoae@student.gu.se
+
+Heidi Hedman - gusheidihe@student.gu.se
+
+Henrietta
 
 <!-- ACKNOWLEDGEMENTS -->
 ## Acknowledgements
