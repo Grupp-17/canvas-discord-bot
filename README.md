@@ -155,6 +155,8 @@ To use the bot you need to fill in some parameters in the .env file.
 
 Josef Gunnarsson - gusgunjoae@student.gu.se
 
+Heidi Hedman - gusheidihe@student.gu.se
+
 <!-- ACKNOWLEDGEMENTS -->
 ## Acknowledgements
 
