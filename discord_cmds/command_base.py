@@ -28,6 +28,7 @@ class CommandBase(commands.Cog):
 
     # Command for displaying the active courses
     @commands.command(name='courses')
+    @commands.has_permissions(administrator=True)
     async def courses(self, ctx):
         await ctx.send(embed=courses_command(ctx))
 
