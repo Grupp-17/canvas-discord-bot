@@ -87,7 +87,8 @@ Below you will find the steps to get started with the bot.
    pip install environs
    pip install apscheduler
    pip install discord
-   pip install BeautifulSoup
+   pip install BeautifulSoup4
+   pip install lxml
    ```
 
 <!-- USAGE EXAMPLES -->
