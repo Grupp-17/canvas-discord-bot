@@ -158,7 +158,7 @@ Josef Gunnarsson - gusgunjoae@student.gu.se
 
 Heidi Hedman - gusheidihe@student.gu.se
 
-Henrietta
+Henrietta Sundberg - gussunhem@student.gu.se
 
 <!-- ACKNOWLEDGEMENTS -->
 ## Acknowledgements
