@@ -90,7 +90,7 @@ def mark_announcement_as_sent(id):
 
 def shorten_announcement(announcement):
     
-    short_announcement = announcement[0:500] + "..."
+    short_announcement = announcement[0:1000] + "..."
     return short_announcement
 
 

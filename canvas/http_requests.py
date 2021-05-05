@@ -24,8 +24,11 @@ headers = CaseInsensitiveDict()
 headers["Accept"] = "application/json"
 headers["Authorization"] = f"Bearer {CANVAS_TOKEN}"
 
+count = 0
 
 def send_request(request, type):
+    global count
+    print(count)
 
     # Send Get request
     try:
@@ -33,6 +36,7 @@ def send_request(request, type):
         if response.status_code == 200:
             # TODO Check if data is correct
             if(get_debug()):print(f'Request {type} successful!')
+            count += 1
 
             return response
 
