@@ -88,6 +88,12 @@ def mark_announcement_as_sent(id):
     if(get_debug()):print(f'Announcement with {id} marked as sent.')
 
 
+def shorten_announcement(announcement):
+    
+    short_announcement = announcement[0:500] + "..."
+    return short_announcement
+
+
 # Creates the embed for announcements in discord
 def create_announcement_embed(announcement_data):
 
@@ -100,21 +106,23 @@ def create_announcement_embed(announcement_data):
 
     # Parse the text that is recieved in html
     message_raw = html_to_raw(message)
+    message_content = shorten_announcement(message_raw)
 
     # Course information
     course_name = announcement_data.get('name')
     course_code = announcement_data.get('course_code')
     course_id = announcement_data.get('course_id')
-    
+
     # Embed layout
     embed = discord.Embed(title='New Announcement 📢', 
-                          description=f'Course: {course_id}\n{course_name} | {course_code} \n', 
-                          colour=0x98FB98)
+                        description=f'Course: {course_id}\n{course_name} | {course_code} \n', 
+                        colour=0x98FB98)
 
     embed.set_author(name='CanvasDiscordBot', 
                     icon_url='https://play-lh.googleusercontent.com/2_M-EEPXb2xTMQSTZpSUefHR3TjgOCsawM3pjVG47jI-BrHoXGhKBpdEHeLElT95060B=s180')
 
-    embed.add_field(name=title, value=message_raw + '\n\n\n ', inline=False)
+    embed.add_field(name=title, value=message_content + '\n\n\n ', inline=False)
     embed.set_footer(text='Posted ' + posted_at_formatted + f'\nby {author}')
+
     return embed
 
