@@ -105,6 +105,7 @@ def create_announcement_embed(announcement_data):
     posted_at_formatted = posted_at.replace('Z', '')
 
     # Parse the text that is recieved in html
+    # Shorten it so it fits in to the Discord embed
     message_raw = html_to_raw(message)
     message_content = shorten_announcement(message_raw)
 
