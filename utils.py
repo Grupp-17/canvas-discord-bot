@@ -16,8 +16,7 @@ from bs4 import BeautifulSoup
 ##############################
 
 # Run only once
-def init_cmdline_argument_parser():
-    global debug
+def get_debug():
 
     # Init argparser
     parser = argparse.ArgumentParser(prog='Canvas Discord Bot')
@@ -29,14 +28,10 @@ def init_cmdline_argument_parser():
     args = parser.parse_args()
 
     # Return dictionary of argument keys and values
-    debug = vars(args)['debug']
+    debug_arg = vars(args)['debug']
 
-
-# In a function due to initiation order due to user cmd arguments vs modules
-# The function is called after user input argument is parsed and debug variable is set
-def get_debug():
-    return debug
-
+    return debug_arg
+    
 # TODO Comment
 def html_to_raw(html_content):
     raw_content = BeautifulSoup(html_content, 'lxml')
