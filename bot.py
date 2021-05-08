@@ -23,7 +23,6 @@ from database.init import \
 from canvas.monitor import \
     init_monitor
 from utils import \
-    init_cmdline_argument_parser, \
     get_debug
 from discord_cmds.announcement import \
     get_subscribed_courses_data, get_unsent_announcements_data, \
@@ -35,6 +34,8 @@ from discord_cmds.unsubscribe import \
     unsubscribe_command
 from utils import \
     get_config
+from log_handler import \
+    logger
 
 # Third party modules
 import discord
@@ -59,15 +60,6 @@ client = discord.Client(intents=intents)
 client = commands.Bot(command_prefix=get_config('discord_command_prefix'))
 initial_extensions = ['discord_cmds.command_base']
 
-# Find out if debugging should be started (only runs once)
-init_cmdline_argument_parser()
-
-if(get_debug()):
-    print('DEBUG ON')
-else:
-    print('DEBUG OFF')
-
-
 for extension in initial_extensions:
     client.load_extension(extension)
 
@@ -79,7 +71,9 @@ for extension in initial_extensions:
 @client.event
 async def on_ready():
     
-    if(get_debug()):print(f'{client.user} has connected to Discord!')
+    logger.info(
+        f'{client.user} has connected to Discord!'
+    )
 
     # Init database (run once)
     init_success_database = init_database()
@@ -88,6 +82,8 @@ async def on_ready():
     if init_success_database:
         # Start update loop for db to fetch data from Canvas domain
         init_monitor()
+    else:
+        logger.critical('')
 
     # Scheduler for sending announcements. Needs to be AysyncIO due to Discord client using the same
     # This scheduler will check regularly if a course in the database is subscribed to. If that is
@@ -101,6 +97,7 @@ async def on_ready():
     announcement_scheduler.start()
 
     print('Canvas Discord Bot has started!')
+    
 
 # TODO Proper error handling
 # Managing command error, ignoring invalid commands
