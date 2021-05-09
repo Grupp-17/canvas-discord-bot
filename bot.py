@@ -22,8 +22,6 @@ from database.init import \
     init_database
 from canvas.monitor import \
     init_monitor
-from utils import \
-    get_debug
 from discord_cmds.announcement import \
     get_subscribed_courses_data, get_unsent_announcements_data, \
     join_courses_with_announcement_data, \
@@ -76,14 +74,10 @@ async def on_ready():
     )
 
     # Init database (run once)
-    init_success_database = init_database()
+    init_database()
 
-    # Continue only if init is successful
-    if init_success_database:
-        # Start update loop for db to fetch data from Canvas domain
-        init_monitor()
-    else:
-        logger.critical('')
+    # Start update loop for db to fetch data from Canvas domain
+    init_monitor()
 
     # Scheduler for sending announcements. Needs to be AysyncIO due to Discord client using the same
     # This scheduler will check regularly if a course in the database is subscribed to. If that is
@@ -99,7 +93,6 @@ async def on_ready():
     print('Canvas Discord Bot has started!')
     
 
-# TODO Proper error handling
 # Managing command error, ignoring invalid commands
 @client.event
 async def on_command_error(ctx, error):
@@ -155,7 +148,9 @@ async def announcement_handler():
                 # Reset success state variable for next iteration
                 message_sent = False
             else:
-                if(get_debug()):print(f"Message with id: {announcement_data.get('id')} was not sent")
-
+                logger.warning(
+                    f"Message with id: {announcement_data.get('id')} was not sent"
+                )
+                
 
 client.run(DISCORD_TOKEN)
