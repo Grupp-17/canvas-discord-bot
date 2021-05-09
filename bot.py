@@ -50,13 +50,13 @@ from apscheduler.schedulers.asyncio import \
 # Load enviromental variables
 load_dotenv()
 DISCORD_TOKEN = os.getenv('DISCORD_TOKEN')
-DISCORD_PREFIX = os.getenv('DISCORD_PREFIX')
+DISCORD_PREFIX = os.getenv('DISCORD_PREFIX').strip('')
 DEFAULT_CHANNEL_ID = int(os.getenv('DEFAULT_CHANNEL_ID'))
 
 # Configure discord client
 intents = discord.Intents.default()
 client = discord.Client(intents=intents)
-client = commands.Bot(command_prefix=DISCORD_PREFIX.strip(''))
+client = commands.Bot(command_prefix=DISCORD_PREFIX)
 initial_extensions = ['discord_cmds.command_base']
 
 for extension in initial_extensions:
