@@ -118,7 +118,7 @@ def create_announcement_embed(announcement_data):
     # Embed layout
     embed = discord.Embed(title='New Announcement 📢', 
                         description=f'Course: {course_id}\n{course_name} | {course_code} \n', 
-                        colour=0x98FB98)
+                        colour=0xFEFDFD)
 
     embed.set_author(name='CanvasDiscordBot', 
                     icon_url='https://play-lh.googleusercontent.com/2_M-EEPXb2xTMQSTZpSUefHR3TjgOCsawM3pjVG47jI-BrHoXGhKBpdEHeLElT95060B=s180')

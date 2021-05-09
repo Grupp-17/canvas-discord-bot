@@ -4,7 +4,7 @@ def error_message_embed(title, error_description, message, user_action):
 
     embed = discord.Embed(title=f'{title} ⚠️', 
                           description=f'{error_description}', 
-                          colour=0x98FB98)
+                          colour=0xFEFDFD)
 
     embed.set_author(name='CanvasDiscordBot', 
                     icon_url='https://play-lh.googleusercontent.com/2_M-EEPXb2xTMQSTZpSUefHR3TjgOCsawM3pjVG47jI-BrHoXGhKBpdEHeLElT95060B=s180')
@@ -15,7 +15,7 @@ def error_message_embed(title, error_description, message, user_action):
 
 def not_found_message_embed(title, message, user_action):
     
-    embed = discord.Embed(colour=0x98FB98, description="🤷")
+    embed = discord.Embed(colour=0xFEFDFD, description="🤷")
     embed.set_author(name="CanvasDiscordBot",
                     icon_url="https://play-lh.googleusercontent.com/2_M-EEPXb2xTMQSTZpSUefHR3TjgOCsawM3pjVG47jI-BrHoXGhKBpdEHeLElT95060B=s180")
     

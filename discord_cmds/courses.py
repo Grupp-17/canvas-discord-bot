@@ -15,7 +15,7 @@ def courses_command(ctx):
 
     # Embed for displaying all availible courses in discord
     embed = discord.Embed(title='Avaliable courses',
-                        colour=0x98FB98)
+                        colour=0xFEFDFD)
     
     embed.set_author(name='CanvasDiscordBot', 
                     icon_url='https://play-lh.googleusercontent.com/2_M-EEPXb2xTMQSTZpSUefHR3TjgOCsawM3pjVG47jI-BrHoXGhKBpdEHeLElT95060B=s180')

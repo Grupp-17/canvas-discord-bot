@@ -79,7 +79,7 @@ def subscribe_command(course_id, channel_name, discord_channel_data):
     if(course_data == None):
         all_courses_id = '\n'.join(str(i) for i in course_id_all)
 
-        embed = discord.Embed(colour=0x98FB98, description="🤷")
+        embed = discord.Embed(colour=0xFEFDFD, description="🤷")
         embed.set_author(name='CanvasDiscordBot',
                         icon_url='https://play-lh.googleusercontent.com/2_M-EEPXb2xTMQSTZpSUefHR3TjgOCsawM3pjVG47jI-BrHoXGhKBpdEHeLElT95060B=s180')
         embed.add_field(name=f'\n\nCourse "{course_id}" does not exist', value=f'Available Courses:\n{all_courses_id}')
@@ -89,7 +89,7 @@ def subscribe_command(course_id, channel_name, discord_channel_data):
 
     # Channel not found - return error message to user
     elif(discord_channel_data == None):
-        embed = discord.Embed(colour=0x98FB98, description="🤷")
+        embed = discord.Embed(colour=0xFEFDFD, description="🤷")
         embed.set_author(name='CanvasDiscordBot',
                         icon_url='https://play-lh.googleusercontent.com/2_M-EEPXb2xTMQSTZpSUefHR3TjgOCsawM3pjVG47jI-BrHoXGhKBpdEHeLElT95060B=s180')
         embed.add_field(name=f'\n\nChannel "{channel_name}" does not exist!', value='Please try again!')
@@ -104,7 +104,7 @@ def subscribe_command(course_id, channel_name, discord_channel_data):
         course_code = course_data.get('course_code')
 
         # Embed layout
-        embed = discord.Embed(colour=0x98FB98, description='🔔')
+        embed = discord.Embed(colour=0xFEFDFD, description='🔔')
         embed.set_author(name='CanvasDiscordBot',
                         icon_url='https://play-lh.googleusercontent.com/2_M-EEPXb2xTMQSTZpSUefHR3TjgOCsawM3pjVG47jI-BrHoXGhKBpdEHeLElT95060B=s180')
         
