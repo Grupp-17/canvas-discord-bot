@@ -4,14 +4,15 @@
 from utils import \
     get_config, \
     get_time_delta_days, \
-    html_to_raw, \
-    get_debug
+    html_to_raw
 from database.interactions import \
     get_all_courses_data, \
     get_all_announcements_data, \
     sql_query_commit
 from database.queries import \
     query_update_announcement_sent 
+from log_handler import \
+    logger
 
 # Third party modules
 import discord
@@ -85,7 +86,7 @@ def mark_announcement_as_sent(id):
 
     sql_query_commit(query_update_announcement_sent(id))
     
-    if(get_debug()):print(f'Announcement with {id} marked as sent.')
+    logger.info(f'Announcement with {id} marked as sent.')
 
 
 def shorten_announcement(announcement):

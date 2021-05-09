@@ -24,7 +24,7 @@ def create_connection():
 
     try:
         conn = sqlite3.connect(db_path)
-        logger.info(f'Database connection to {db_path} successful. SQLite3', sqlite3.version)
+        logger.info(f'Database connection to {db_path} successful. SQLite3, {sqlite3.version}')
     except Error as e:
         logger.error(f'{e}')
         logger.critical(f'Could not create database connection. Shutting down.')
@@ -135,7 +135,7 @@ def sql_query(query):
         conn = create_connection()
         c = conn.cursor()
         c.execute(query)
-        logger.info(f'Query successful: {query}')
+        logger.debug(f'Query successful: {query}')
         return True
 
     except Error as e:
@@ -147,7 +147,7 @@ def sql_query_fetch(query):
         conn = create_connection()
         c = conn.cursor()
         c.execute(query)
-        logger.info(f'Query successful: {query}')
+        logger.debug(f'Query successful: {query}')
         result = c.fetchall()
         return result
        
@@ -160,7 +160,7 @@ def sql_query_fetchone_result(query):
         conn = create_connection()
         c = conn.cursor()
         c.execute(query)
-        logger.info(f'Query successful: {query}')
+        logger.debug(f'Query successful: {query}')
         
         result = c.fetchone()
 
@@ -175,7 +175,7 @@ def sql_query_fetchall_result(query):
         conn = create_connection()
         c = conn.cursor()
         c.execute(query)
-        logger.info(f'Query successful: {query}')
+        logger.debug(f'Query successful: {query}')
         
         result = c.fetchall()
 
@@ -190,7 +190,7 @@ def sql_query_fetchall(query):
         conn = create_connection()
         c = conn.cursor()
         c.execute(query)
-        logger.info(f'Query successful: {query}')
+        logger.debug(f'Query successful: {query}')
         
         result = c.fetchall()
 
@@ -208,7 +208,7 @@ def sql_query_commit(query):
         
         conn.commit()
 
-        logger.info(f'Query successful: {query}')
+        logger.debug(f'Query successful: {query}')
         return True
 
     except Error as e:

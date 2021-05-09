@@ -4,8 +4,8 @@
 import os
 
 # Local modules
-from utils import \
-    get_debug
+from log_handler import \
+    logger
 
 # Third party modules
 import requests
@@ -35,18 +35,19 @@ def send_request(request, type):
         response = requests.get(request, headers = headers)
         if response.status_code == 200:
             # TODO Check if data is correct
-            if(get_debug()):print(f'Request {type} successful!')
+            logger.info(f'Request {type} successful!')
             #count += 1
 
             return response
 
         else:
-            if(get_debug()):print(f'Error request {type}: {response.status_code}')
+            # If response from server is not ok, continue but do not terminate program.
+            logger.error(f'Error request {type}: {response.status_code}')
             return None
 
     except requests.exceptions.RequestException as e:
-        if(get_debug()):print(e) # TODO Maybe SystemExit(e)? Should the program be allowed to continue?
-        return None
+        logger.error(f'{e}')
+        
 
 
 def fetch_courses():
@@ -56,6 +57,7 @@ def fetch_courses():
     
     # Send request
     response = send_request(request, 'courses')
+    logger.debug(f'Courses fetched: {response}')
 
     if response is not None:
         # Load JSON from response using built in JSON method and return it
@@ -68,9 +70,10 @@ def fetch_announcements(context_code_id):
 
     # Construct request URL
     request = f'{CANVAS_DOMAIN}/api/v1/announcements?context_codes[]=course_{context_code_id}'
-    if(get_debug()):print(request)
+
     # Send request
     response = send_request(request, 'announcements')
+    logger.debug(f'Announcement fetched [{context_code_id}]: {response}')
 
     if response is not None:
         # Load JSON from response using built in JSON method and return it
