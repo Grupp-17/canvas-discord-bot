@@ -149,3 +149,5 @@ dmypy.json
 *.sqlite3
 database/main.db-journal
 
+### Logging ###
+logs/
