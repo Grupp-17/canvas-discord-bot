@@ -150,4 +150,4 @@ dmypy.json
 database/main.db-journal
 
 ### Logging ###
-logs/
+logs/*
