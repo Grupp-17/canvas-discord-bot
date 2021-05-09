@@ -1,6 +1,7 @@
 # Commands for interacting with the database
 
 #internal modules
+import sys
 import sqlite3
 from sqlite3 import \
     Error
@@ -9,7 +10,8 @@ from sqlite3 import \
 from database.queries import \
     query_select_table_attributes, \
     query_select_table_attributes_condition
-from utils import get_debug
+from log_handler import \
+    logger
 
 # Third party modules
 from pathlib import Path
@@ -22,9 +24,11 @@ def create_connection():
 
     try:
         conn = sqlite3.connect(db_path)
-        if(get_debug()):print('Connection successful. SQLite3', sqlite3.version)
+        logger.info(f'Database connection to {db_path} successful. SQLite3', sqlite3.version)
     except Error as e:
-        if(get_debug()):print(e)
+        logger.error(f'{e}')
+        logger.critical(f'Could not create database connection. Shutting down.')
+        sys.exit()
     return conn
 
 # Create a clean list of SQLite output
@@ -131,13 +135,11 @@ def sql_query(query):
         conn = create_connection()
         c = conn.cursor()
         c.execute(query)
-        if(get_debug()):
-            print(query)
-            print('Query successful!')
+        logger.info(f'Query successful: {query}')
         return True
 
     except Error as e:
-        if(get_debug()):print(e)
+        logger.error(f'Query failed: {e}')
         return False
 
 def sql_query_fetch(query):
@@ -145,14 +147,12 @@ def sql_query_fetch(query):
         conn = create_connection()
         c = conn.cursor()
         c.execute(query)
-        if(get_debug()):
-            print(query)
-            print('Query successful!')
+        logger.info(f'Query successful: {query}')
         result = c.fetchall()
         return result
        
     except Error as e:
-        if(get_debug()):print(e)
+        logger.error(f'Query failed: {e}')
         return False
 
 def sql_query_fetchone_result(query):
@@ -160,9 +160,7 @@ def sql_query_fetchone_result(query):
         conn = create_connection()
         c = conn.cursor()
         c.execute(query)
-        if(get_debug()):
-            print(query)
-            print('Query successful!')
+        logger.info(f'Query successful: {query}')
         
         result = c.fetchone()
 
@@ -170,16 +168,14 @@ def sql_query_fetchone_result(query):
         return result[0]
 
     except Error as e:
-        if(get_debug()):print(e)
+        logger.error(f'Query failed: {e}')
 
 def sql_query_fetchall_result(query):
     try:
         conn = create_connection()
         c = conn.cursor()
         c.execute(query)
-        if(get_debug()):
-            print(query)
-            print('Query successful!')
+        logger.info(f'Query successful: {query}')
         
         result = c.fetchall()
 
@@ -187,16 +183,14 @@ def sql_query_fetchall_result(query):
         return create_sql_query_list(result)
 
     except Error as e:
-        if(get_debug()):print(e)
+        logger.error(f'Query failed: {e}')
 
 def sql_query_fetchall(query):
     try:
         conn = create_connection()
         c = conn.cursor()
         c.execute(query)
-        if(get_debug()):
-            print(query)
-            print('Query successful!')
+        logger.info(f'Query successful: {query}')
         
         result = c.fetchall()
 
@@ -204,8 +198,7 @@ def sql_query_fetchall(query):
         return result
 
     except Error as e:
-        if(get_debug()):print(e)
-
+        logger.error(f'Query failed: {e}')
 
 def sql_query_commit(query):
     try:
@@ -215,12 +208,10 @@ def sql_query_commit(query):
         
         conn.commit()
 
-        if(get_debug()):
-            print(query)
-            print('Query commit successful!')
+        logger.info(f'Query successful: {query}')
         return True
 
     except Error as e:
-        if(get_debug()):print(e)
+        logger.error(f'Query failed: {e}')
         return False
 
