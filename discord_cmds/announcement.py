@@ -120,8 +120,8 @@ def create_announcement_embed(announcement_data):
                         description=f'Course: {course_id}\n{course_name} | {course_code} \n', 
                         colour=0xFEFDFD)
 
-    embed.set_author(name='CanvasDiscordBot', 
-                    icon_url='https://play-lh.googleusercontent.com/2_M-EEPXb2xTMQSTZpSUefHR3TjgOCsawM3pjVG47jI-BrHoXGhKBpdEHeLElT95060B=s180')
+    embed.set_author(name='CanvasBot', 
+                    icon_url='https://github.com/Grupp-17/canvas-discord-bot/blob/main/images/canvasboticon.png?raw=true')
 
     embed.add_field(name=title, value=message_content + '\n\n\n ', inline=False)
     embed.set_footer(text='Posted ' + posted_at_formatted + f'\nby {author}')

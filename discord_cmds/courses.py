@@ -17,8 +17,8 @@ def courses_command(ctx):
     embed = discord.Embed(title='Avaliable courses',
                         colour=0xFEFDFD)
     
-    embed.set_author(name='CanvasDiscordBot', 
-                    icon_url='https://play-lh.googleusercontent.com/2_M-EEPXb2xTMQSTZpSUefHR3TjgOCsawM3pjVG47jI-BrHoXGhKBpdEHeLElT95060B=s180')
+    embed.set_author(name='CanvasBot', 
+                    icon_url='https://github.com/Grupp-17/canvas-discord-bot/blob/main/images/canvasboticon.png?raw=true')
     
     # Adding the fields in the embed by iterating through the list with courses data
     for i in courses_data:

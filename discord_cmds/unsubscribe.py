@@ -21,8 +21,8 @@ def unsubscribe_command(course_id):
     if(course_data == None):
 
         embed = discord.Embed(colour=0xFEFDFD, description='🤷')
-        embed.set_author(name='CanvasDiscordBot',
-                        icon_url='https://play-lh.googleusercontent.com/2_M-EEPXb2xTMQSTZpSUefHR3TjgOCsawM3pjVG47jI-BrHoXGhKBpdEHeLElT95060B=s180')
+        embed.set_author(name='CanvasBot',
+                        icon_url='https://github.com/Grupp-17/canvas-discord-bot/blob/main/images/canvasboticon.png?raw=true')
         embed.add_field(name=f'\n\nCourse {course_id} does not exist', value='Choose another course')
 
         return embed
@@ -34,8 +34,8 @@ def unsubscribe_command(course_id):
     # Create embed if a course if already unsubscribed to
     if (course_data.get('subscribed_to') == '0'):
         embed = discord.Embed(colour=0xFEFDFD, description='🔕')
-        embed.set_author(name='CanvasDiscordBot',
-                        icon_url='https://play-lh.googleusercontent.com/2_M-EEPXb2xTMQSTZpSUefHR3TjgOCsawM3pjVG47jI-BrHoXGhKBpdEHeLElT95060B=s180')
+        embed.set_author(name='CanvasBot',
+                        icon_url='https://github.com/Grupp-17/canvas-discord-bot/blob/main/images/canvasboticon.png?raw=true')
         embed.add_field(name=f'\n\nAlready unsubscribed to course {course_id}', value=f'{course_name} | {course_code}\n')
         
         return embed
@@ -45,8 +45,8 @@ def unsubscribe_command(course_id):
 
         if (commit_unsubscription(course_id) == True):
             embed = discord.Embed(colour=0xFEFDFD, description='🔕')
-            embed.set_author(name='CanvasDiscordBot',
-                            icon_url='https://play-lh.googleusercontent.com/2_M-EEPXb2xTMQSTZpSUefHR3TjgOCsawM3pjVG47jI-BrHoXGhKBpdEHeLElT95060B=s180')
+            embed.set_author(name='CanvasBot',
+                            icon_url='https://github.com/Grupp-17/canvas-discord-bot/blob/main/images/canvasboticon.png?raw=true')
             embed.add_field(name=f'\n\nUnsubscribed to course {course_id}', value=f'{course_name} | {course_code}\n')
             embed.set_footer(text='Subscription removed ❌')
         

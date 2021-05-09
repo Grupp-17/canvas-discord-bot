@@ -80,8 +80,8 @@ def subscribe_command(course_id, channel_name, discord_channel_data):
         all_courses_id = '\n'.join(str(i) for i in course_id_all)
 
         embed = discord.Embed(colour=0xFEFDFD, description="🤷")
-        embed.set_author(name='CanvasDiscordBot',
-                        icon_url='https://play-lh.googleusercontent.com/2_M-EEPXb2xTMQSTZpSUefHR3TjgOCsawM3pjVG47jI-BrHoXGhKBpdEHeLElT95060B=s180')
+        embed.set_author(name='CanvasBot',
+                        icon_url='https://github.com/Grupp-17/canvas-discord-bot/blob/main/images/canvasboticon.png?raw=true')
         embed.add_field(name=f'\n\nCourse "{course_id}" does not exist', value=f'Available Courses:\n{all_courses_id}')
         embed.set_footer(text='No subscription added!')
 
@@ -90,8 +90,8 @@ def subscribe_command(course_id, channel_name, discord_channel_data):
     # Channel not found - return error message to user
     elif(discord_channel_data == None):
         embed = discord.Embed(colour=0xFEFDFD, description="🤷")
-        embed.set_author(name='CanvasDiscordBot',
-                        icon_url='https://play-lh.googleusercontent.com/2_M-EEPXb2xTMQSTZpSUefHR3TjgOCsawM3pjVG47jI-BrHoXGhKBpdEHeLElT95060B=s180')
+        embed.set_author(name='CanvasBot',
+                        icon_url='https://github.com/Grupp-17/canvas-discord-bot/blob/main/images/canvasboticon.png?raw=true')
         embed.add_field(name=f'\n\nChannel "{channel_name}" does not exist!', value='Please try again!')
 
         return embed
@@ -105,8 +105,8 @@ def subscribe_command(course_id, channel_name, discord_channel_data):
 
         # Embed layout
         embed = discord.Embed(colour=0xFEFDFD, description='🔔')
-        embed.set_author(name='CanvasDiscordBot',
-                        icon_url='https://play-lh.googleusercontent.com/2_M-EEPXb2xTMQSTZpSUefHR3TjgOCsawM3pjVG47jI-BrHoXGhKBpdEHeLElT95060B=s180')
+        embed.set_author(name='CanvasBot',
+                        icon_url='https://github.com/Grupp-17/canvas-discord-bot/blob/main/images/canvasboticon.png?raw=true')
         
         # Check if course is subscribed to
         if is_subscribed(course_id):
