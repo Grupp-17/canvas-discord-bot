@@ -13,12 +13,11 @@ from .unsubscribe import \
     unsubscribe_command
 from .info_messages import \
     error_message_embed
-from utils import \
-    get_config
 
 # Third party modules
 from discord.ext import commands
 
+DISCORD_PREFIX = os.getenv('DISCORD_PREFIX').strip('')
 DEFAULT_CHANNEL_ID = int(os.getenv('DEFAULT_CHANNEL_ID'))
 
 # Grouping the commands
@@ -51,8 +50,7 @@ class CommandBase(commands.Cog):
             await ctx.send(embed=subscribe_command(course_id, channel_id, discord_channel_data))
         else:
             # TODO Proper error message
-            prefix = get_config('discord_command_prefix')
-            await ctx.send(embed=error_message_embed('Subscription error', 'To many arguments', f'Try this format:', f'{prefix}subscribe <course_id> <channel_id>'))
+            await ctx.send(embed=error_message_embed('Subscription error', 'To many arguments', f'Try this format:', f'{DISCORD_PREFIX}subscribe <course_id> <channel_id>'))
    
     # Command to unsubscribe to a course
     # Set permission for the command
