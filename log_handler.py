@@ -1,4 +1,5 @@
 # Local modules
+import os
 import logging
 from logging.handlers import RotatingFileHandler
 
@@ -12,6 +13,8 @@ logger = logging.getLogger()
 
 # How the log data is formatted
 log_format = logging.Formatter('[%(asctime)s] [%(levelname)s] [%(name)s] [%(module)s] [%(lineno)d] %(message)s')
+
+os.makedirs('logs/', exist_ok=True) 
 
 RotatingFileHandler('logs/debug.log', maxBytes=2000, backupCount=10)
 
