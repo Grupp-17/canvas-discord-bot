@@ -151,3 +151,4 @@ database/main.db-journal
 
 ### Logging ###
 logs/*
+*.log

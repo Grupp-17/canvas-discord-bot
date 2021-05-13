@@ -6,7 +6,7 @@ from canvas.http_requests import \
     fetch_announcements
 from database.interactions import \
     sql_query_fetchone_result, \
-    sql_query_commit, \
+    sql_query_commit_test, \
     sql_query_fetchall_result
 from database.queries import \
     query_insert_table_courses, \
@@ -52,30 +52,31 @@ def update_db():
             # Check if course exists, if it doesn't insert it
             # This happens if a Canvas user creates a new course
             if not (sql_query_fetchone_result(query_check_if_exists('id', data_courses[i]['id'], 'courses'))):
-                sql_query_commit(
-                    query_insert_table_courses(
-                        data_courses[i]['id'], 
-                        data_courses[i]['name'], 
-                        data_courses[i]['course_code'],
-                        data_courses[i]['start_at'], 
-                        data_courses[i]['end_at'],
-                        timestamp(),
-                        0, # Initial channelID is not set
-                        0 # Initial value for subscribed to 0
-                    )
-                )
+                query_args = {
+                        'id': data_courses[i]['id'], 
+                        'name': data_courses[i]['name'], 
+                        'course_code': data_courses[i]['course_code'],
+                        'start_at': data_courses[i]['start_at'], 
+                        'end_at': data_courses[i]['end_at'],
+                        'timestamp': timestamp(),
+                        'channel_id': 0, # Initial channelID is not set
+                        'subscribed_to': 0 # Initial value for subscribed to 0
+                }
+                
+                sql_query_commit_test(query_insert_table_courses(), query_args)
+
             else:
-                sql_query_commit(
-                    query_update_table_courses(
-                        data_courses[i]['id'], 
-                        data_courses[i]['name'], 
-                        data_courses[i]['course_code'],
-                        data_courses[i]['start_at'], 
-                        data_courses[i]['end_at'],
-                        timestamp()
-                        # Do not set "subscribed_to" or it will overwrite subscribed courses
-                    )
-                )
+                query_args = {
+                        'id': data_courses[i]['id'], 
+                        'name': data_courses[i]['name'], 
+                        'course_code': data_courses[i]['course_code'],
+                        'start_at': data_courses[i]['start_at'], 
+                        'end_at': data_courses[i]['end_at'],
+                        'timestamp': timestamp()
+                }
+
+                sql_query_commit_test(query_update_table_courses(), query_args)
+                
     else:
         logger.exception('Database error when inserting or updating courses table.')
 
@@ -97,32 +98,32 @@ def update_db():
 
                 # Check if announcement exists, if it doesn't insert it
                 if not (sql_query_fetchone_result(query_check_if_exists('id', data_announcements[f]['id'], 'announcements'))):
-                    sql_query_commit(
-                        query_insert_table_announcements(
-                            data_announcements[f]['id'], 
-                            data_announcements[f]['title'], 
-                            data_announcements[f]['message'],
-                            data_announcements[f]['author']['display_name'], 
-                            data_announcements[f]['context_code'],
-                            data_announcements[f]['posted_at'],
-                            timestamp(),
-                            0 # "Sent to Discord" initial value 0
-                        )
-                    )
+                    query_args = {
+                        'id': data_announcements[f]['id'], 
+                        'title': data_announcements[f]['title'], 
+                        'message': data_announcements[f]['message'],
+                        'author': data_announcements[f]['author']['display_name'], 
+                        'context_code': data_announcements[f]['context_code'],
+                        'posted_at': data_announcements[f]['posted_at'],
+                        'timestamp': timestamp(),
+                        'sent_discord': 0 # "Sent to Discord" initial value 0
+                    }
+
+                    sql_query_commit_test(query_insert_table_announcements(), query_args)
+                
                 else:
+                    query_args = {
+                        'id': data_announcements[f]['id'], 
+                        'title': data_announcements[f]['title'], 
+                        'message': data_announcements[f]['message'],
+                        'author': data_announcements[f]['author']['display_name'], 
+                        'context_code': data_announcements[f]['context_code'],
+                        'posted_at': data_announcements[f]['posted_at'],
+                        'timestamp': timestamp()
+                    }
+
                     # If already existing course update (refresh) values instead
-                    sql_query_commit(
-                        query_update_table_announcements(
-                            data_announcements[f]['id'], 
-                            data_announcements[f]['title'], 
-                            data_announcements[f]['message'],
-                            data_announcements[f]['author']['display_name'], 
-                            data_announcements[f]['context_code'],
-                            data_announcements[f]['posted_at'],
-                            timestamp()
-                            # Do not set "sent to discord" or it will overwrite sent announcements
-                        )
-                    )
+                    sql_query_commit_test(query_update_table_announcements(), query_args)
     else:
         logger.exception('Database error when inserting or updating announcements table.')
 
