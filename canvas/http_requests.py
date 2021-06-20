@@ -36,6 +36,7 @@ def send_request(request, type):
         if response.status_code == 200:
             # TODO Check if data is correct
             logger.info(f'Request {type} successful!')
+            logger.debug(f'Respone from {CANVAS_DOMAIN}: {response}')
             #count += 1
 
             return response
