@@ -37,16 +37,8 @@ query_create_table_announcements = """CREATE TABLE IF NOT EXISTS announcements (
 # INSERT QUERIES #
 ##################
 
-def query_insert_table_courses(
-    id,
-    name,
-    course_code,
-    start_at,
-    end_at,
-    timestamp,
-    channel_id,
-    subscribed_to):
-    query = f"""
+def query_insert_table_courses():
+    query = """
         INSERT INTO courses (
             id,
             name,
@@ -57,29 +49,21 @@ def query_insert_table_courses(
             channel_id,
             subscribed_to) 
         VALUES (
-            "{id}",
-            "{name}",
-            "{course_code}",
-            "{start_at}",
-            "{end_at}",
-            "{timestamp}",
-            "{channel_id}",
-            "{subscribed_to}"
+            :id,
+            :name,
+            :course_code,
+            :start_at,
+            :end_at,
+            :timestamp,
+            :channel_id,
+            :subscribed_to
             );
     """
     return query
 
 
-def query_insert_table_announcements(
-    id,
-    title,
-    message,
-    author,
-    context_code,
-    posted_at,
-    timestamp,
-    sent_discord):
-    query = f"""
+def query_insert_table_announcements():
+    query = """
         INSERT INTO announcements (
             id,
             title,
@@ -90,14 +74,14 @@ def query_insert_table_announcements(
             timestamp,
             sent_discord) 
         VALUES (
-            "{id}",
-            "{title}",
-            "{message}",
-            "{author}",
-            "{context_code}",
-            "{posted_at}",
-            "{timestamp}",
-            "{sent_discord}"
+            :id,
+            :title,
+            :message,
+            :author,
+            :context_code,
+            :posted_at,
+            :timestamp,
+            :sent_discord
             );
     """
     return query
@@ -107,44 +91,31 @@ def query_insert_table_announcements(
 # UPDATE QUERIES #
 ##################
 
-def query_update_table_courses(
-    id,
-    name,
-    course_code,
-    start_at,
-    end_at,
-    timestamp):
-    query = f"""
+def query_update_table_courses():
+    query = """
     UPDATE courses
         SET
-            name = "{name}",
-            course_code = "{course_code}",
-            start_at = "{start_at}",
-            end_at = "{end_at}",
-            timestamp = "{timestamp}"
-    WHERE id = "{id}"
+            name = :name,
+            course_code = :course_code,
+            start_at = :start_at,
+            end_at = :end_at,
+            timestamp = :timestamp
+        WHERE id = :id
     """
     return query
 
 
-def query_update_table_announcements(
-    id,
-    title,
-    message,
-    author,
-    context_code,
-    posted_at,
-    timestamp):
-    query = f"""
+def query_update_table_announcements():
+    query = """
     UPDATE announcements
         SET
-            title = "{title}",
-            message = "{message}",
-            author = "{author}",
-            context_code = "{context_code}",
-            posted_at = "{posted_at}",
-            timestamp = "{timestamp}"
-        WHERE id = "{id}"
+            title = :title,
+            message = :message,
+            author = :author,
+            context_code = :context_code,
+            posted_at = :posted_at,
+            timestamp = :timestamp
+        WHERE id = :id
     """
     return query
 

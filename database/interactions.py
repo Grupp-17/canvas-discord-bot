@@ -215,3 +215,19 @@ def sql_query_commit(query):
         logger.error(f'Query failed: {e}')
         return False
 
+def sql_query_commit_test(query, query_args):
+    try:
+        conn = create_connection()
+        c = conn.cursor()
+        c.execute(query, query_args)
+        
+        conn.commit()
+
+        logger.debug(f'Query successful: {query}')
+        return True
+
+    except Error as e:
+        logger.error(f'Query failed: {e} \n {query}')
+        return False
+
+

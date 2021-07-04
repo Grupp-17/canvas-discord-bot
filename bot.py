@@ -23,7 +23,8 @@ from database.init import \
 from canvas.monitor import \
     init_monitor
 from discord_cmds.announcement import \
-    get_subscribed_courses_data, get_unsent_announcements_data, \
+    get_subscribed_courses_data, \
+    get_unsent_announcements_data, \
     join_courses_with_announcement_data, \
     get_announcement_channel, \
     create_announcement_embed, \
